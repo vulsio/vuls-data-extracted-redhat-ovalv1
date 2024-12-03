@@ -1,0 +1,1274 @@
+{
+	"id": "RHSA-2014:1245",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2014:1245",
+				"title": "RHSA-2014:1245: krb5 security and bug fix update (Moderate)",
+				"description": "Kerberos is an authentication system which allows clients and services to\nauthenticate to each other with the help of a trusted third party, a\nKerberos Key Distribution Center (KDC).\n\nIt was found that if a KDC served multiple realms, certain requests could\ncause the setup_server_realm() function to dereference a NULL pointer.\nA remote, unauthenticated attacker could use this flaw to crash the KDC\nusing a specially crafted request. (CVE-2013-1418, CVE-2013-6800)\n\nA NULL pointer dereference flaw was found in the MIT Kerberos SPNEGO\nacceptor for continuation tokens. A remote, unauthenticated attacker could\nuse this flaw to crash a GSSAPI-enabled server application. (CVE-2014-4344)\n\nA buffer over-read flaw was found in the way MIT Kerberos handled certain\nrequests. A man-in-the-middle attacker with a valid Kerberos ticket who is\nable to inject packets into a client or server application's GSSAPI session\ncould use this flaw to crash the application. (CVE-2014-4341)\n\nThis update also fixes the following bugs:\n\n* Prior to this update, the libkrb5 library occasionally attempted to free\nalready freed memory when encrypting credentials. As a consequence, the\ncalling process terminated unexpectedly with a segmentation fault.\nWith this update, libkrb5 frees memory correctly, which allows the\ncredentials to be encrypted appropriately and thus prevents the mentioned\ncrash. (BZ#1004632)\n\n* Previously, when the krb5 client library was waiting for a response from\na server, the timeout variable in certain cases became a negative number.\nConsequently, the client could enter a loop while checking for responses.\nWith this update, the client logic has been modified and the described\nerror no longer occurs. (BZ#1089732)\n\nAll krb5 users are advised to upgrade to these updated packages, which\ncontain backported patches to correct these issues. After installing the\nupdated packages, the krb5kdc daemon will be restarted automatically.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Moderate"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2014:1245"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2013-1418"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2013-6800"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2014-4341"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2014-4344"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1026942"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1031499"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1116180"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1121877"
+					}
+				],
+				"published": "2014-09-16T00:00:00Z",
+				"modified": "2014-09-16T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2013-1418",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:M/Au:N/C:N/I:N/A:P",
+							"base_score": 4.3,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 4.3,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 4.3,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-476"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2013-1418"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1026942"
+					}
+				],
+				"published": "2013-11-04T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2013-6800",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:M/Au:N/C:N/I:N/A:P",
+							"base_score": 4.3,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 4.3,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 4.3,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-476"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2013-6800"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1031499"
+					}
+				],
+				"published": "2013-11-04T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2014-4341",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:M/Au:N/C:N/I:N/A:P",
+							"base_score": 4.3,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 4.3,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 4.3,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-130->CWE-125"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2014-4341"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1116180"
+					}
+				],
+				"published": "2014-06-26T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2014-4344",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:M/Au:N/C:N/I:N/A:P",
+							"base_score": 4.3,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 4.3,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 4.3,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-476"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2014-4344"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1121877"
+					}
+				],
+				"published": "2014-07-15T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:5",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "krb5-devel",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"ppc64",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:1.6.1-78.el5"
+													}
+												],
+												"fixed": [
+													"0:1.6.1-78.el5"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "krb5-libs",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"ppc64",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:1.6.1-78.el5"
+													}
+												],
+												"fixed": [
+													"0:1.6.1-78.el5"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "krb5-server",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:1.6.1-78.el5"
+													}
+												],
+												"fixed": [
+													"0:1.6.1-78.el5"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "krb5-server-ldap",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:1.6.1-78.el5"
+													}
+												],
+												"fixed": [
+													"0:1.6.1-78.el5"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "krb5-workstation",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:1.6.1-78.el5"
+													}
+												],
+												"fixed": [
+													"0:1.6.1-78.el5"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "5"
+				},
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "krb5-devel",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"ppc64",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:1.6.1-78.el5"
+													}
+												],
+												"fixed": [
+													"0:1.6.1-78.el5"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "krb5-libs",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"ppc64",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:1.6.1-78.el5"
+													}
+												],
+												"fixed": [
+													"0:1.6.1-78.el5"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "krb5-server",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:1.6.1-78.el5"
+													}
+												],
+												"fixed": [
+													"0:1.6.1-78.el5"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "krb5-server-ldap",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:1.6.1-78.el5"
+													}
+												],
+												"fixed": [
+													"0:1.6.1-78.el5"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "krb5-workstation",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:1.6.1-78.el5"
+													}
+												],
+												"fixed": [
+													"0:1.6.1-78.el5"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/definitions/oval:com.redhat.rhsa:def:20141245.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070095001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070095002.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070095003.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070095004.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20110199004.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20141245001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20141245003.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070095011.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070095013.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070095015.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070095017.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20110199008.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20141245001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20141245003.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20141245005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20141245007.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20141245009.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json",
+			"vuls-data-raw-redhat-ovalv1/5/definitions/oval:com.redhat.rhsa:def:20141245.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070095001.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070095002.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070095003.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070095004.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20110199004.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20141245001.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20141245003.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070095002.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070095004.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070095006.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070095008.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20110199008.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20141245001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20141245003.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20141245005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20141245007.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20141245009.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json"
+		]
+	}
+}

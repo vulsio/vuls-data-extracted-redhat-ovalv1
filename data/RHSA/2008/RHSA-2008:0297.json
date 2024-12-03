@@ -1,0 +1,407 @@
+{
+	"id": "RHSA-2008:0297",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2008:0297",
+				"title": "RHSA-2008:0297: dovecot security and bug fix update (Low)",
+				"description": "Dovecot is an IMAP server for Linux and UNIX-like systems, primarily\nwritten with security in mind.\n\nA flaw was discovered in the way Dovecot handled the \"mail_extra_groups\"\noption. An authenticated attacker with local shell access could leverage\nthis flaw to read, modify, or delete other users mail that is stored on\nthe mail server. (CVE-2008-1199)\n\nThis issue did not affect the default Red Hat Enterprise Linux 5 Dovecot\nconfiguration. This update adds two new configuration options --\n\"mail_privileged_group\" and \"mail_access_groups\" -- to minimize the usage\nof additional privileges.\n\nA directory traversal flaw was discovered in Dovecot's zlib plug-in. An\nauthenticated user could use this flaw to view other compressed mailboxes\nwith the permissions of the Dovecot process. (CVE-2007-2231)\n\nA flaw was found in the Dovecot ACL plug-in. User with only insert\npermissions for a mailbox could use the \"COPY\" and \"APPEND\" commands to set\nadditional message flags. (CVE-2007-4211)\n\nA flaw was found in a way Dovecot cached LDAP query results in certain\nconfigurations. This could possibly allow authenticated users to log in as\na different user who has the same password. (CVE-2007-6598)\n\nAs well, this updated package fixes the following bugs:\n\n* configuring \"userdb\" and \"passdb\" to use LDAP caused Dovecot to hang. A\nsegmentation fault may have occurred. In this updated package, using an\nLDAP backend for \"userdb\" and \"passdb\" no longer causes Dovecot to hang.\n\n* the Dovecot \"login_process_size\" limit was configured for 32-bit systems.\nOn 64-bit systems, when Dovecot was configured to use either IMAP or POP3,\nthe log in processes crashed with out-of-memory errors. Errors such as the\nfollowing were logged:\n\npop3-login: pop3-login: error while loading shared libraries:\nlibsepol.so.1: failed to map segment from shared object: Cannot allocate\nmemory\n\nIn this updated package, the \"login_process_size\" limit is correctly\nconfigured on 64-bit systems, which resolves this issue.\n\nNote: this updated package upgrades dovecot to version 1.0.7. For\nfurther details, refer to the Dovecot changelog:\nhttp://koji.fedoraproject.org/koji/buildinfo?buildID=23397\n\nUsers of dovecot are advised to upgrade to this updated package, which\nresolves these issues.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2008:0297"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2007-2231"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2007-4211"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2007-6598"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2008-1199"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/238439"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/251007"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/427575"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/436927"
+					}
+				],
+				"published": "2008-05-20T00:00:00Z",
+				"modified": "2008-05-21T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2007-2231",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2007-2231"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/238439"
+					}
+				],
+				"published": "2007-03-28T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2007-4211",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2007-4211"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/251007"
+					}
+				],
+				"published": "2007-08-01T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2007-6598",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2007-6598"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/427575"
+					}
+				],
+				"published": "2007-12-29T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2008-1199",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:H/Au:N/C:P/I:P/A:P",
+							"base_score": 3.7,
+							"nvd_base_severity": "LOW",
+							"temporal_score": 3.7,
+							"nvd_temporal_severity": "LOW",
+							"environmental_score": 3.7,
+							"nvd_environmental_severity": "LOW"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2008-1199"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/436927"
+					}
+				],
+				"published": "2008-03-04T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:5",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "dovecot",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-5-for-power-debug-rpms",
+											"rhel-5-for-power-eus-debug-rpms",
+											"rhel-5-for-power-eus-rpms",
+											"rhel-5-for-power-eus-source-rpms",
+											"rhel-5-for-power-fastrack-debug-rpms",
+											"rhel-5-for-power-fastrack-rpms",
+											"rhel-5-for-power-fastrack-source-rpms",
+											"rhel-5-for-power-rpms",
+											"rhel-5-for-power-source-rpms",
+											"rhel-5-for-system-z-debug-rpms",
+											"rhel-5-for-system-z-els-debug-rpms",
+											"rhel-5-for-system-z-els-rpms",
+											"rhel-5-for-system-z-els-source-rpms",
+											"rhel-5-for-system-z-eus-debug-rpms",
+											"rhel-5-for-system-z-eus-rpms",
+											"rhel-5-for-system-z-eus-source-rpms",
+											"rhel-5-for-system-z-fastrack-debug-rpms",
+											"rhel-5-for-system-z-fastrack-rpms",
+											"rhel-5-for-system-z-fastrack-source-rpms",
+											"rhel-5-for-system-z-rpms",
+											"rhel-5-for-system-z-source-rpms",
+											"rhel-5-server-aus-debug-rpms",
+											"rhel-5-server-aus-rpms",
+											"rhel-5-server-aus-source-rpms",
+											"rhel-5-server-debug-rpms",
+											"rhel-5-server-els-debug-rpms",
+											"rhel-5-server-els-rpms",
+											"rhel-5-server-els-source-rpms",
+											"rhel-5-server-eus-debug-rpms",
+											"rhel-5-server-eus-rpms",
+											"rhel-5-server-eus-source-rpms",
+											"rhel-5-server-fastrack-debug-rpms",
+											"rhel-5-server-fastrack-rpms",
+											"rhel-5-server-fastrack-source-rpms",
+											"rhel-5-server-rpms",
+											"rhel-5-server-source-rpms",
+											"rhel-5-workstation-debug-rpms",
+											"rhel-5-workstation-fastrack-debug-rpms",
+											"rhel-5-workstation-fastrack-rpms",
+											"rhel-5-workstation-fastrack-source-rpms",
+											"rhel-5-workstation-rpms",
+											"rhel-5-workstation-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "0:1.0.7-2.el5"
+											}
+										],
+										"fixed": [
+											"0:1.0.7-2.el5"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "5"
+				},
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "dovecot",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-5-for-power-debug-rpms",
+											"rhel-5-for-power-eus-debug-rpms",
+											"rhel-5-for-power-eus-rpms",
+											"rhel-5-for-power-eus-source-rpms",
+											"rhel-5-for-power-fastrack-debug-rpms",
+											"rhel-5-for-power-fastrack-rpms",
+											"rhel-5-for-power-fastrack-source-rpms",
+											"rhel-5-for-power-rpms",
+											"rhel-5-for-power-source-rpms",
+											"rhel-5-for-system-z-debug-rpms",
+											"rhel-5-for-system-z-els-debug-rpms",
+											"rhel-5-for-system-z-els-rpms",
+											"rhel-5-for-system-z-els-source-rpms",
+											"rhel-5-for-system-z-eus-debug-rpms",
+											"rhel-5-for-system-z-eus-rpms",
+											"rhel-5-for-system-z-eus-source-rpms",
+											"rhel-5-for-system-z-fastrack-debug-rpms",
+											"rhel-5-for-system-z-fastrack-rpms",
+											"rhel-5-for-system-z-fastrack-source-rpms",
+											"rhel-5-for-system-z-rpms",
+											"rhel-5-for-system-z-source-rpms",
+											"rhel-5-server-aus-debug-rpms",
+											"rhel-5-server-aus-rpms",
+											"rhel-5-server-aus-source-rpms",
+											"rhel-5-server-debug-rpms",
+											"rhel-5-server-els-debug-rpms",
+											"rhel-5-server-els-rpms",
+											"rhel-5-server-els-source-rpms",
+											"rhel-5-server-eus-debug-rpms",
+											"rhel-5-server-eus-rpms",
+											"rhel-5-server-eus-source-rpms",
+											"rhel-5-server-fastrack-debug-rpms",
+											"rhel-5-server-fastrack-rpms",
+											"rhel-5-server-fastrack-source-rpms",
+											"rhel-5-server-rpms",
+											"rhel-5-server-source-rpms",
+											"rhel-5-workstation-debug-rpms",
+											"rhel-5-workstation-fastrack-debug-rpms",
+											"rhel-5-workstation-fastrack-rpms",
+											"rhel-5-workstation-fastrack-source-rpms",
+											"rhel-5-workstation-rpms",
+											"rhel-5-workstation-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "0:1.0.7-2.el5"
+											}
+										],
+										"fixed": [
+											"0:1.0.7-2.el5"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/definitions/oval:com.redhat.rhsa:def:20080297.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20080297001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20080297001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20080297001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20080297002.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json",
+			"vuls-data-raw-redhat-ovalv1/5/definitions/oval:com.redhat.rhsa:def:20080297.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20080297001.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20080297001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20080297001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20080297002.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json"
+		]
+	}
+}

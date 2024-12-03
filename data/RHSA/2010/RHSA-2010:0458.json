@@ -1,0 +1,644 @@
+{
+	"id": "RHSA-2010:0458",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2010:0458",
+				"title": "RHSA-2010:0458: perl security update (Moderate)",
+				"description": "Perl is a high-level programming language commonly used for system\nadministration utilities and web programming. The Safe extension module\nallows users to compile and execute Perl code in restricted compartments.\nThe File::Path module allows users to create and remove directory trees.\n\nThe Safe module did not properly restrict the code of implicitly called\nmethods (such as DESTROY and AUTOLOAD) on implicitly blessed objects\nreturned as a result of unsafe code evaluation. These methods could have\nbeen executed unrestricted by Safe when such objects were accessed or\ndestroyed. A specially-crafted Perl script executed inside of a Safe\ncompartment could use this flaw to bypass intended Safe module\nrestrictions. (CVE-2010-1168)\n\nThe Safe module did not properly restrict code compiled in a Safe\ncompartment and executed out of the compartment via a subroutine reference\nreturned as a result of unsafe code evaluation. A specially-crafted Perl\nscript executed inside of a Safe compartment could use this flaw to bypass\nintended Safe module restrictions, if the returned subroutine reference was\ncalled from outside of the compartment. (CVE-2010-1447)\n\nMultiple race conditions were found in the way the File::Path module's\nrmtree function removed directory trees. A malicious, local user with write\naccess to a directory being removed by a victim, running a Perl script\nusing rmtree, could cause the permissions of arbitrary files to be changed\nto world-writable and setuid, or delete arbitrary files via a symbolic link\nattack, if the victim had the privileges to change the permissions of the\ntarget files or to remove them. (CVE-2008-5302, CVE-2008-5303)\n\nRed Hat would like to thank Tim Bunce for responsibly reporting the\nCVE-2010-1168 and CVE-2010-1447 issues. Upstream acknowledges Nick Cleaton\nas the original reporter of CVE-2010-1168, and Tim Bunce and Rafaël\nGarcia-Suarez as the original reporters of CVE-2010-1447.\n\nThese packages upgrade the Safe extension module to version 2.27. Refer to\nthe Safe module's Changes file, linked to in the References, for a full\nlist of changes.\n\nUsers of perl are advised to upgrade to these updated packages, which\ncorrect these issues. All applications using the Safe or File::Path modules\nmust be restarted for this update to take effect.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Moderate"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2010:0458"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2008-5302"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2008-5303"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-1168"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-1447"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/473450"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/474217"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/576508"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/588269"
+					}
+				],
+				"published": "2010-06-07T00:00:00Z",
+				"modified": "2010-06-07T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2008-5302",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:M/Au:N/C:P/I:P/A:P",
+							"base_score": 4.4,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 4.4,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 4.4,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2008-5302"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/473450"
+					}
+				],
+				"published": "2008-11-19T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2008-5303",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:M/Au:N/C:P/I:P/A:P",
+							"base_score": 4.4,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 4.4,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 4.4,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2008-5303"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/474217"
+					}
+				],
+				"published": "2008-11-19T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2010-1168",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:M/Au:N/C:P/I:P/A:N",
+							"base_score": 5.8,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 5.8,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 5.8,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-1168"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/576508"
+					}
+				],
+				"published": "2010-05-20T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2010-1447",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:M/Au:N/C:P/I:P/A:P",
+							"base_score": 6.8,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 6.8,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 6.8,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-1447"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/588269"
+					}
+				],
+				"published": "2010-05-17T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:5",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "perl",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "4:5.8.8-32.el5_5.1"
+													}
+												],
+												"fixed": [
+													"4:5.8.8-32.el5_5.1"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "perl-suidperl",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "4:5.8.8-32.el5_5.1"
+													}
+												],
+												"fixed": [
+													"4:5.8.8-32.el5_5.1"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "5"
+				},
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "perl",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "4:5.8.8-32.el5_5.1"
+													}
+												],
+												"fixed": [
+													"4:5.8.8-32.el5_5.1"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "perl-suidperl",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "4:5.8.8-32.el5_5.1"
+													}
+												],
+												"fixed": [
+													"4:5.8.8-32.el5_5.1"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/definitions/oval:com.redhat.rhsa:def:20100458.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070966001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070966002.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20100458001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070966007.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070966009.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20100458001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20100458003.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json",
+			"vuls-data-raw-redhat-ovalv1/5/definitions/oval:com.redhat.rhsa:def:20100458.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070966001.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070966002.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20100458001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070966002.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070966004.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20100458001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20100458003.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json"
+		]
+	}
+}

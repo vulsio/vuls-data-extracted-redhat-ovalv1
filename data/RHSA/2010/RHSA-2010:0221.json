@@ -1,0 +1,338 @@
+{
+	"id": "RHSA-2010:0221",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2010:0221",
+				"title": "RHSA-2010:0221: squid security and bug fix update (Low)",
+				"description": "Squid is a high-performance proxy caching server for web clients,\nsupporting FTP, Gopher, and HTTP data objects.\n\nA flaw was found in the way Squid processed certain external ACL helper\nHTTP header fields that contained a delimiter that was not a comma. A\nremote attacker could issue a crafted request to the Squid server, causing\nexcessive CPU use (up to 100%). (CVE-2009-2855)\n\nNote: The CVE-2009-2855 issue only affected non-default configurations that\nuse an external ACL helper script.\n\nA flaw was found in the way Squid handled truncated DNS replies. A remote\nattacker able to send specially-crafted UDP packets to Squid's DNS client\nport could trigger an assertion failure in Squid's child process, causing\nthat child process to exit. (CVE-2010-0308)\n\nThis update also fixes the following bugs:\n\n* Squid's init script returns a non-zero value when trying to stop a\nstopped service. This is not LSB compliant and can generate difficulties in\ncluster environments. This update makes stopping LSB compliant. (BZ#521926)\n\n* Squid is not currently built to support MAC address filtering in ACLs.\nThis update includes support for MAC address filtering. (BZ#496170)\n\n* Squid is not currently built to support Kerberos negotiate\nauthentication. This update enables Kerberos authentication. (BZ#516245)\n\n* Squid does not include the port number as part of URIs it constructs when\nconfigured as an accelerator. This results in a 403 error. This update\ncorrects this behavior. (BZ#538738)\n\n* the error_map feature does not work if the same handling is set also on\nthe HTTP server that operates in deflate mode. This update fixes this\nissue. (BZ#470843)\n\nAll users of squid should upgrade to this updated package, which resolves\nthese issues. After installing this update, the squid service will be\nrestarted automatically.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2010:0221"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2009-2855"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-0308"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/518182"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/556389"
+					}
+				],
+				"published": "2010-03-29T00:00:00Z",
+				"modified": "2010-03-30T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2009-2855",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:A/AC:M/Au:N/C:N/I:N/A:P",
+							"base_score": 2.9,
+							"nvd_base_severity": "LOW",
+							"temporal_score": 2.9,
+							"nvd_temporal_severity": "LOW",
+							"environmental_score": 2.9,
+							"nvd_environmental_severity": "LOW"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2009-2855"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/518182"
+					}
+				],
+				"published": "2009-06-28T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2010-0308",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:A/AC:M/Au:N/C:N/I:N/A:P",
+							"base_score": 2.9,
+							"nvd_base_severity": "LOW",
+							"temporal_score": 2.9,
+							"nvd_temporal_severity": "LOW",
+							"environmental_score": 2.9,
+							"nvd_environmental_severity": "LOW"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-0308"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/556389"
+					}
+				],
+				"published": "2009-12-27T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:5",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "squid",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-5-for-power-debug-rpms",
+											"rhel-5-for-power-eus-debug-rpms",
+											"rhel-5-for-power-eus-rpms",
+											"rhel-5-for-power-eus-source-rpms",
+											"rhel-5-for-power-fastrack-debug-rpms",
+											"rhel-5-for-power-fastrack-rpms",
+											"rhel-5-for-power-fastrack-source-rpms",
+											"rhel-5-for-power-rpms",
+											"rhel-5-for-power-source-rpms",
+											"rhel-5-for-system-z-debug-rpms",
+											"rhel-5-for-system-z-els-debug-rpms",
+											"rhel-5-for-system-z-els-rpms",
+											"rhel-5-for-system-z-els-source-rpms",
+											"rhel-5-for-system-z-eus-debug-rpms",
+											"rhel-5-for-system-z-eus-rpms",
+											"rhel-5-for-system-z-eus-source-rpms",
+											"rhel-5-for-system-z-fastrack-debug-rpms",
+											"rhel-5-for-system-z-fastrack-rpms",
+											"rhel-5-for-system-z-fastrack-source-rpms",
+											"rhel-5-for-system-z-rpms",
+											"rhel-5-for-system-z-source-rpms",
+											"rhel-5-server-aus-debug-rpms",
+											"rhel-5-server-aus-rpms",
+											"rhel-5-server-aus-source-rpms",
+											"rhel-5-server-debug-rpms",
+											"rhel-5-server-els-debug-rpms",
+											"rhel-5-server-els-rpms",
+											"rhel-5-server-els-source-rpms",
+											"rhel-5-server-eus-debug-rpms",
+											"rhel-5-server-eus-rpms",
+											"rhel-5-server-eus-source-rpms",
+											"rhel-5-server-fastrack-debug-rpms",
+											"rhel-5-server-fastrack-rpms",
+											"rhel-5-server-fastrack-source-rpms",
+											"rhel-5-server-rpms",
+											"rhel-5-server-source-rpms",
+											"rhel-5-workstation-debug-rpms",
+											"rhel-5-workstation-fastrack-debug-rpms",
+											"rhel-5-workstation-fastrack-rpms",
+											"rhel-5-workstation-fastrack-source-rpms",
+											"rhel-5-workstation-rpms",
+											"rhel-5-workstation-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "7:2.6.STABLE21-6.el5"
+											}
+										],
+										"fixed": [
+											"7:2.6.STABLE21-6.el5"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "5"
+				},
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "squid",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-5-for-power-debug-rpms",
+											"rhel-5-for-power-eus-debug-rpms",
+											"rhel-5-for-power-eus-rpms",
+											"rhel-5-for-power-eus-source-rpms",
+											"rhel-5-for-power-fastrack-debug-rpms",
+											"rhel-5-for-power-fastrack-rpms",
+											"rhel-5-for-power-fastrack-source-rpms",
+											"rhel-5-for-power-rpms",
+											"rhel-5-for-power-source-rpms",
+											"rhel-5-for-system-z-debug-rpms",
+											"rhel-5-for-system-z-els-debug-rpms",
+											"rhel-5-for-system-z-els-rpms",
+											"rhel-5-for-system-z-els-source-rpms",
+											"rhel-5-for-system-z-eus-debug-rpms",
+											"rhel-5-for-system-z-eus-rpms",
+											"rhel-5-for-system-z-eus-source-rpms",
+											"rhel-5-for-system-z-fastrack-debug-rpms",
+											"rhel-5-for-system-z-fastrack-rpms",
+											"rhel-5-for-system-z-fastrack-source-rpms",
+											"rhel-5-for-system-z-rpms",
+											"rhel-5-for-system-z-source-rpms",
+											"rhel-5-server-aus-debug-rpms",
+											"rhel-5-server-aus-rpms",
+											"rhel-5-server-aus-source-rpms",
+											"rhel-5-server-debug-rpms",
+											"rhel-5-server-els-debug-rpms",
+											"rhel-5-server-els-rpms",
+											"rhel-5-server-els-source-rpms",
+											"rhel-5-server-eus-debug-rpms",
+											"rhel-5-server-eus-rpms",
+											"rhel-5-server-eus-source-rpms",
+											"rhel-5-server-fastrack-debug-rpms",
+											"rhel-5-server-fastrack-rpms",
+											"rhel-5-server-fastrack-source-rpms",
+											"rhel-5-server-rpms",
+											"rhel-5-server-source-rpms",
+											"rhel-5-workstation-debug-rpms",
+											"rhel-5-workstation-fastrack-debug-rpms",
+											"rhel-5-workstation-fastrack-rpms",
+											"rhel-5-workstation-fastrack-source-rpms",
+											"rhel-5-workstation-rpms",
+											"rhel-5-workstation-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "7:2.6.STABLE21-6.el5"
+											}
+										],
+										"fixed": [
+											"7:2.6.STABLE21-6.el5"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/definitions/oval:com.redhat.rhsa:def:20100221.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070131001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20100221001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070131002.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20100221001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json",
+			"vuls-data-raw-redhat-ovalv1/5/definitions/oval:com.redhat.rhsa:def:20100221.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070131001.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20100221001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070131002.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20100221001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json"
+		]
+	}
+}

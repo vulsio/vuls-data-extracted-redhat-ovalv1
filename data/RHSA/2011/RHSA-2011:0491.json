@@ -1,0 +1,633 @@
+{
+	"id": "RHSA-2011:0491",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2011:0491",
+				"title": "RHSA-2011:0491: python security update (Moderate)",
+				"description": "Python is an interpreted, interactive, object-oriented programming\nlanguage.\n\nA flaw was found in the Python urllib and urllib2 libraries where they\nwould not differentiate between different target URLs when handling\nautomatic redirects. This caused Python applications using these modules to\nfollow any new URL that they understood, including the \"file://\" URL type.\nThis could allow a remote server to force a local Python application to\nread a local file instead of the remote one, possibly exposing local files\nthat were not meant to be exposed. (CVE-2011-1521)\n\nMultiple flaws were found in the Python audioop module. Supplying certain\ninputs could cause the audioop module to crash or, possibly, execute\narbitrary code. (CVE-2010-1634, CVE-2010-2089)\n\nA race condition was found in the way the Python smtpd module handled new\nconnections. A remote user could use this flaw to cause a Python script\nusing the smtpd module to terminate. (CVE-2010-3493)\n\nAn information disclosure flaw was found in the way the Python\nCGIHTTPServer module processed certain HTTP GET requests. A remote attacker\ncould use a specially-crafted request to obtain the CGI script's source\ncode. (CVE-2011-1015)\n\nA buffer over-read flaw was found in the way the Python Expat parser\nhandled malformed UTF-8 sequences when processing XML files. A\nspecially-crafted XML file could cause Python applications using the Python\nExpat parser to crash while parsing the file. (CVE-2009-3720)\n\nThis update makes Python use the system Expat library rather than its own\ninternal copy; therefore, users must have the version of Expat shipped with\nRHSA-2009:1625 installed, or a later version, to resolve the CVE-2009-3720\nissue.\n\nAll Python users should upgrade to these updated packages, which contain\nbackported patches to correct these issues.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Moderate"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2011:0491"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2009-3720"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-1634"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-2089"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-3493"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2011-1015"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2011-1521"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/531697"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/590690"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/598197"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/632200"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/680094"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/690560"
+					}
+				],
+				"published": "2011-05-05T00:00:00Z",
+				"modified": "2011-05-05T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2009-3720",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:L/Au:N/C:N/I:N/A:P",
+							"base_score": 5,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 5,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 5,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2009-3720"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/531697"
+					}
+				],
+				"published": "2009-01-17T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2010-1634",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:H/Au:N/C:P/I:P/A:P",
+							"base_score": 5.1,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 5.1,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 5.1,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-190"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-1634"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/590690"
+					}
+				],
+				"published": "2010-05-10T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2010-2089",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:M/Au:N/C:N/I:N/A:P",
+							"base_score": 4.3,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 4.3,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 4.3,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-2089"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/598197"
+					}
+				],
+				"published": "2010-01-11T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2010-3493",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:L/Au:N/C:N/I:N/A:P",
+							"base_score": 5,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 5,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 5,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-3493"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/632200"
+					}
+				],
+				"published": "2010-06-30T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2011-1015",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:L/Au:N/C:P/I:N/A:N",
+							"base_score": 5,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 5,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 5,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2011-1015"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/680094"
+					}
+				],
+				"published": "2008-03-07T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2011-1521",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:L/Au:N/C:P/I:N/A:P",
+							"base_score": 6.4,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 6.4,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 6.4,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2011-1521"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/690560"
+					}
+				],
+				"published": "2011-03-24T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:4",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "python",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-4-as-rpms",
+													"rhel-4-as-source-rpms",
+													"rhel-4-desktop-rpms",
+													"rhel-4-desktop-source-rpms",
+													"rhel-4-es-rpms",
+													"rhel-4-es-source-rpms",
+													"rhel-4-for-power-rpms",
+													"rhel-4-for-power-source-rpms",
+													"rhel-4-for-system-z-rpms",
+													"rhel-4-for-system-z-source-rpms",
+													"rhel-4-ws-rpms",
+													"rhel-4-ws-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:2.3.4-14.10.el4"
+													}
+												],
+												"fixed": [
+													"0:2.3.4-14.10.el4"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "python-devel",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-4-as-rpms",
+													"rhel-4-as-source-rpms",
+													"rhel-4-desktop-rpms",
+													"rhel-4-desktop-source-rpms",
+													"rhel-4-es-rpms",
+													"rhel-4-es-source-rpms",
+													"rhel-4-for-power-rpms",
+													"rhel-4-for-power-source-rpms",
+													"rhel-4-for-system-z-rpms",
+													"rhel-4-for-system-z-source-rpms",
+													"rhel-4-ws-rpms",
+													"rhel-4-ws-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:2.3.4-14.10.el4"
+													}
+												],
+												"fixed": [
+													"0:2.3.4-14.10.el4"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "python-docs",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-4-as-rpms",
+													"rhel-4-as-source-rpms",
+													"rhel-4-desktop-rpms",
+													"rhel-4-desktop-source-rpms",
+													"rhel-4-es-rpms",
+													"rhel-4-es-source-rpms",
+													"rhel-4-for-power-rpms",
+													"rhel-4-for-power-source-rpms",
+													"rhel-4-for-system-z-rpms",
+													"rhel-4-for-system-z-source-rpms",
+													"rhel-4-ws-rpms",
+													"rhel-4-ws-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:2.3.4-14.10.el4"
+													}
+												],
+												"fixed": [
+													"0:2.3.4-14.10.el4"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "python-tools",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-4-as-rpms",
+													"rhel-4-as-source-rpms",
+													"rhel-4-desktop-rpms",
+													"rhel-4-desktop-source-rpms",
+													"rhel-4-es-rpms",
+													"rhel-4-es-source-rpms",
+													"rhel-4-for-power-rpms",
+													"rhel-4-for-power-source-rpms",
+													"rhel-4-for-system-z-rpms",
+													"rhel-4-for-system-z-source-rpms",
+													"rhel-4-ws-rpms",
+													"rhel-4-ws-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:2.3.4-14.10.el4"
+													}
+												],
+												"fixed": [
+													"0:2.3.4-14.10.el4"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "tkinter",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-4-as-rpms",
+													"rhel-4-as-source-rpms",
+													"rhel-4-desktop-rpms",
+													"rhel-4-desktop-source-rpms",
+													"rhel-4-es-rpms",
+													"rhel-4-es-source-rpms",
+													"rhel-4-for-power-rpms",
+													"rhel-4-for-power-source-rpms",
+													"rhel-4-for-system-z-rpms",
+													"rhel-4-for-system-z-source-rpms",
+													"rhel-4-ws-rpms",
+													"rhel-4-ws-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:2.3.4-14.10.el4"
+													}
+												],
+												"fixed": [
+													"0:2.3.4-14.10.el4"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/4/definitions/oval:com.redhat.rhsa:def:20110491.json",
+			"vuls-data-raw-redhat-ovalv1/4/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20060197001.json",
+			"vuls-data-raw-redhat-ovalv1/4/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20060197002.json",
+			"vuls-data-raw-redhat-ovalv1/4/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20060197003.json",
+			"vuls-data-raw-redhat-ovalv1/4/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20060197004.json",
+			"vuls-data-raw-redhat-ovalv1/4/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20060197005.json",
+			"vuls-data-raw-redhat-ovalv1/4/states/rpminfo_state/oval:com.redhat.rhsa:ste:20110491001.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20060197002.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20060197004.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20060197006.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20060197008.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20060197010.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20110491001.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20110491003.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20110491005.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20110491007.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20110491009.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070304025.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070304026.json"
+		]
+	}
+}

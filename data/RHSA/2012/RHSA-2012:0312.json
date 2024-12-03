@@ -1,0 +1,296 @@
+{
+	"id": "RHSA-2012:0312",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2012:0312",
+				"title": "RHSA-2012:0312: initscripts security and bug fix update (Low)",
+				"description": "The initscripts package contains system scripts to boot your system, change\nrunlevels, activate and deactivate most network interfaces, and shut the\nsystem down cleanly.\n\nWith the default IPsec (Internet Protocol Security) ifup script\nconfiguration, the racoon IKE key management daemon used aggressive IKE\nmode instead of main IKE mode. This resulted in the preshared key (PSK)\nhash being sent unencrypted, which could make it easier for an attacker\nable to sniff network traffic to obtain the plain text PSK from a\ntransmitted hash. (CVE-2008-1198)\n\nRed Hat would like to thank Aleksander Adamowski for reporting this issue.\n\nThis update also fixes the following bugs:\n\n* Prior to this update, the DHCPv6 client was not terminated when the\nnetwork service was stopped. This update modifies the source so that the\nclient is now terminated when stopping the network service. (BZ#568896)\n\n* Prior to this update, on some systems the rm command failed and reported\nthe error message \"rm: cannot remove directory `/var/run/dovecot/login/':\nIs a directory\" during system boot. This update modifies the source so that\nthis error message no longer appears. (BZ#679998)\n\n* Prior to this update, the netconsole script could not discover and\nresolve the MAC address of the router specified in the\n/etc/sysconfig/netconsole file. This update modifies the netconsole script\nso that the script no longer fails when the arping tool returns the MAC\naddress of the router more than once. (BZ#744734)\n\n* Prior to this update, the arp_ip_target was, due to a logic error, not\ncorrectly removed via sysfs. As a consequence, the error \"ifdown-eth: line\n64: echo: write error: Invalid argument\" was reported when attempting to\nshut down a bonding device. This update modifies the script so that the\nerror no longer appears and arp_ip_target is now correctly removed.\n(BZ#745681)\n\nAll users of initscripts are advised to upgrade to this updated package,\nwhich fixes these issues.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2012:0312"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2008-1198"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/435274"
+					}
+				],
+				"published": "2012-02-21T00:00:00Z",
+				"modified": "2012-02-21T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2008-1198",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:H/Au:N/C:P/I:N/A:N",
+							"base_score": 2.6,
+							"nvd_base_severity": "LOW",
+							"temporal_score": 2.6,
+							"nvd_temporal_severity": "LOW",
+							"environmental_score": 2.6,
+							"nvd_environmental_severity": "LOW"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2008-1198"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/435274"
+					}
+				],
+				"published": "2008-02-28T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:5",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "initscripts",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-5-desktop-debug-rpms",
+											"rhel-5-desktop-fastrack-debug-rpms",
+											"rhel-5-desktop-fastrack-rpms",
+											"rhel-5-desktop-fastrack-source-rpms",
+											"rhel-5-desktop-rpms",
+											"rhel-5-desktop-source-rpms",
+											"rhel-5-for-power-debug-rpms",
+											"rhel-5-for-power-eus-debug-rpms",
+											"rhel-5-for-power-eus-rpms",
+											"rhel-5-for-power-eus-source-rpms",
+											"rhel-5-for-power-fastrack-debug-rpms",
+											"rhel-5-for-power-fastrack-rpms",
+											"rhel-5-for-power-fastrack-source-rpms",
+											"rhel-5-for-power-rpms",
+											"rhel-5-for-power-source-rpms",
+											"rhel-5-for-system-z-debug-rpms",
+											"rhel-5-for-system-z-els-debug-rpms",
+											"rhel-5-for-system-z-els-rpms",
+											"rhel-5-for-system-z-els-source-rpms",
+											"rhel-5-for-system-z-eus-debug-rpms",
+											"rhel-5-for-system-z-eus-rpms",
+											"rhel-5-for-system-z-eus-source-rpms",
+											"rhel-5-for-system-z-fastrack-debug-rpms",
+											"rhel-5-for-system-z-fastrack-rpms",
+											"rhel-5-for-system-z-fastrack-source-rpms",
+											"rhel-5-for-system-z-rpms",
+											"rhel-5-for-system-z-source-rpms",
+											"rhel-5-server-aus-debug-rpms",
+											"rhel-5-server-aus-rpms",
+											"rhel-5-server-aus-source-rpms",
+											"rhel-5-server-debug-rpms",
+											"rhel-5-server-els-debug-rpms",
+											"rhel-5-server-els-rpms",
+											"rhel-5-server-els-source-rpms",
+											"rhel-5-server-eus-debug-rpms",
+											"rhel-5-server-eus-rpms",
+											"rhel-5-server-eus-source-rpms",
+											"rhel-5-server-fastrack-debug-rpms",
+											"rhel-5-server-fastrack-rpms",
+											"rhel-5-server-fastrack-source-rpms",
+											"rhel-5-server-rpms",
+											"rhel-5-server-source-rpms",
+											"rhel-5-workstation-desktop-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-rpms",
+											"rhel-5-workstation-desktop-fastrack-source-rpms",
+											"rhel-5-workstation-desktop-rpms",
+											"rhel-5-workstation-desktop-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "0:8.45.42-1.el5"
+											}
+										],
+										"fixed": [
+											"0:8.45.42-1.el5"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "5"
+				},
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "initscripts",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-5-desktop-debug-rpms",
+											"rhel-5-desktop-fastrack-debug-rpms",
+											"rhel-5-desktop-fastrack-rpms",
+											"rhel-5-desktop-fastrack-source-rpms",
+											"rhel-5-desktop-rpms",
+											"rhel-5-desktop-source-rpms",
+											"rhel-5-for-power-debug-rpms",
+											"rhel-5-for-power-eus-debug-rpms",
+											"rhel-5-for-power-eus-rpms",
+											"rhel-5-for-power-eus-source-rpms",
+											"rhel-5-for-power-fastrack-debug-rpms",
+											"rhel-5-for-power-fastrack-rpms",
+											"rhel-5-for-power-fastrack-source-rpms",
+											"rhel-5-for-power-rpms",
+											"rhel-5-for-power-source-rpms",
+											"rhel-5-for-system-z-debug-rpms",
+											"rhel-5-for-system-z-els-debug-rpms",
+											"rhel-5-for-system-z-els-rpms",
+											"rhel-5-for-system-z-els-source-rpms",
+											"rhel-5-for-system-z-eus-debug-rpms",
+											"rhel-5-for-system-z-eus-rpms",
+											"rhel-5-for-system-z-eus-source-rpms",
+											"rhel-5-for-system-z-fastrack-debug-rpms",
+											"rhel-5-for-system-z-fastrack-rpms",
+											"rhel-5-for-system-z-fastrack-source-rpms",
+											"rhel-5-for-system-z-rpms",
+											"rhel-5-for-system-z-source-rpms",
+											"rhel-5-server-aus-debug-rpms",
+											"rhel-5-server-aus-rpms",
+											"rhel-5-server-aus-source-rpms",
+											"rhel-5-server-debug-rpms",
+											"rhel-5-server-els-debug-rpms",
+											"rhel-5-server-els-rpms",
+											"rhel-5-server-els-source-rpms",
+											"rhel-5-server-eus-debug-rpms",
+											"rhel-5-server-eus-rpms",
+											"rhel-5-server-eus-source-rpms",
+											"rhel-5-server-fastrack-debug-rpms",
+											"rhel-5-server-fastrack-rpms",
+											"rhel-5-server-fastrack-source-rpms",
+											"rhel-5-server-rpms",
+											"rhel-5-server-source-rpms",
+											"rhel-5-workstation-desktop-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-rpms",
+											"rhel-5-workstation-desktop-fastrack-source-rpms",
+											"rhel-5-workstation-desktop-rpms",
+											"rhel-5-workstation-desktop-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "0:8.45.42-1.el5"
+											}
+										],
+										"fixed": [
+											"0:8.45.42-1.el5"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/definitions/oval:com.redhat.rhsa:def:20120312.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20120312001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20120312001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20120312001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20120312002.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json",
+			"vuls-data-raw-redhat-ovalv1/5/definitions/oval:com.redhat.rhsa:def:20120312.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20120312001.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20120312001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20120312001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20120312002.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json"
+		]
+	}
+}

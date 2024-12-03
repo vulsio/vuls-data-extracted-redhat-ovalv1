@@ -1,0 +1,1201 @@
+{
+	"id": "RHSA-2015:0800",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2015:0800",
+				"title": "RHSA-2015:0800: openssl security update (Moderate)",
+				"description": "OpenSSL is a toolkit that implements the Secure Sockets Layer (SSL v2/v3)\nand Transport Layer Security (TLS v1) protocols, as well as a\nfull-strength, general purpose cryptography library.\n\nIt was discovered that OpenSSL would accept ephemeral RSA keys when using\nnon-export RSA cipher suites. A malicious server could make a TLS/SSL\nclient using OpenSSL use a weaker key exchange method. (CVE-2015-0204)\n\nAn integer underflow flaw, leading to a buffer overflow, was found in the\nway OpenSSL decoded malformed Base64-encoded inputs. An attacker able to\nmake an application using OpenSSL decode a specially crafted Base64-encoded\ninput (such as a PEM file) could use this flaw to cause the application to\ncrash. Note: this flaw is not exploitable via the TLS/SSL protocol because\nthe data being transferred is not Base64-encoded. (CVE-2015-0292)\n\nA denial of service flaw was found in the way OpenSSL handled SSLv2\nhandshake messages. A remote attacker could use this flaw to cause a\nTLS/SSL server using OpenSSL to exit on a failed assertion if it had both\nthe SSLv2 protocol and EXPORT-grade cipher suites enabled. (CVE-2015-0293)\n\nMultiple flaws were found in the way OpenSSL parsed X.509 certificates.\nAn attacker could use these flaws to modify an X.509 certificate to produce\na certificate with a different fingerprint without invalidating its\nsignature, and possibly bypass fingerprint-based blacklisting in\napplications. (CVE-2014-8275)\n\nAn out-of-bounds write flaw was found in the way OpenSSL reused certain\nASN.1 structures. A remote attacker could possibly use a specially crafted\nASN.1 structure that, when parsed by an application, would cause that\napplication to crash. (CVE-2015-0287)\n\nA NULL pointer dereference flaw was found in OpenSSL's X.509 certificate\nhandling implementation. A specially crafted X.509 certificate could cause\nan application using OpenSSL to crash if the application attempted to\nconvert the certificate to a certificate request. (CVE-2015-0288)\n\nA NULL pointer dereference was found in the way OpenSSL handled certain\nPKCS#7 inputs. An attacker able to make an application using OpenSSL\nverify, decrypt, or parse a specially crafted PKCS#7 input could cause that\napplication to crash. TLS/SSL clients and servers using OpenSSL were not\naffected by this flaw. (CVE-2015-0289)\n\nRed Hat would like to thank the OpenSSL project for reporting \nCVE-2015-0287, CVE-2015-0288, CVE-2015-0289, CVE-2015-0292, and \nCVE-2015-0293. Upstream acknowledges Emilia Käsper of the OpenSSL \ndevelopment team as the original reporter of CVE-2015-0287, Brian Carpenter \nas the original reporter of CVE-2015-0288, Michal Zalewski of Google as the \noriginal reporter of CVE-2015-0289, Robert Dugal and David Ramos as the \noriginal reporters of CVE-2015-0292, and Sean Burford of Google and Emilia \nKäsper of the OpenSSL development team as the original reporters of \nCVE-2015-0293.\n\nAll openssl users are advised to upgrade to these updated packages, which\ncontain backported patches to correct these issues. For the update to take\neffect, all services linked to the OpenSSL library must be restarted, or\nthe system rebooted.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Moderate"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2015:0800"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2014-8275"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-0204"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-0287"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-0288"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-0289"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-0292"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-0293"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2016-0703"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2016-0704"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1180184"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1180187"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1202380"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1202384"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1202395"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1202404"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1202418"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1310811"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1310814"
+					}
+				],
+				"published": "2015-04-13T00:00:00Z",
+				"modified": "2015-04-13T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2014-8275",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:M/Au:N/C:P/I:N/A:N",
+							"base_score": 4.3,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 4.3,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 4.3,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2014-8275"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1180187"
+					}
+				],
+				"published": "2015-01-05T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2015-0204",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:M/Au:N/C:P/I:N/A:N",
+							"base_score": 4.3,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 4.3,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 4.3,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					},
+					{
+						"type": "cvss_v30",
+						"source": "secalert@redhat.com",
+						"cvss_v30": {
+							"vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+							"base_score": 5.3,
+							"base_severity": "MEDIUM",
+							"temporal_score": 5.3,
+							"temporal_severity": "MEDIUM",
+							"environmental_score": 5.3,
+							"environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"(CWE-327|CWE-757)"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-0204"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1180184"
+					}
+				],
+				"published": "2015-01-06T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2015-0287",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:H/Au:N/C:N/I:N/A:P",
+							"base_score": 2.6,
+							"nvd_base_severity": "LOW",
+							"temporal_score": 2.6,
+							"nvd_temporal_severity": "LOW",
+							"environmental_score": 2.6,
+							"nvd_environmental_severity": "LOW"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-787"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-0287"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1202380"
+					}
+				],
+				"published": "2015-03-19T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2015-0288",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:H/Au:N/C:N/I:N/A:P",
+							"base_score": 2.6,
+							"nvd_base_severity": "LOW",
+							"temporal_score": 2.6,
+							"nvd_temporal_severity": "LOW",
+							"environmental_score": 2.6,
+							"nvd_environmental_severity": "LOW"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-476"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-0288"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1202418"
+					}
+				],
+				"published": "2015-03-19T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2015-0289",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:H/Au:N/C:N/I:N/A:P",
+							"base_score": 2.6,
+							"nvd_base_severity": "LOW",
+							"temporal_score": 2.6,
+							"nvd_temporal_severity": "LOW",
+							"environmental_score": 2.6,
+							"nvd_environmental_severity": "LOW"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-476"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-0289"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1202384"
+					}
+				],
+				"published": "2015-03-19T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2015-0292",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:H/Au:N/C:P/I:P/A:P",
+							"base_score": 5.1,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 5.1,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 5.1,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-190->CWE-120"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-0292"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1202395"
+					}
+				],
+				"published": "2015-03-19T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2015-0293",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:M/Au:N/C:N/I:N/A:P",
+							"base_score": 4.3,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 4.3,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 4.3,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-617"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-0293"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1202404"
+					}
+				],
+				"published": "2015-03-19T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2016-0703",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:M/Au:N/C:P/I:N/A:N",
+							"base_score": 4.3,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 4.3,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 4.3,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2016-0703"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1310811"
+					}
+				],
+				"published": "2016-03-01T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2016-0704",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:M/Au:N/C:P/I:N/A:N",
+							"base_score": 4.3,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 4.3,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 4.3,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2016-0704"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1310814"
+					}
+				],
+				"published": "2016-03-01T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:5",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "openssl",
+												"architectures": [
+													"i386",
+													"i686",
+													"ia64",
+													"ppc",
+													"ppc64",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:0.9.8e-33.el5_11"
+													}
+												],
+												"fixed": [
+													"0:0.9.8e-33.el5_11"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "openssl-devel",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"ppc64",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:0.9.8e-33.el5_11"
+													}
+												],
+												"fixed": [
+													"0:0.9.8e-33.el5_11"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "openssl-perl",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:0.9.8e-33.el5_11"
+													}
+												],
+												"fixed": [
+													"0:0.9.8e-33.el5_11"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "5"
+				},
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "openssl",
+												"architectures": [
+													"i386",
+													"i686",
+													"ia64",
+													"ppc",
+													"ppc64",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:0.9.8e-33.el5_11"
+													}
+												],
+												"fixed": [
+													"0:0.9.8e-33.el5_11"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "openssl-devel",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"ppc64",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:0.9.8e-33.el5_11"
+													}
+												],
+												"fixed": [
+													"0:0.9.8e-33.el5_11"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "openssl-perl",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:0.9.8e-33.el5_11"
+													}
+												],
+												"fixed": [
+													"0:0.9.8e-33.el5_11"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/definitions/oval:com.redhat.rhsa:def:20150800.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070964001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070964002.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070964003.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20150800001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20150800003.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20150800004.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070964002.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070964004.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070964006.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20150800001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20150800003.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20150800005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json",
+			"vuls-data-raw-redhat-ovalv1/5/definitions/oval:com.redhat.rhsa:def:20150800.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070964001.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070964002.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070964003.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20150800001.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20150800003.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20150800004.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070964002.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070964004.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070964006.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20150800001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20150800003.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20150800005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json"
+		]
+	}
+}

@@ -1,0 +1,296 @@
+{
+	"id": "RHSA-2011:1073",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2011:1073",
+				"title": "RHSA-2011:1073: bash security, bug fix, and enhancement update (Low)",
+				"description": "Bash is the default shell for Red Hat Enterprise Linux.\n\nIt was found that certain scripts bundled with the Bash documentation\ncreated temporary files in an insecure way. A malicious, local user could\nuse this flaw to conduct a symbolic link attack, allowing them to overwrite\nthe contents of arbitrary files accessible to the victim running the\nscripts. (CVE-2008-5374)\n\nThis update fixes the following bugs:\n\n* When using the source builtin at location \".\", occasionally, bash\nopted to preserve internal consistency and abort scripts. This caused\nbash to abort scripts that assigned values to read-only variables.\nThis is now fixed to ensure that such scripts are now executed as\nwritten and not aborted. (BZ#448508)\n\n* When the tab key was pressed for auto-completion options for the typed\ntext, the cursor moved to an unexpected position on a previous line if\nthe prompt contained characters that cannot be viewed and a \"\\]\". This\nis now fixed to retain the cursor at the expected position at the end of\nthe target line after autocomplete options correctly display. (BZ#463880)\n\n* Bash attempted to interpret the NOBITS .dynamic section of the ELF\nheader. This resulted in a \"^D: bad ELF interpreter: No such\nfile or directory\" message. This is fixed to ensure that the invalid\n\"^D\" does not appear in the error message. (BZ#484809)\n\n* The $RANDOM variable in Bash carried over values from a previous\nexecution for later jobs. This is fixed and the $RANDOM variable\ngenerates a new random number for each use. (BZ#492908)\n\n* When Bash ran a shell script with an embedded null character, bash's\nsource builtin parsed the script incorrectly. This is fixed and\nbash's source builtin correctly parses shell script null characters.\n(BZ#503701)\n\n* The bash manual page for \"trap\" did not mention that signals ignored upon\nentry cannot be listed later. The manual page was updated for this update\nand now specifically notes that \"Signals ignored upon entry to the shell\ncannot be trapped, reset or listed\". (BZ#504904)\n\n* Bash's readline incorrectly displayed additional text when resizing\nthe terminal window when text spanned more than one line, which caused\nincorrect display output. This is now fixed to ensure that text in more\nthan one line in a resized window displays as expected. (BZ#525474)\n\n* Previously, bash incorrectly displayed \"Broken pipe\" messages for\nbuiltins like \"echo\" and \"printf\" when output did not succeed due to\nEPIPE. This is fixed to ensure that the unnecessary \"Broken pipe\"\nmessages no longer display. (BZ#546529)\n\n* Inserts with the repeat function were not possible after a deletion in\nvi-mode. This has been corrected and, with this update, the repeat function\nworks as expected after a deletion. (BZ#575076)\n\n* In some situations, bash incorrectly appended \"/\" to files instead of\njust directories during tab-completion, causing incorrect\nauto-completions. This is fixed and auto-complete appends \"/\" only to\ndirectories. (BZ#583919)\n\n* Bash had a memory leak in the \"read\" builtin when the number of fields\nbeing read was not equal to the number of variables passed as arguments,\ncausing a shell script crash. This is fixed to prevent a memory leak and\nshell script crash. (BZ#618393)\n\n* /usr/share/doc/bash-3.2/loadables in the bash package contained source\nfiles which would not build due to missing C header files. With this\nupdate, the unusable (and unbuildable) source files were removed from the\npackage. (BZ#663656)\n\nThis update also adds the following enhancement:\n\n* The system-wide \"/etc/bash.bash_logout\" bash logout file is now enabled.\nThis allows administrators to write system-wide logout actions for all\nusers. (BZ#592979)\n\nUsers of bash are advised to upgrade to this updated package, which\ncontains backported patches to resolve these issues and add this\nenhancement.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2011:1073"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2008-5374"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/475474"
+					}
+				],
+				"published": "2011-07-21T00:00:00Z",
+				"modified": "2011-07-21T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2008-5374",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:H/Au:N/C:N/I:P/A:N",
+							"base_score": 1.2,
+							"nvd_base_severity": "LOW",
+							"temporal_score": 1.2,
+							"nvd_temporal_severity": "LOW",
+							"environmental_score": 1.2,
+							"nvd_environmental_severity": "LOW"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2008-5374"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/475474"
+					}
+				],
+				"published": "2008-08-13T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:5",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "bash",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-5-desktop-debug-rpms",
+											"rhel-5-desktop-fastrack-debug-rpms",
+											"rhel-5-desktop-fastrack-rpms",
+											"rhel-5-desktop-fastrack-source-rpms",
+											"rhel-5-desktop-rpms",
+											"rhel-5-desktop-source-rpms",
+											"rhel-5-for-power-debug-rpms",
+											"rhel-5-for-power-eus-debug-rpms",
+											"rhel-5-for-power-eus-rpms",
+											"rhel-5-for-power-eus-source-rpms",
+											"rhel-5-for-power-fastrack-debug-rpms",
+											"rhel-5-for-power-fastrack-rpms",
+											"rhel-5-for-power-fastrack-source-rpms",
+											"rhel-5-for-power-rpms",
+											"rhel-5-for-power-source-rpms",
+											"rhel-5-for-system-z-debug-rpms",
+											"rhel-5-for-system-z-els-debug-rpms",
+											"rhel-5-for-system-z-els-rpms",
+											"rhel-5-for-system-z-els-source-rpms",
+											"rhel-5-for-system-z-eus-debug-rpms",
+											"rhel-5-for-system-z-eus-rpms",
+											"rhel-5-for-system-z-eus-source-rpms",
+											"rhel-5-for-system-z-fastrack-debug-rpms",
+											"rhel-5-for-system-z-fastrack-rpms",
+											"rhel-5-for-system-z-fastrack-source-rpms",
+											"rhel-5-for-system-z-rpms",
+											"rhel-5-for-system-z-source-rpms",
+											"rhel-5-server-aus-debug-rpms",
+											"rhel-5-server-aus-rpms",
+											"rhel-5-server-aus-source-rpms",
+											"rhel-5-server-debug-rpms",
+											"rhel-5-server-els-debug-rpms",
+											"rhel-5-server-els-rpms",
+											"rhel-5-server-els-source-rpms",
+											"rhel-5-server-eus-debug-rpms",
+											"rhel-5-server-eus-rpms",
+											"rhel-5-server-eus-source-rpms",
+											"rhel-5-server-fastrack-debug-rpms",
+											"rhel-5-server-fastrack-rpms",
+											"rhel-5-server-fastrack-source-rpms",
+											"rhel-5-server-rpms",
+											"rhel-5-server-source-rpms",
+											"rhel-5-workstation-desktop-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-rpms",
+											"rhel-5-workstation-desktop-fastrack-source-rpms",
+											"rhel-5-workstation-desktop-rpms",
+											"rhel-5-workstation-desktop-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "0:3.2-32.el5"
+											}
+										],
+										"fixed": [
+											"0:3.2-32.el5"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "5"
+				},
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "bash",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-5-desktop-debug-rpms",
+											"rhel-5-desktop-fastrack-debug-rpms",
+											"rhel-5-desktop-fastrack-rpms",
+											"rhel-5-desktop-fastrack-source-rpms",
+											"rhel-5-desktop-rpms",
+											"rhel-5-desktop-source-rpms",
+											"rhel-5-for-power-debug-rpms",
+											"rhel-5-for-power-eus-debug-rpms",
+											"rhel-5-for-power-eus-rpms",
+											"rhel-5-for-power-eus-source-rpms",
+											"rhel-5-for-power-fastrack-debug-rpms",
+											"rhel-5-for-power-fastrack-rpms",
+											"rhel-5-for-power-fastrack-source-rpms",
+											"rhel-5-for-power-rpms",
+											"rhel-5-for-power-source-rpms",
+											"rhel-5-for-system-z-debug-rpms",
+											"rhel-5-for-system-z-els-debug-rpms",
+											"rhel-5-for-system-z-els-rpms",
+											"rhel-5-for-system-z-els-source-rpms",
+											"rhel-5-for-system-z-eus-debug-rpms",
+											"rhel-5-for-system-z-eus-rpms",
+											"rhel-5-for-system-z-eus-source-rpms",
+											"rhel-5-for-system-z-fastrack-debug-rpms",
+											"rhel-5-for-system-z-fastrack-rpms",
+											"rhel-5-for-system-z-fastrack-source-rpms",
+											"rhel-5-for-system-z-rpms",
+											"rhel-5-for-system-z-source-rpms",
+											"rhel-5-server-aus-debug-rpms",
+											"rhel-5-server-aus-rpms",
+											"rhel-5-server-aus-source-rpms",
+											"rhel-5-server-debug-rpms",
+											"rhel-5-server-els-debug-rpms",
+											"rhel-5-server-els-rpms",
+											"rhel-5-server-els-source-rpms",
+											"rhel-5-server-eus-debug-rpms",
+											"rhel-5-server-eus-rpms",
+											"rhel-5-server-eus-source-rpms",
+											"rhel-5-server-fastrack-debug-rpms",
+											"rhel-5-server-fastrack-rpms",
+											"rhel-5-server-fastrack-source-rpms",
+											"rhel-5-server-rpms",
+											"rhel-5-server-source-rpms",
+											"rhel-5-workstation-desktop-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-rpms",
+											"rhel-5-workstation-desktop-fastrack-source-rpms",
+											"rhel-5-workstation-desktop-rpms",
+											"rhel-5-workstation-desktop-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "0:3.2-32.el5"
+											}
+										],
+										"fixed": [
+											"0:3.2-32.el5"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/definitions/oval:com.redhat.rhsa:def:20111073.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20111073001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20111073001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20111073001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20111073002.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json",
+			"vuls-data-raw-redhat-ovalv1/5/definitions/oval:com.redhat.rhsa:def:20111073.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20111073001.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20111073001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20111073001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20111073002.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json"
+		]
+	}
+}

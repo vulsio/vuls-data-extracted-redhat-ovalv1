@@ -1,0 +1,296 @@
+{
+	"id": "RHSA-2012:0304",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2012:0304",
+				"title": "RHSA-2012:0304: vixie-cron security, bug fix, and enhancement update (Low)",
+				"description": "The vixie-cron package contains the Vixie version of cron. Cron is a\nstandard UNIX daemon that runs specified programs at scheduled times. The\nvixie-cron package adds improved security and more powerful configuration\noptions to the standard version of cron.\n\nA race condition was found in the way the crontab program performed file\ntime stamp updates on a temporary file created when editing a user crontab\nfile. A local attacker could use this flaw to change the modification time\nof arbitrary system files via a symbolic link attack. (CVE-2010-0424)\n\nRed Hat would like to thank Dan Rosenberg for reporting this issue.\n\nThis update also fixes the following bugs:\n\n* Cron jobs of users with home directories mounted on a Lightweight\nDirectory Access Protocol (LDAP) server or Network File System (NFS) were\noften refused because jobs were marked as orphaned (typically due to a\ntemporary NSS lookup failure, when NIS and LDAP servers were unreachable).\nWith this update, a database of orphans is created, and cron jobs are\nperformed as expected. (BZ#455664)\n\n* Previously, cron did not log any errors if a cron job file located in the\n/etc/cron.d/ directory contained invalid entries. An upstream patch has\nbeen applied to address this problem and invalid entries in the cron job\nfiles now produce warning messages. (BZ#460070)\n\n* Previously, the \"@reboot\" crontab macro incorrectly ran jobs when the\ncrond daemon was restarted. If the user used the macro on multiple\nmachines, all entries with the \"@reboot\" option were executed every time\nthe crond daemon was restarted. With this update, jobs are executed only\nwhen the machine is rebooted. (BZ#476972)\n\n* The crontab utility is now compiled as a position-independent executable\n(PIE), which enhances the security of the system. (BZ#480930)\n\n* When the parent crond daemon was stopped, but a child crond daemon was\nrunning (executing a program), the \"service crond status\" command\nincorrectly reported that crond was running. The source code has been\nmodified, and the \"service crond status\" command now correctly reports that\ncrond is stopped. (BZ#529632)\n\n* According to the pam(8) manual page, the cron daemon, crond, supports\naccess control with PAM (Pluggable Authentication Module). However, the PAM\nconfiguration file for crond did not export environment variables correctly\nand, consequently, setting PAM variables via cron did not work. This update\nincludes a corrected /etc/pam.d/crond file that exports environment\nvariables correctly. Setting pam variables via cron now works as documented\nin the pam(8) manual page. (BZ#541189)\n\n* Previously, the mcstransd daemon modified labels for the crond daemon.\nWhen the crond daemon attempted to use the modified label and mcstransd was\nnot running, crond used an incorrect label. Consequently, Security-Enhanced\nLinux (SELinux) denials filled up the cron log, no jobs were executed, and\ncrond had to be restarted. With this update, both mcstransd and crond use\nraw SELinux labels, which prevents the problem. (BZ#625016)\n\n* Previously, the crontab(1) and cron(8) manual pages contained multiple\ntypographical errors. This update fixes those errors. (BZ#699620,\nBZ#699621)\n\nIn addition, this update adds the following enhancement:\n\n* Previously, the crontab utility did not use the Pluggable Authentication\nModule (PAM) for verification of users. As a consequence, a user could\naccess crontab even if access had been restricted (usually by being denied\nin the access.conf file). With this update, crontab returns an error\nmessage that the user is not allowed to access crontab because of PAM\nconfiguration. (BZ#249512)\n\nAll vixie-cron users should upgrade to this updated package, which resolves\nthese issues and adds this enhancement.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2012:0304"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-0424"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/565809"
+					}
+				],
+				"published": "2012-02-21T00:00:00Z",
+				"modified": "2012-02-21T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2010-0424",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:L/Au:N/C:N/I:P/A:P",
+							"base_score": 3.6,
+							"nvd_base_severity": "LOW",
+							"temporal_score": 3.6,
+							"nvd_temporal_severity": "LOW",
+							"environmental_score": 3.6,
+							"nvd_environmental_severity": "LOW"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-0424"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/565809"
+					}
+				],
+				"published": "2010-02-18T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:5",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "vixie-cron",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-5-desktop-debug-rpms",
+											"rhel-5-desktop-fastrack-debug-rpms",
+											"rhel-5-desktop-fastrack-rpms",
+											"rhel-5-desktop-fastrack-source-rpms",
+											"rhel-5-desktop-rpms",
+											"rhel-5-desktop-source-rpms",
+											"rhel-5-for-power-debug-rpms",
+											"rhel-5-for-power-eus-debug-rpms",
+											"rhel-5-for-power-eus-rpms",
+											"rhel-5-for-power-eus-source-rpms",
+											"rhel-5-for-power-fastrack-debug-rpms",
+											"rhel-5-for-power-fastrack-rpms",
+											"rhel-5-for-power-fastrack-source-rpms",
+											"rhel-5-for-power-rpms",
+											"rhel-5-for-power-source-rpms",
+											"rhel-5-for-system-z-debug-rpms",
+											"rhel-5-for-system-z-els-debug-rpms",
+											"rhel-5-for-system-z-els-rpms",
+											"rhel-5-for-system-z-els-source-rpms",
+											"rhel-5-for-system-z-eus-debug-rpms",
+											"rhel-5-for-system-z-eus-rpms",
+											"rhel-5-for-system-z-eus-source-rpms",
+											"rhel-5-for-system-z-fastrack-debug-rpms",
+											"rhel-5-for-system-z-fastrack-rpms",
+											"rhel-5-for-system-z-fastrack-source-rpms",
+											"rhel-5-for-system-z-rpms",
+											"rhel-5-for-system-z-source-rpms",
+											"rhel-5-server-aus-debug-rpms",
+											"rhel-5-server-aus-rpms",
+											"rhel-5-server-aus-source-rpms",
+											"rhel-5-server-debug-rpms",
+											"rhel-5-server-els-debug-rpms",
+											"rhel-5-server-els-rpms",
+											"rhel-5-server-els-source-rpms",
+											"rhel-5-server-eus-debug-rpms",
+											"rhel-5-server-eus-rpms",
+											"rhel-5-server-eus-source-rpms",
+											"rhel-5-server-fastrack-debug-rpms",
+											"rhel-5-server-fastrack-rpms",
+											"rhel-5-server-fastrack-source-rpms",
+											"rhel-5-server-rpms",
+											"rhel-5-server-source-rpms",
+											"rhel-5-workstation-desktop-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-rpms",
+											"rhel-5-workstation-desktop-fastrack-source-rpms",
+											"rhel-5-workstation-desktop-rpms",
+											"rhel-5-workstation-desktop-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "4:4.1-81.el5"
+											}
+										],
+										"fixed": [
+											"4:4.1-81.el5"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "5"
+				},
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "vixie-cron",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-5-desktop-debug-rpms",
+											"rhel-5-desktop-fastrack-debug-rpms",
+											"rhel-5-desktop-fastrack-rpms",
+											"rhel-5-desktop-fastrack-source-rpms",
+											"rhel-5-desktop-rpms",
+											"rhel-5-desktop-source-rpms",
+											"rhel-5-for-power-debug-rpms",
+											"rhel-5-for-power-eus-debug-rpms",
+											"rhel-5-for-power-eus-rpms",
+											"rhel-5-for-power-eus-source-rpms",
+											"rhel-5-for-power-fastrack-debug-rpms",
+											"rhel-5-for-power-fastrack-rpms",
+											"rhel-5-for-power-fastrack-source-rpms",
+											"rhel-5-for-power-rpms",
+											"rhel-5-for-power-source-rpms",
+											"rhel-5-for-system-z-debug-rpms",
+											"rhel-5-for-system-z-els-debug-rpms",
+											"rhel-5-for-system-z-els-rpms",
+											"rhel-5-for-system-z-els-source-rpms",
+											"rhel-5-for-system-z-eus-debug-rpms",
+											"rhel-5-for-system-z-eus-rpms",
+											"rhel-5-for-system-z-eus-source-rpms",
+											"rhel-5-for-system-z-fastrack-debug-rpms",
+											"rhel-5-for-system-z-fastrack-rpms",
+											"rhel-5-for-system-z-fastrack-source-rpms",
+											"rhel-5-for-system-z-rpms",
+											"rhel-5-for-system-z-source-rpms",
+											"rhel-5-server-aus-debug-rpms",
+											"rhel-5-server-aus-rpms",
+											"rhel-5-server-aus-source-rpms",
+											"rhel-5-server-debug-rpms",
+											"rhel-5-server-els-debug-rpms",
+											"rhel-5-server-els-rpms",
+											"rhel-5-server-els-source-rpms",
+											"rhel-5-server-eus-debug-rpms",
+											"rhel-5-server-eus-rpms",
+											"rhel-5-server-eus-source-rpms",
+											"rhel-5-server-fastrack-debug-rpms",
+											"rhel-5-server-fastrack-rpms",
+											"rhel-5-server-fastrack-source-rpms",
+											"rhel-5-server-rpms",
+											"rhel-5-server-source-rpms",
+											"rhel-5-workstation-desktop-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-rpms",
+											"rhel-5-workstation-desktop-fastrack-source-rpms",
+											"rhel-5-workstation-desktop-rpms",
+											"rhel-5-workstation-desktop-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "4:4.1-81.el5"
+											}
+										],
+										"fixed": [
+											"4:4.1-81.el5"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/definitions/oval:com.redhat.rhsa:def:20120304.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070345001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20120304001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070345005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20120304001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json",
+			"vuls-data-raw-redhat-ovalv1/5/definitions/oval:com.redhat.rhsa:def:20120304.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070345001.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20120304001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070345002.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20120304001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json"
+		]
+	}
+}

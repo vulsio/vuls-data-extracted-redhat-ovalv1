@@ -1,0 +1,466 @@
+{
+	"id": "RHSA-2010:0615",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2010:0615",
+				"title": "RHSA-2010:0615: libvirt security and bug fix update (Low)",
+				"description": "The libvirt library is a C API for managing and interacting with the\nvirtualization capabilities of Linux and other operating systems. In\naddition, libvirt provides tools for remotely managing virtualized systems.\n\nIt was found that libvirt did not set the user-defined backing store format\nwhen creating a new image, possibly resulting in applications having to\nprobe the backing store to discover the format. A privileged guest user\ncould use this flaw to read arbitrary files on the host. (CVE-2010-2239)\n\nIt was found that libvirt created insecure iptables rules on the host when\na guest system was configured for IP masquerading, allowing the guest to\nuse privileged ports on the host when accessing network resources. A\nprivileged guest user could use this flaw to access network resources that\nwould otherwise not be accessible to the guest. (CVE-2010-2242)\n\nRed Hat would like to thank Jeremy Nickurak for reporting the CVE-2010-2242\nissue.\n\nThis update also fixes the following bugs:\n\n* a Linux software bridge assumes the MAC address of the enslaved interface\nwith the numerically lowest MAC address. When the bridge changes its MAC\naddress, for a period of time it does not relay packets across network\nsegments, resulting in a temporary network \"blackout\". The bridge should\nthus avoid changing its MAC address in order not to disrupt network\ncommunications.\n\nThe Linux kernel assigns network TAP devices a random MAC address.\nOccasionally, this random MAC address is lower than that of the physical\ninterface which is enslaved (for example, eth0 or eth1), which causes the\nbridge to change its MAC address, thereby disrupting network communications\nfor a period of time.\n\nWith this update, libvirt now sets an explicit MAC address for all TAP\ndevices created using the configured MAC address from the XML, but with the\nhigh bit set to 0xFE. The result is that TAP device MAC addresses are now\nnumerically greater than those for physical interfaces, and bridges should\nno longer attempt to switch their MAC address to that of the TAP device,\nthus avoiding potential spurious network disruptions. (BZ#617243)\n\n* a memory leak in the libvirt driver for the Xen hypervisor has been fixed\nwith this update. (BZ#619711)\n\n* the xm and virsh management user interfaces for virtual guests can be\ncalled on the command line to list the number of active guests. However,\nunder certain circumstances, running the \"virsh list\" command resulted in\nvirsh not listing all of the virtual guests that were active (that is,\nrunning) at the time. This update incorporates a fix that matches the logic\nused for determining active guests with that of \"xm list\", such that both\ncommands should now list the same number of active virtual guests under all\ncircumstances. (BZ#618200)\n\nAll users of libvirt are advised to upgrade to these updated packages,\nwhich contain backported patches to correct these issues. After installing\nthe updated packages, the system must be rebooted for the update to take\neffect.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2010:0615"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-2239"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-2242"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/602455"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/607812"
+					}
+				],
+				"published": "2010-08-10T00:00:00Z",
+				"modified": "2010-08-10T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2010-2239",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:M/Au:S/C:C/I:N/A:N",
+							"base_score": 4.4,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 4.4,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 4.4,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-2239"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/607812"
+					}
+				],
+				"published": "2010-07-12T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2010-2242",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:M/Au:S/C:N/I:P/A:N",
+							"base_score": 1.5,
+							"nvd_base_severity": "LOW",
+							"temporal_score": 1.5,
+							"nvd_temporal_severity": "LOW",
+							"environmental_score": 1.5,
+							"nvd_environmental_severity": "LOW"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2010-2242"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/602455"
+					}
+				],
+				"published": "2010-07-12T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:5",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "libvirt",
+												"architectures": [
+													"i386",
+													"ia64",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-server-eus-vt-debug-rpms",
+													"rhel-5-server-eus-vt-rpms",
+													"rhel-5-server-eus-vt-source-rpms",
+													"rhel-5-server-vt-debug-rpms",
+													"rhel-5-server-vt-rpms",
+													"rhel-5-server-vt-source-rpms",
+													"rhel-5-workstation-vt-debug-rpms",
+													"rhel-5-workstation-vt-rpms",
+													"rhel-5-workstation-vt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:0.6.3-33.el5_5.3"
+													}
+												],
+												"fixed": [
+													"0:0.6.3-33.el5_5.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "libvirt-devel",
+												"architectures": [
+													"i386",
+													"ia64",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-server-eus-vt-debug-rpms",
+													"rhel-5-server-eus-vt-rpms",
+													"rhel-5-server-eus-vt-source-rpms",
+													"rhel-5-server-vt-debug-rpms",
+													"rhel-5-server-vt-rpms",
+													"rhel-5-server-vt-source-rpms",
+													"rhel-5-workstation-vt-debug-rpms",
+													"rhel-5-workstation-vt-rpms",
+													"rhel-5-workstation-vt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:0.6.3-33.el5_5.3"
+													}
+												],
+												"fixed": [
+													"0:0.6.3-33.el5_5.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "libvirt-python",
+												"architectures": [
+													"i386",
+													"ia64",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-server-eus-vt-debug-rpms",
+													"rhel-5-server-eus-vt-rpms",
+													"rhel-5-server-eus-vt-source-rpms",
+													"rhel-5-server-vt-debug-rpms",
+													"rhel-5-server-vt-rpms",
+													"rhel-5-server-vt-source-rpms",
+													"rhel-5-workstation-vt-debug-rpms",
+													"rhel-5-workstation-vt-rpms",
+													"rhel-5-workstation-vt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:0.6.3-33.el5_5.3"
+													}
+												],
+												"fixed": [
+													"0:0.6.3-33.el5_5.3"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "5"
+				},
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "libvirt",
+												"architectures": [
+													"i386",
+													"ia64",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-server-eus-vt-debug-rpms",
+													"rhel-5-server-eus-vt-rpms",
+													"rhel-5-server-eus-vt-source-rpms",
+													"rhel-5-server-vt-debug-rpms",
+													"rhel-5-server-vt-rpms",
+													"rhel-5-server-vt-source-rpms",
+													"rhel-5-workstation-vt-debug-rpms",
+													"rhel-5-workstation-vt-rpms",
+													"rhel-5-workstation-vt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:0.6.3-33.el5_5.3"
+													}
+												],
+												"fixed": [
+													"0:0.6.3-33.el5_5.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "libvirt-devel",
+												"architectures": [
+													"i386",
+													"ia64",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-server-eus-vt-debug-rpms",
+													"rhel-5-server-eus-vt-rpms",
+													"rhel-5-server-eus-vt-source-rpms",
+													"rhel-5-server-vt-debug-rpms",
+													"rhel-5-server-vt-rpms",
+													"rhel-5-server-vt-source-rpms",
+													"rhel-5-workstation-vt-debug-rpms",
+													"rhel-5-workstation-vt-rpms",
+													"rhel-5-workstation-vt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:0.6.3-33.el5_5.3"
+													}
+												],
+												"fixed": [
+													"0:0.6.3-33.el5_5.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "libvirt-python",
+												"architectures": [
+													"i386",
+													"ia64",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-server-eus-vt-debug-rpms",
+													"rhel-5-server-eus-vt-rpms",
+													"rhel-5-server-eus-vt-source-rpms",
+													"rhel-5-server-vt-debug-rpms",
+													"rhel-5-server-vt-rpms",
+													"rhel-5-server-vt-source-rpms",
+													"rhel-5-workstation-vt-debug-rpms",
+													"rhel-5-workstation-vt-rpms",
+													"rhel-5-workstation-vt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:0.6.3-33.el5_5.3"
+													}
+												],
+												"fixed": [
+													"0:0.6.3-33.el5_5.3"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/definitions/oval:com.redhat.rhsa:def:20100615.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20090382001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20090382002.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20090382003.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20100615001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20090382002.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20090382004.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20090382006.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20100615001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20100615003.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20100615005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json",
+			"vuls-data-raw-redhat-ovalv1/5/definitions/oval:com.redhat.rhsa:def:20100615.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20090382001.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20090382002.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20090382003.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20100615001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20090382002.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20090382004.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20090382006.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20100615001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20100615003.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20100615005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json"
+		]
+	}
+}

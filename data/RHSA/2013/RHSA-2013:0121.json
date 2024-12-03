@@ -1,0 +1,1084 @@
+{
+	"id": "RHSA-2013:0121",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2013:0121",
+				"title": "RHSA-2013:0121: mysql security and bug fix update (Low)",
+				"description": "MySQL is a multi-user, multi-threaded SQL database server. It consists of\nthe MySQL server daemon (mysqld) and many client programs and libraries.\n\nIt was found that the fix for the CVE-2009-4030 issue, a flaw in the way\nMySQL checked the paths used as arguments for the DATA DIRECTORY and INDEX\nDIRECTORY directives when the \"datadir\" option was configured with a\nrelative path, was incorrectly removed when the mysql packages in Red Hat\nEnterprise Linux 5 were updated to version 5.0.95 via RHSA-2012:0127. An\nauthenticated attacker could use this flaw to bypass the restriction\npreventing the use of subdirectories of the MySQL data directory being used\nas DATA DIRECTORY and INDEX DIRECTORY paths. This update re-applies the fix\nfor CVE-2009-4030. (CVE-2012-4452)\n\nNote: If the use of the DATA DIRECTORY and INDEX DIRECTORY directives were\ndisabled as described in RHSA-2010:0109 (by adding \"symbolic-links=0\" to\nthe \"[mysqld]\" section of the \"my.cnf\" configuration file), users were not\nvulnerable to this issue.\n\nThis issue was discovered by Karel Volný of the Red Hat Quality Engineering\nteam.\n\nThis update also fixes the following bugs:\n\n* Prior to this update, the log file path in the logrotate script did not\nbehave as expected. As a consequence, the logrotate function failed to\nrotate the \"/var/log/mysqld.log\" file. This update modifies the logrotate\nscript to allow rotating the mysqld.log file. (BZ#647223)\n\n* Prior to this update, the mysqld daemon could fail when using the EXPLAIN\nflag in prepared statement mode. This update modifies the underlying code\nto handle the EXPLAIN flag as expected. (BZ#654000)\n\n* Prior to this update, the mysqld init script could wrongly report that\nmysql server startup failed when the server was actually started. This\nupdate modifies the init script to report the status of the mysqld server\nas expected. (BZ#703476)\n\n* Prior to this update, the \"--enable-profiling\" option was by default\ndisabled. This update enables the profiling feature. (BZ#806365)\n\nAll MySQL users are advised to upgrade to these updated packages, which\ncontain backported patches to resolve these issues. After installing this\nupdate, the MySQL server daemon (mysqld) will be restarted automatically.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2013:0121"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2012-4452"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/860808"
+					}
+				],
+				"published": "2013-01-08T00:00:00Z",
+				"modified": "2013-01-08T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2012-4452",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:H/Au:S/C:N/I:P/A:P",
+							"base_score": 2.4,
+							"nvd_base_severity": "LOW",
+							"temporal_score": 2.4,
+							"nvd_temporal_severity": "LOW",
+							"environmental_score": 2.4,
+							"nvd_environmental_severity": "LOW"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2012-4452"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/860808"
+					}
+				],
+				"published": "2012-09-27T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:5",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "mysql",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"ppc64",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:5.0.95-3.el5"
+													}
+												],
+												"fixed": [
+													"0:5.0.95-3.el5"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "mysql-bench",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:5.0.95-3.el5"
+													}
+												],
+												"fixed": [
+													"0:5.0.95-3.el5"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "mysql-devel",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"ppc64",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:5.0.95-3.el5"
+													}
+												],
+												"fixed": [
+													"0:5.0.95-3.el5"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "mysql-server",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"ppc64",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:5.0.95-3.el5"
+													}
+												],
+												"fixed": [
+													"0:5.0.95-3.el5"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "mysql-test",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:5.0.95-3.el5"
+													}
+												],
+												"fixed": [
+													"0:5.0.95-3.el5"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "5"
+				},
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "mysql",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"ppc64",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:5.0.95-3.el5"
+													}
+												],
+												"fixed": [
+													"0:5.0.95-3.el5"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "mysql-bench",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:5.0.95-3.el5"
+													}
+												],
+												"fixed": [
+													"0:5.0.95-3.el5"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "mysql-devel",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"ppc64",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:5.0.95-3.el5"
+													}
+												],
+												"fixed": [
+													"0:5.0.95-3.el5"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "mysql-server",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"ppc64",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:5.0.95-3.el5"
+													}
+												],
+												"fixed": [
+													"0:5.0.95-3.el5"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "mysql-test",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-desktop-debug-rpms",
+													"rhel-5-desktop-fastrack-debug-rpms",
+													"rhel-5-desktop-fastrack-rpms",
+													"rhel-5-desktop-fastrack-source-rpms",
+													"rhel-5-desktop-rpms",
+													"rhel-5-desktop-source-rpms",
+													"rhel-5-for-power-debug-rpms",
+													"rhel-5-for-power-eus-debug-rpms",
+													"rhel-5-for-power-eus-rpms",
+													"rhel-5-for-power-eus-source-rpms",
+													"rhel-5-for-power-fastrack-debug-rpms",
+													"rhel-5-for-power-fastrack-rpms",
+													"rhel-5-for-power-fastrack-source-rpms",
+													"rhel-5-for-power-rpms",
+													"rhel-5-for-power-source-rpms",
+													"rhel-5-for-system-z-debug-rpms",
+													"rhel-5-for-system-z-els-debug-rpms",
+													"rhel-5-for-system-z-els-rpms",
+													"rhel-5-for-system-z-els-source-rpms",
+													"rhel-5-for-system-z-eus-debug-rpms",
+													"rhel-5-for-system-z-eus-rpms",
+													"rhel-5-for-system-z-eus-source-rpms",
+													"rhel-5-for-system-z-fastrack-debug-rpms",
+													"rhel-5-for-system-z-fastrack-rpms",
+													"rhel-5-for-system-z-fastrack-source-rpms",
+													"rhel-5-for-system-z-rpms",
+													"rhel-5-for-system-z-source-rpms",
+													"rhel-5-server-aus-debug-rpms",
+													"rhel-5-server-aus-rpms",
+													"rhel-5-server-aus-source-rpms",
+													"rhel-5-server-debug-rpms",
+													"rhel-5-server-els-debug-rpms",
+													"rhel-5-server-els-rpms",
+													"rhel-5-server-els-source-rpms",
+													"rhel-5-server-eus-debug-rpms",
+													"rhel-5-server-eus-rpms",
+													"rhel-5-server-eus-source-rpms",
+													"rhel-5-server-fastrack-debug-rpms",
+													"rhel-5-server-fastrack-rpms",
+													"rhel-5-server-fastrack-source-rpms",
+													"rhel-5-server-rpms",
+													"rhel-5-server-source-rpms",
+													"rhel-5-workstation-debug-rpms",
+													"rhel-5-workstation-desktop-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-debug-rpms",
+													"rhel-5-workstation-desktop-fastrack-rpms",
+													"rhel-5-workstation-desktop-fastrack-source-rpms",
+													"rhel-5-workstation-desktop-rpms",
+													"rhel-5-workstation-desktop-source-rpms",
+													"rhel-5-workstation-fastrack-debug-rpms",
+													"rhel-5-workstation-fastrack-rpms",
+													"rhel-5-workstation-fastrack-source-rpms",
+													"rhel-5-workstation-rpms",
+													"rhel-5-workstation-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:5.0.95-3.el5"
+													}
+												],
+												"fixed": [
+													"0:5.0.95-3.el5"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/definitions/oval:com.redhat.rhsa:def:20130121.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070875001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070875002.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070875003.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070875004.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070875006.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20130121001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20130121003.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20130121004.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070875011.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070875013.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070875015.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070875017.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070875019.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20130121001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20130121003.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20130121005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20130121007.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20130121009.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json",
+			"vuls-data-raw-redhat-ovalv1/5/definitions/oval:com.redhat.rhsa:def:20130121.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070875001.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070875002.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070875003.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070875004.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070875006.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20130121001.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20130121003.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20130121004.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070875002.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070875004.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070875006.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070875008.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070875015.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20130121001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20130121003.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20130121005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20130121007.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20130121009.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json"
+		]
+	}
+}

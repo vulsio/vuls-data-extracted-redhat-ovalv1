@@ -1,0 +1,435 @@
+{
+	"id": "RHSA-2008:0768",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2008:0768",
+				"title": "RHSA-2008:0768: mysql security, bug fix, and enhancement update (Moderate)",
+				"description": "MySQL is a multi-user, multi-threaded SQL database server. MySQL is a\nclient/server implementation consisting of a server daemon (mysqld), and\nmany different client programs and libraries.\n\nMySQL did not correctly check directories used as arguments for the DATA\nDIRECTORY and INDEX DIRECTORY directives. Using this flaw, an authenticated\nattacker could elevate their access privileges to tables created by other\ndatabase users. Note: this attack does not work on existing tables. An\nattacker can only elevate their access to another user's tables as the\ntables are created. As well, the names of these created tables need to be\npredicted correctly for this attack to succeed. (CVE-2008-2079)\n\nMySQL did not require the \"DROP\" privilege for \"RENAME TABLE\" statements.\nAn authenticated user could use this flaw to rename arbitrary tables.\n(CVE-2007-2691)\n\nMySQL allowed an authenticated user to access a table through a previously\ncreated MERGE table, even after the user's privileges were revoked from the\noriginal table, which might violate intended security policy. This is\naddressed by allowing the MERGE storage engine to be disabled, which can be\ndone by running mysqld with the \"--skip-merge\" option. (CVE-2006-4031)\n\nA flaw in MySQL allowed an authenticated user to cause the MySQL daemon to\ncrash via crafted SQL queries. This only caused a temporary denial of\nservice, as the MySQL daemon is automatically restarted after the crash.\n(CVE-2006-3469)\n\nAs well, these updated packages fix the following bugs:\n\n* in the previous mysql packages, if a column name was referenced more\nthan once in an \"ORDER BY\" section of a query, a segmentation fault\noccurred.\n\n* when MySQL failed to start, the init script returned a successful (0)\nexit code. When using the Red Hat Cluster Suite, this may have caused\ncluster services to report a successful start, even when MySQL failed to\nstart. In these updated packages, the init script returns the correct exit\ncodes, which resolves this issue.\n\n* it was possible to use the mysqld_safe command to specify invalid port\nnumbers (higher than 65536), causing invalid ports to be created, and, in\nsome cases, a \"port number definition: unsigned short\" error. In these\nupdated packages, when an invalid port number is specified, the default\nport number is used.\n\n* when setting \"myisam_repair_threads > 1\", any repair set the index\ncardinality to \"1\", regardless of the table size.\n\n* the MySQL init script no longer runs \"chmod -R\" on the entire database\ndirectory tree during every startup.\n\n* when running \"mysqldump\" with the MySQL 4.0 compatibility mode option,\n\"--compatible=mysql40\", mysqldump created dumps that omitted the\n\"auto_increment\" field.\n\nAs well, the MySQL init script now uses more reliable methods for\ndetermining parameters, such as the data directory location.\n\nNote: these updated packages upgrade MySQL to version 4.1.22. For a full\nlist of bug fixes and enhancements, refer to the MySQL release notes:\nhttp://dev.mysql.com/doc/refman/4.1/en/news-4-1-22.html\n\nAll mysql users are advised to upgrade to these updated packages, which\nresolve these issues and add this enhancement.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Moderate"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2008:0768"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2006-3469"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2006-4031"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2007-2691"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2008-2079"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/201904"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/202246"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/241688"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/445222"
+					}
+				],
+				"published": "2008-07-24T00:00:00Z",
+				"modified": "2008-07-24T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2006-3469",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2006-3469"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/201904"
+					}
+				],
+				"published": "2006-06-27T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2006-4031",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2006-4031"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/202246"
+					}
+				],
+				"published": "2005-11-23T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2007-2691",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2007-2691"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/241688"
+					}
+				],
+				"published": "2007-05-17T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2008-2079",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:M/Au:S/C:P/I:P/A:N",
+							"base_score": 4.9,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 4.9,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 4.9,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2008-2079"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/445222"
+					}
+				],
+				"published": "2008-03-13T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:4",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "mysql",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"ppc64",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-4-as-rpms",
+													"rhel-4-as-source-rpms",
+													"rhel-4-desktop-rpms",
+													"rhel-4-desktop-source-rpms",
+													"rhel-4-es-rpms",
+													"rhel-4-es-source-rpms",
+													"rhel-4-for-power-rpms",
+													"rhel-4-for-power-source-rpms",
+													"rhel-4-for-system-z-rpms",
+													"rhel-4-for-system-z-source-rpms",
+													"rhel-4-ws-rpms",
+													"rhel-4-ws-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:4.1.22-2.el4"
+													}
+												],
+												"fixed": [
+													"0:4.1.22-2.el4"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "mysql-bench",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-4-as-rpms",
+													"rhel-4-as-source-rpms",
+													"rhel-4-desktop-rpms",
+													"rhel-4-desktop-source-rpms",
+													"rhel-4-es-rpms",
+													"rhel-4-es-source-rpms",
+													"rhel-4-for-power-rpms",
+													"rhel-4-for-power-source-rpms",
+													"rhel-4-for-system-z-rpms",
+													"rhel-4-for-system-z-source-rpms",
+													"rhel-4-ws-rpms",
+													"rhel-4-ws-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:4.1.22-2.el4"
+													}
+												],
+												"fixed": [
+													"0:4.1.22-2.el4"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "mysql-devel",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-4-as-rpms",
+													"rhel-4-as-source-rpms",
+													"rhel-4-desktop-rpms",
+													"rhel-4-desktop-source-rpms",
+													"rhel-4-es-rpms",
+													"rhel-4-es-source-rpms",
+													"rhel-4-for-power-rpms",
+													"rhel-4-for-power-source-rpms",
+													"rhel-4-for-system-z-rpms",
+													"rhel-4-for-system-z-source-rpms",
+													"rhel-4-ws-rpms",
+													"rhel-4-ws-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:4.1.22-2.el4"
+													}
+												],
+												"fixed": [
+													"0:4.1.22-2.el4"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "mysql-server",
+												"architectures": [
+													"i386",
+													"ia64",
+													"ppc",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-4-as-rpms",
+													"rhel-4-as-source-rpms",
+													"rhel-4-desktop-rpms",
+													"rhel-4-desktop-source-rpms",
+													"rhel-4-es-rpms",
+													"rhel-4-es-source-rpms",
+													"rhel-4-for-power-rpms",
+													"rhel-4-for-power-source-rpms",
+													"rhel-4-for-system-z-rpms",
+													"rhel-4-for-system-z-source-rpms",
+													"rhel-4-ws-rpms",
+													"rhel-4-ws-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:4.1.22-2.el4"
+													}
+												],
+												"fixed": [
+													"0:4.1.22-2.el4"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/4/definitions/oval:com.redhat.rhsa:def:20080768.json",
+			"vuls-data-raw-redhat-ovalv1/4/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20060544001.json",
+			"vuls-data-raw-redhat-ovalv1/4/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20060544002.json",
+			"vuls-data-raw-redhat-ovalv1/4/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20060544003.json",
+			"vuls-data-raw-redhat-ovalv1/4/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20060544004.json",
+			"vuls-data-raw-redhat-ovalv1/4/states/rpminfo_state/oval:com.redhat.rhsa:ste:20080768001.json",
+			"vuls-data-raw-redhat-ovalv1/4/states/rpminfo_state/oval:com.redhat.rhsa:ste:20080768003.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20060544002.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20060544004.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20060544006.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20060544008.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20080768001.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20080768003.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20080768005.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20080768007.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070304025.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070304026.json"
+		]
+	}
+}

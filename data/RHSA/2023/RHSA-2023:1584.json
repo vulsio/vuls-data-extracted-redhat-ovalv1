@@ -1,0 +1,796 @@
+{
+	"id": "RHSA-2023:1584",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2023:1584",
+				"title": "RHSA-2023:1584: kernel-rt security and bug fix update (Important)",
+				"description": "The kernel-rt packages provide the Real Time Linux Kernel, which enables fine-tuning for systems with extremely high determinism requirements.\n\nSecurity Fix(es):\n\n* kernel: stack overflow in do_proc_dointvec and proc_skip_spaces (CVE-2022-4378)\n\n* ALSA: pcm: Move rwsem lock inside snd_ctl_elem_read to prevent UAF (CVE-2023-0266)\n\n* kernel: FUSE filesystem low-privileged user privileges escalation (CVE-2023-0386)\n\n* kernel: net: CPU soft lockup in TC mirred egress-to-ingress action (CVE-2022-4269)\n\nFor more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.\n\nBug Fix(es):\n\n* Lazy irq_work does not raise softirq on PREEMPT_RT [rhel-8] (BZ#2172163)\n\n* The latest RHEL 8.7.z3 kernel changes need to be merged into the RT source tree to keep source parity between the two kernels. (BZ#2172278)",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Important"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2023:1584"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2022-4269"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2022-4378"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2023-0266"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2023-0386"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2150272"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2152548"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2159505"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2163379"
+					}
+				],
+				"published": "2023-04-04T00:00:00Z",
+				"modified": "2023-04-04T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:8",
+					"tag": "8"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2022-4269",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v31",
+						"source": "secalert@redhat.com",
+						"cvss_v31": {
+							"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+							"base_score": 5.5,
+							"base_severity": "MEDIUM",
+							"temporal_score": 5.5,
+							"temporal_severity": "MEDIUM",
+							"environmental_score": 5.5,
+							"environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-833"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2022-4269"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2150272"
+					}
+				],
+				"published": "2022-09-23T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:8",
+					"tag": "8"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2022-4378",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "important"
+					},
+					{
+						"type": "cvss_v31",
+						"source": "secalert@redhat.com",
+						"cvss_v31": {
+							"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+							"base_score": 7.8,
+							"base_severity": "HIGH",
+							"temporal_score": 7.8,
+							"temporal_severity": "HIGH",
+							"environmental_score": 7.8,
+							"environmental_severity": "HIGH"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-120->CWE-131->CWE-787"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2022-4378"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2152548"
+					}
+				]
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:8",
+					"tag": "8"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2023-0266",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "important"
+					},
+					{
+						"type": "cvss_v31",
+						"source": "secalert@redhat.com",
+						"cvss_v31": {
+							"vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+							"base_score": 7.8,
+							"base_severity": "HIGH",
+							"temporal_score": 7.8,
+							"temporal_severity": "HIGH",
+							"environmental_score": 7.8,
+							"environmental_severity": "HIGH"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-416"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2023-0266"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2163379"
+					}
+				]
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:8",
+					"tag": "8"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2023-0386",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "important"
+					},
+					{
+						"type": "cvss_v31",
+						"source": "secalert@redhat.com",
+						"cvss_v31": {
+							"vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+							"base_score": 7,
+							"base_severity": "HIGH",
+							"temporal_score": 7,
+							"temporal_severity": "HIGH",
+							"environmental_score": 7,
+							"environmental_severity": "HIGH"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-282"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2023-0386"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2159505"
+					}
+				]
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:8",
+					"tag": "8"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:8",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-8-for-x86_64-nfv-debug-rpms",
+													"rhel-8-for-x86_64-nfv-rpms",
+													"rhel-8-for-x86_64-nfv-source-rpms",
+													"rhel-8-for-x86_64-rt-debug-rpms",
+													"rhel-8-for-x86_64-rt-rpms",
+													"rhel-8-for-x86_64-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:4.18.0-425.19.2.rt7.230.el8_7"
+													}
+												],
+												"fixed": [
+													"0:4.18.0-425.19.2.rt7.230.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt-core",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-8-for-x86_64-nfv-debug-rpms",
+													"rhel-8-for-x86_64-nfv-rpms",
+													"rhel-8-for-x86_64-nfv-source-rpms",
+													"rhel-8-for-x86_64-rt-debug-rpms",
+													"rhel-8-for-x86_64-rt-rpms",
+													"rhel-8-for-x86_64-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:4.18.0-425.19.2.rt7.230.el8_7"
+													}
+												],
+												"fixed": [
+													"0:4.18.0-425.19.2.rt7.230.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt-debug",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-8-for-x86_64-nfv-debug-rpms",
+													"rhel-8-for-x86_64-nfv-rpms",
+													"rhel-8-for-x86_64-nfv-source-rpms",
+													"rhel-8-for-x86_64-rt-debug-rpms",
+													"rhel-8-for-x86_64-rt-rpms",
+													"rhel-8-for-x86_64-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:4.18.0-425.19.2.rt7.230.el8_7"
+													}
+												],
+												"fixed": [
+													"0:4.18.0-425.19.2.rt7.230.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt-debug-core",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-8-for-x86_64-nfv-debug-rpms",
+													"rhel-8-for-x86_64-nfv-rpms",
+													"rhel-8-for-x86_64-nfv-source-rpms",
+													"rhel-8-for-x86_64-rt-debug-rpms",
+													"rhel-8-for-x86_64-rt-rpms",
+													"rhel-8-for-x86_64-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:4.18.0-425.19.2.rt7.230.el8_7"
+													}
+												],
+												"fixed": [
+													"0:4.18.0-425.19.2.rt7.230.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt-debug-devel",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-8-for-x86_64-nfv-debug-rpms",
+													"rhel-8-for-x86_64-nfv-rpms",
+													"rhel-8-for-x86_64-nfv-source-rpms",
+													"rhel-8-for-x86_64-rt-debug-rpms",
+													"rhel-8-for-x86_64-rt-rpms",
+													"rhel-8-for-x86_64-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:4.18.0-425.19.2.rt7.230.el8_7"
+													}
+												],
+												"fixed": [
+													"0:4.18.0-425.19.2.rt7.230.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt-debug-kvm",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-8-for-x86_64-nfv-debug-rpms",
+													"rhel-8-for-x86_64-nfv-rpms",
+													"rhel-8-for-x86_64-nfv-source-rpms",
+													"rhel-8-for-x86_64-rt-debug-rpms",
+													"rhel-8-for-x86_64-rt-rpms",
+													"rhel-8-for-x86_64-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:4.18.0-425.19.2.rt7.230.el8_7"
+													}
+												],
+												"fixed": [
+													"0:4.18.0-425.19.2.rt7.230.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt-debug-modules",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-8-for-x86_64-nfv-debug-rpms",
+													"rhel-8-for-x86_64-nfv-rpms",
+													"rhel-8-for-x86_64-nfv-source-rpms",
+													"rhel-8-for-x86_64-rt-debug-rpms",
+													"rhel-8-for-x86_64-rt-rpms",
+													"rhel-8-for-x86_64-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:4.18.0-425.19.2.rt7.230.el8_7"
+													}
+												],
+												"fixed": [
+													"0:4.18.0-425.19.2.rt7.230.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt-debug-modules-extra",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-8-for-x86_64-nfv-debug-rpms",
+													"rhel-8-for-x86_64-nfv-rpms",
+													"rhel-8-for-x86_64-nfv-source-rpms",
+													"rhel-8-for-x86_64-rt-debug-rpms",
+													"rhel-8-for-x86_64-rt-rpms",
+													"rhel-8-for-x86_64-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:4.18.0-425.19.2.rt7.230.el8_7"
+													}
+												],
+												"fixed": [
+													"0:4.18.0-425.19.2.rt7.230.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt-devel",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-8-for-x86_64-nfv-debug-rpms",
+													"rhel-8-for-x86_64-nfv-rpms",
+													"rhel-8-for-x86_64-nfv-source-rpms",
+													"rhel-8-for-x86_64-rt-debug-rpms",
+													"rhel-8-for-x86_64-rt-rpms",
+													"rhel-8-for-x86_64-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:4.18.0-425.19.2.rt7.230.el8_7"
+													}
+												],
+												"fixed": [
+													"0:4.18.0-425.19.2.rt7.230.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt-kvm",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-8-for-x86_64-nfv-debug-rpms",
+													"rhel-8-for-x86_64-nfv-rpms",
+													"rhel-8-for-x86_64-nfv-source-rpms",
+													"rhel-8-for-x86_64-rt-debug-rpms",
+													"rhel-8-for-x86_64-rt-rpms",
+													"rhel-8-for-x86_64-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:4.18.0-425.19.2.rt7.230.el8_7"
+													}
+												],
+												"fixed": [
+													"0:4.18.0-425.19.2.rt7.230.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt-modules",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-8-for-x86_64-nfv-debug-rpms",
+													"rhel-8-for-x86_64-nfv-rpms",
+													"rhel-8-for-x86_64-nfv-source-rpms",
+													"rhel-8-for-x86_64-rt-debug-rpms",
+													"rhel-8-for-x86_64-rt-rpms",
+													"rhel-8-for-x86_64-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:4.18.0-425.19.2.rt7.230.el8_7"
+													}
+												],
+												"fixed": [
+													"0:4.18.0-425.19.2.rt7.230.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt-modules-extra",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-8-for-x86_64-nfv-debug-rpms",
+													"rhel-8-for-x86_64-nfv-rpms",
+													"rhel-8-for-x86_64-nfv-source-rpms",
+													"rhel-8-for-x86_64-rt-debug-rpms",
+													"rhel-8-for-x86_64-rt-rpms",
+													"rhel-8-for-x86_64-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:4.18.0-425.19.2.rt7.230.el8_7"
+													}
+												],
+												"fixed": [
+													"0:4.18.0-425.19.2.rt7.230.el8_7"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "8"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/8/definitions/oval:com.redhat.rhsa:def:20231584.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191174001.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191174002.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191174003.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191174004.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191174005.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191174006.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191174007.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191174008.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191174009.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191174010.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191174011.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191174012.json",
+			"vuls-data-raw-redhat-ovalv1/8/states/rpminfo_state/oval:com.redhat.rhsa:ste:20231584001.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191174002.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191174004.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191174006.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191174008.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191174010.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191174012.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191174014.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191174016.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191174018.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191174020.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191174022.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191174024.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20231584001.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20231584003.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20231584005.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20231584007.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20231584009.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20231584011.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20231584013.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20231584015.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20231584017.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20231584019.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20231584021.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20231584023.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20191992003.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20191992004.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20191992005.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/textfilecontent54_test/oval:com.redhat.rhsa:tst:20231584026.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/uname_test/oval:com.redhat.rhsa:tst:20231566049.json"
+		]
+	}
+}

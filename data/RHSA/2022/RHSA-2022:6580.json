@@ -1,0 +1,400 @@
+{
+	"id": "RHSA-2022:6580",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2022:6580",
+				"title": "RHSA-2022:6580: booth security update (Moderate)",
+				"description": "The Booth cluster ticket manager is a component to bridge high availability clusters spanning multiple sites, in particular, to provide decision inputs to local Pacemaker cluster resource managers. It operates as a distributed consensus-based service, presumably on a separate physical network. Tickets facilitated by a Booth formation are the units of authorization that can be bound to certain resources. This will ensure that the resources are run at only one (granted) site at a time.\n\nSecurity Fix(es):\n\n* booth: authfile directive in booth config file is completely ignored. (CVE-2022-2553)\n\nFor more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Moderate"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2022:6580"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2022-2553"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2109251"
+					}
+				],
+				"published": "2022-09-20T00:00:00Z",
+				"modified": "2022-09-20T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:9",
+					"tag": "9"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2022-2553",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v31",
+						"source": "secalert@redhat.com",
+						"cvss_v31": {
+							"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+							"base_score": 6.5,
+							"base_severity": "MEDIUM",
+							"temporal_score": 6.5,
+							"temporal_severity": "MEDIUM",
+							"environmental_score": 6.5,
+							"environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-287"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2022-2553"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2109251"
+					}
+				]
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:9",
+					"tag": "9"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:9",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "booth",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-highavailability-debug-rpms",
+													"rhel-9-for-aarch64-highavailability-rpms",
+													"rhel-9-for-aarch64-highavailability-source-rpms",
+													"rhel-9-for-ppc64le-highavailability-debug-rpms",
+													"rhel-9-for-ppc64le-highavailability-rpms",
+													"rhel-9-for-ppc64le-highavailability-source-rpms",
+													"rhel-9-for-ppc64le-resilientstorage-debug-rpms",
+													"rhel-9-for-ppc64le-resilientstorage-rpms",
+													"rhel-9-for-ppc64le-resilientstorage-source-rpms",
+													"rhel-9-for-s390x-highavailability-debug-rpms",
+													"rhel-9-for-s390x-highavailability-rpms",
+													"rhel-9-for-s390x-highavailability-source-rpms",
+													"rhel-9-for-s390x-resilientstorage-debug-rpms",
+													"rhel-9-for-s390x-resilientstorage-rpms",
+													"rhel-9-for-s390x-resilientstorage-source-rpms",
+													"rhel-9-for-x86_64-highavailability-debug-rpms",
+													"rhel-9-for-x86_64-highavailability-rpms",
+													"rhel-9-for-x86_64-highavailability-source-rpms",
+													"rhel-9-for-x86_64-resilientstorage-debug-rpms",
+													"rhel-9-for-x86_64-resilientstorage-rpms",
+													"rhel-9-for-x86_64-resilientstorage-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:1.0-251.3.bfb2f92.git.el9_0.1"
+													}
+												],
+												"fixed": [
+													"0:1.0-251.3.bfb2f92.git.el9_0.1"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "booth-arbitrator",
+												"repositories": [
+													"rhel-9-for-aarch64-highavailability-debug-rpms",
+													"rhel-9-for-aarch64-highavailability-rpms",
+													"rhel-9-for-aarch64-highavailability-source-rpms",
+													"rhel-9-for-ppc64le-highavailability-debug-rpms",
+													"rhel-9-for-ppc64le-highavailability-rpms",
+													"rhel-9-for-ppc64le-highavailability-source-rpms",
+													"rhel-9-for-ppc64le-resilientstorage-debug-rpms",
+													"rhel-9-for-ppc64le-resilientstorage-rpms",
+													"rhel-9-for-ppc64le-resilientstorage-source-rpms",
+													"rhel-9-for-s390x-highavailability-debug-rpms",
+													"rhel-9-for-s390x-highavailability-rpms",
+													"rhel-9-for-s390x-highavailability-source-rpms",
+													"rhel-9-for-s390x-resilientstorage-debug-rpms",
+													"rhel-9-for-s390x-resilientstorage-rpms",
+													"rhel-9-for-s390x-resilientstorage-source-rpms",
+													"rhel-9-for-x86_64-highavailability-debug-rpms",
+													"rhel-9-for-x86_64-highavailability-rpms",
+													"rhel-9-for-x86_64-highavailability-source-rpms",
+													"rhel-9-for-x86_64-resilientstorage-debug-rpms",
+													"rhel-9-for-x86_64-resilientstorage-rpms",
+													"rhel-9-for-x86_64-resilientstorage-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:1.0-251.3.bfb2f92.git.el9_0.1"
+													}
+												],
+												"fixed": [
+													"0:1.0-251.3.bfb2f92.git.el9_0.1"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "booth-core",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-highavailability-debug-rpms",
+													"rhel-9-for-aarch64-highavailability-rpms",
+													"rhel-9-for-aarch64-highavailability-source-rpms",
+													"rhel-9-for-ppc64le-highavailability-debug-rpms",
+													"rhel-9-for-ppc64le-highavailability-rpms",
+													"rhel-9-for-ppc64le-highavailability-source-rpms",
+													"rhel-9-for-ppc64le-resilientstorage-debug-rpms",
+													"rhel-9-for-ppc64le-resilientstorage-rpms",
+													"rhel-9-for-ppc64le-resilientstorage-source-rpms",
+													"rhel-9-for-s390x-highavailability-debug-rpms",
+													"rhel-9-for-s390x-highavailability-rpms",
+													"rhel-9-for-s390x-highavailability-source-rpms",
+													"rhel-9-for-s390x-resilientstorage-debug-rpms",
+													"rhel-9-for-s390x-resilientstorage-rpms",
+													"rhel-9-for-s390x-resilientstorage-source-rpms",
+													"rhel-9-for-x86_64-highavailability-debug-rpms",
+													"rhel-9-for-x86_64-highavailability-rpms",
+													"rhel-9-for-x86_64-highavailability-source-rpms",
+													"rhel-9-for-x86_64-resilientstorage-debug-rpms",
+													"rhel-9-for-x86_64-resilientstorage-rpms",
+													"rhel-9-for-x86_64-resilientstorage-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:1.0-251.3.bfb2f92.git.el9_0.1"
+													}
+												],
+												"fixed": [
+													"0:1.0-251.3.bfb2f92.git.el9_0.1"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "booth-site",
+												"repositories": [
+													"rhel-9-for-aarch64-highavailability-debug-rpms",
+													"rhel-9-for-aarch64-highavailability-rpms",
+													"rhel-9-for-aarch64-highavailability-source-rpms",
+													"rhel-9-for-ppc64le-highavailability-debug-rpms",
+													"rhel-9-for-ppc64le-highavailability-rpms",
+													"rhel-9-for-ppc64le-highavailability-source-rpms",
+													"rhel-9-for-ppc64le-resilientstorage-debug-rpms",
+													"rhel-9-for-ppc64le-resilientstorage-rpms",
+													"rhel-9-for-ppc64le-resilientstorage-source-rpms",
+													"rhel-9-for-s390x-highavailability-debug-rpms",
+													"rhel-9-for-s390x-highavailability-rpms",
+													"rhel-9-for-s390x-highavailability-source-rpms",
+													"rhel-9-for-s390x-resilientstorage-debug-rpms",
+													"rhel-9-for-s390x-resilientstorage-rpms",
+													"rhel-9-for-s390x-resilientstorage-source-rpms",
+													"rhel-9-for-x86_64-highavailability-debug-rpms",
+													"rhel-9-for-x86_64-highavailability-rpms",
+													"rhel-9-for-x86_64-highavailability-source-rpms",
+													"rhel-9-for-x86_64-resilientstorage-debug-rpms",
+													"rhel-9-for-x86_64-resilientstorage-rpms",
+													"rhel-9-for-x86_64-resilientstorage-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:1.0-251.3.bfb2f92.git.el9_0.1"
+													}
+												],
+												"fixed": [
+													"0:1.0-251.3.bfb2f92.git.el9_0.1"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "booth-test",
+												"repositories": [
+													"rhel-9-for-aarch64-highavailability-debug-rpms",
+													"rhel-9-for-aarch64-highavailability-rpms",
+													"rhel-9-for-aarch64-highavailability-source-rpms",
+													"rhel-9-for-ppc64le-highavailability-debug-rpms",
+													"rhel-9-for-ppc64le-highavailability-rpms",
+													"rhel-9-for-ppc64le-highavailability-source-rpms",
+													"rhel-9-for-ppc64le-resilientstorage-debug-rpms",
+													"rhel-9-for-ppc64le-resilientstorage-rpms",
+													"rhel-9-for-ppc64le-resilientstorage-source-rpms",
+													"rhel-9-for-s390x-highavailability-debug-rpms",
+													"rhel-9-for-s390x-highavailability-rpms",
+													"rhel-9-for-s390x-highavailability-source-rpms",
+													"rhel-9-for-s390x-resilientstorage-debug-rpms",
+													"rhel-9-for-s390x-resilientstorage-rpms",
+													"rhel-9-for-s390x-resilientstorage-source-rpms",
+													"rhel-9-for-x86_64-highavailability-debug-rpms",
+													"rhel-9-for-x86_64-highavailability-rpms",
+													"rhel-9-for-x86_64-highavailability-source-rpms",
+													"rhel-9-for-x86_64-resilientstorage-debug-rpms",
+													"rhel-9-for-x86_64-resilientstorage-rpms",
+													"rhel-9-for-x86_64-resilientstorage-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:1.0-251.3.bfb2f92.git.el9_0.1"
+													}
+												],
+												"fixed": [
+													"0:1.0-251.3.bfb2f92.git.el9_0.1"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "9"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/9/definitions/oval:com.redhat.rhsa:def:20226580.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20226580001.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20226580002.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20226580003.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20226580004.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20226580005.json",
+			"vuls-data-raw-redhat-ovalv1/9/states/rpminfo_state/oval:com.redhat.rhsa:ste:20226580001.json",
+			"vuls-data-raw-redhat-ovalv1/9/states/rpminfo_state/oval:com.redhat.rhsa:ste:20226580003.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20226580001.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20226580002.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20226580003.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20226580004.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20226580005.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20226580006.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20226580007.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20226580008.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20226580009.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20226580010.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20225749023.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20225749024.json"
+		]
+	}
+}

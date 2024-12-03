@@ -1,0 +1,304 @@
+{
+	"id": "RHSA-2012:1149",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2012:1149",
+				"title": "RHSA-2012:1149: sudo security and bug fix update (Moderate)",
+				"description": "The sudo (superuser do) utility allows system administrators to give\ncertain users the ability to run commands as root.\n\nAn insecure temporary file use flaw was found in the sudo package's\npost-uninstall script. A local attacker could possibly use this flaw to\noverwrite an arbitrary file via a symbolic link attack, or modify the\ncontents of the \"/etc/nsswitch.conf\" file during the upgrade or removal of\nthe sudo package. (CVE-2012-3440)\n\nThis update also fixes the following bugs:\n\n* Previously, sudo escaped non-alphanumeric characters in commands using\n\"sudo -s\" or \"sudo -\" at the wrong place and interfered with the\nauthorization process. Some valid commands were not permitted. Now,\nnon-alphanumeric characters escape immediately before the command is\nexecuted and no longer interfere with the authorization process.\n(BZ#844418)\n\n* Prior to this update, the sudo utility could, under certain\ncircumstances, fail to receive the SIGCHLD signal when it was executed\nfrom a process that blocked the SIGCHLD signal. As a consequence, sudo\ncould become suspended and fail to exit. This update modifies the signal\nprocess mask so that sudo can exit and sends the correct output.\n(BZ#844419)\n\n* The sudo update RHSA-2012:0309 introduced a regression that caused the\nSecurity-Enhanced Linux (SELinux) context of the \"/etc/nsswitch.conf\" file\nto change during the installation or upgrade of the sudo package. This\ncould cause various services confined by SELinux to no longer be permitted\nto access the file. In reported cases, this issue prevented PostgreSQL and\nPostfix from starting. (BZ#842759)\n\n* Updating the sudo package resulted in the \"sudoers\" line in\n\"/etc/nsswitch.conf\" being removed. This update corrects the bug in the\nsudo package's post-uninstall script that caused this issue. (BZ#844420)\n\n* Prior to this update, a race condition bug existed in sudo. When a\nprogram was executed with sudo, the program could possibly exit\nsuccessfully before sudo started waiting for it. In this situation, the\nprogram would be left in a zombie state and sudo would wait for it\nendlessly, expecting it to still be running. (BZ#844978)\n\nAll users of sudo are advised to upgrade to this updated package, which\ncontains backported patches to correct these issues.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Moderate"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2012:1149"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2012-3440"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/844442"
+					}
+				],
+				"published": "2012-08-07T00:00:00Z",
+				"modified": "2012-08-07T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2012-3440",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:H/Au:N/C:N/I:C/A:C",
+							"base_score": 5.6,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 5.6,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 5.6,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-367"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2012-3440"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/844442"
+					}
+				],
+				"published": "2012-08-07T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:5",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "sudo",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-5-desktop-debug-rpms",
+											"rhel-5-desktop-fastrack-debug-rpms",
+											"rhel-5-desktop-fastrack-rpms",
+											"rhel-5-desktop-fastrack-source-rpms",
+											"rhel-5-desktop-rpms",
+											"rhel-5-desktop-source-rpms",
+											"rhel-5-for-power-debug-rpms",
+											"rhel-5-for-power-eus-debug-rpms",
+											"rhel-5-for-power-eus-rpms",
+											"rhel-5-for-power-eus-source-rpms",
+											"rhel-5-for-power-fastrack-debug-rpms",
+											"rhel-5-for-power-fastrack-rpms",
+											"rhel-5-for-power-fastrack-source-rpms",
+											"rhel-5-for-power-rpms",
+											"rhel-5-for-power-source-rpms",
+											"rhel-5-for-system-z-debug-rpms",
+											"rhel-5-for-system-z-els-debug-rpms",
+											"rhel-5-for-system-z-els-rpms",
+											"rhel-5-for-system-z-els-source-rpms",
+											"rhel-5-for-system-z-eus-debug-rpms",
+											"rhel-5-for-system-z-eus-rpms",
+											"rhel-5-for-system-z-eus-source-rpms",
+											"rhel-5-for-system-z-fastrack-debug-rpms",
+											"rhel-5-for-system-z-fastrack-rpms",
+											"rhel-5-for-system-z-fastrack-source-rpms",
+											"rhel-5-for-system-z-rpms",
+											"rhel-5-for-system-z-source-rpms",
+											"rhel-5-server-aus-debug-rpms",
+											"rhel-5-server-aus-rpms",
+											"rhel-5-server-aus-source-rpms",
+											"rhel-5-server-debug-rpms",
+											"rhel-5-server-els-debug-rpms",
+											"rhel-5-server-els-rpms",
+											"rhel-5-server-els-source-rpms",
+											"rhel-5-server-eus-debug-rpms",
+											"rhel-5-server-eus-rpms",
+											"rhel-5-server-eus-source-rpms",
+											"rhel-5-server-fastrack-debug-rpms",
+											"rhel-5-server-fastrack-rpms",
+											"rhel-5-server-fastrack-source-rpms",
+											"rhel-5-server-rpms",
+											"rhel-5-server-source-rpms",
+											"rhel-5-workstation-desktop-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-rpms",
+											"rhel-5-workstation-desktop-fastrack-source-rpms",
+											"rhel-5-workstation-desktop-rpms",
+											"rhel-5-workstation-desktop-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "0:1.7.2p1-14.el5_8.2"
+											}
+										],
+										"fixed": [
+											"0:1.7.2p1-14.el5_8.2"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "5"
+				},
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "sudo",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-5-desktop-debug-rpms",
+											"rhel-5-desktop-fastrack-debug-rpms",
+											"rhel-5-desktop-fastrack-rpms",
+											"rhel-5-desktop-fastrack-source-rpms",
+											"rhel-5-desktop-rpms",
+											"rhel-5-desktop-source-rpms",
+											"rhel-5-for-power-debug-rpms",
+											"rhel-5-for-power-eus-debug-rpms",
+											"rhel-5-for-power-eus-rpms",
+											"rhel-5-for-power-eus-source-rpms",
+											"rhel-5-for-power-fastrack-debug-rpms",
+											"rhel-5-for-power-fastrack-rpms",
+											"rhel-5-for-power-fastrack-source-rpms",
+											"rhel-5-for-power-rpms",
+											"rhel-5-for-power-source-rpms",
+											"rhel-5-for-system-z-debug-rpms",
+											"rhel-5-for-system-z-els-debug-rpms",
+											"rhel-5-for-system-z-els-rpms",
+											"rhel-5-for-system-z-els-source-rpms",
+											"rhel-5-for-system-z-eus-debug-rpms",
+											"rhel-5-for-system-z-eus-rpms",
+											"rhel-5-for-system-z-eus-source-rpms",
+											"rhel-5-for-system-z-fastrack-debug-rpms",
+											"rhel-5-for-system-z-fastrack-rpms",
+											"rhel-5-for-system-z-fastrack-source-rpms",
+											"rhel-5-for-system-z-rpms",
+											"rhel-5-for-system-z-source-rpms",
+											"rhel-5-server-aus-debug-rpms",
+											"rhel-5-server-aus-rpms",
+											"rhel-5-server-aus-source-rpms",
+											"rhel-5-server-debug-rpms",
+											"rhel-5-server-els-debug-rpms",
+											"rhel-5-server-els-rpms",
+											"rhel-5-server-els-source-rpms",
+											"rhel-5-server-eus-debug-rpms",
+											"rhel-5-server-eus-rpms",
+											"rhel-5-server-eus-source-rpms",
+											"rhel-5-server-fastrack-debug-rpms",
+											"rhel-5-server-fastrack-rpms",
+											"rhel-5-server-fastrack-source-rpms",
+											"rhel-5-server-rpms",
+											"rhel-5-server-source-rpms",
+											"rhel-5-workstation-desktop-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-rpms",
+											"rhel-5-workstation-desktop-fastrack-source-rpms",
+											"rhel-5-workstation-desktop-rpms",
+											"rhel-5-workstation-desktop-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "0:1.7.2p1-14.el5_8.2"
+											}
+										],
+										"fixed": [
+											"0:1.7.2p1-14.el5_8.2"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/definitions/oval:com.redhat.rhsa:def:20121149.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20090267001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20121149001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20090267002.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20121149001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json",
+			"vuls-data-raw-redhat-ovalv1/5/definitions/oval:com.redhat.rhsa:def:20121149.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20090267001.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20121149001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20090267002.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20121149001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json"
+		]
+	}
+}

@@ -1,0 +1,588 @@
+{
+	"id": "RHSA-2015:1189",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2015:1189",
+				"title": "RHSA-2015:1189: kvm security update (Important)",
+				"description": "KVM (Kernel-based Virtual Machine) is a full virtualization solution for\nLinux on AMD64 and Intel 64 systems.\n\nA flaw was found in the way QEMU's AMD PCnet Ethernet emulation handled\nmulti-TMD packets with a length above 4096 bytes. A privileged guest user\nin a guest with an AMD PCNet ethernet card enabled could potentially use\nthis flaw to execute arbitrary code on the host with the privileges of the\nhosting QEMU process. (CVE-2015-3209)\n\nRed Hat would like to thank Matt Tait of Google's Project Zero security\nteam for reporting this issue.\n\nAll kvm users are advised to upgrade to these updated packages, which\ncontain a backported patch to correct this issue. Note: The procedure in\nthe Solution section must be performed before this update will take effect.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Important"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2015:1189"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-3209"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1225882"
+					}
+				],
+				"published": "2015-06-25T00:00:00Z",
+				"modified": "2015-06-25T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2015-3209",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "important"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:A/AC:H/Au:S/C:C/I:C/A:C",
+							"base_score": 6.5,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 6.5,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 6.5,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-119"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-3209"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1225882"
+					}
+				],
+				"published": "2015-06-10T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:5",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kmod-kvm",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-server-eus-vt-debug-rpms",
+													"rhel-5-server-eus-vt-rpms",
+													"rhel-5-server-eus-vt-source-rpms",
+													"rhel-5-server-vt-debug-rpms",
+													"rhel-5-server-vt-rpms",
+													"rhel-5-server-vt-source-rpms",
+													"rhel-5-workstation-vt-debug-rpms",
+													"rhel-5-workstation-vt-rpms",
+													"rhel-5-workstation-vt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:83-273.el5_11"
+													}
+												],
+												"fixed": [
+													"0:83-273.el5_11"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kmod-kvm-debug",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-server-eus-vt-debug-rpms",
+													"rhel-5-server-eus-vt-rpms",
+													"rhel-5-server-eus-vt-source-rpms",
+													"rhel-5-server-vt-debug-rpms",
+													"rhel-5-server-vt-rpms",
+													"rhel-5-server-vt-source-rpms",
+													"rhel-5-workstation-vt-debug-rpms",
+													"rhel-5-workstation-vt-rpms",
+													"rhel-5-workstation-vt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:83-273.el5_11"
+													}
+												],
+												"fixed": [
+													"0:83-273.el5_11"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kvm",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-server-eus-vt-debug-rpms",
+													"rhel-5-server-eus-vt-rpms",
+													"rhel-5-server-eus-vt-source-rpms",
+													"rhel-5-server-vt-debug-rpms",
+													"rhel-5-server-vt-rpms",
+													"rhel-5-server-vt-source-rpms",
+													"rhel-5-workstation-vt-debug-rpms",
+													"rhel-5-workstation-vt-rpms",
+													"rhel-5-workstation-vt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:83-273.el5_11"
+													}
+												],
+												"fixed": [
+													"0:83-273.el5_11"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kvm-qemu-img",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-server-eus-vt-debug-rpms",
+													"rhel-5-server-eus-vt-rpms",
+													"rhel-5-server-eus-vt-source-rpms",
+													"rhel-5-server-vt-debug-rpms",
+													"rhel-5-server-vt-rpms",
+													"rhel-5-server-vt-source-rpms",
+													"rhel-5-workstation-vt-debug-rpms",
+													"rhel-5-workstation-vt-rpms",
+													"rhel-5-workstation-vt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:83-273.el5_11"
+													}
+												],
+												"fixed": [
+													"0:83-273.el5_11"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kvm-tools",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-server-eus-vt-debug-rpms",
+													"rhel-5-server-eus-vt-rpms",
+													"rhel-5-server-eus-vt-source-rpms",
+													"rhel-5-server-vt-debug-rpms",
+													"rhel-5-server-vt-rpms",
+													"rhel-5-server-vt-source-rpms",
+													"rhel-5-workstation-vt-debug-rpms",
+													"rhel-5-workstation-vt-rpms",
+													"rhel-5-workstation-vt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:83-273.el5_11"
+													}
+												],
+												"fixed": [
+													"0:83-273.el5_11"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "5"
+				},
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kmod-kvm",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-server-eus-vt-debug-rpms",
+													"rhel-5-server-eus-vt-rpms",
+													"rhel-5-server-eus-vt-source-rpms",
+													"rhel-5-server-vt-debug-rpms",
+													"rhel-5-server-vt-rpms",
+													"rhel-5-server-vt-source-rpms",
+													"rhel-5-workstation-vt-debug-rpms",
+													"rhel-5-workstation-vt-rpms",
+													"rhel-5-workstation-vt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:83-273.el5_11"
+													}
+												],
+												"fixed": [
+													"0:83-273.el5_11"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kmod-kvm-debug",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-server-eus-vt-debug-rpms",
+													"rhel-5-server-eus-vt-rpms",
+													"rhel-5-server-eus-vt-source-rpms",
+													"rhel-5-server-vt-debug-rpms",
+													"rhel-5-server-vt-rpms",
+													"rhel-5-server-vt-source-rpms",
+													"rhel-5-workstation-vt-debug-rpms",
+													"rhel-5-workstation-vt-rpms",
+													"rhel-5-workstation-vt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:83-273.el5_11"
+													}
+												],
+												"fixed": [
+													"0:83-273.el5_11"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kvm",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-server-eus-vt-debug-rpms",
+													"rhel-5-server-eus-vt-rpms",
+													"rhel-5-server-eus-vt-source-rpms",
+													"rhel-5-server-vt-debug-rpms",
+													"rhel-5-server-vt-rpms",
+													"rhel-5-server-vt-source-rpms",
+													"rhel-5-workstation-vt-debug-rpms",
+													"rhel-5-workstation-vt-rpms",
+													"rhel-5-workstation-vt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:83-273.el5_11"
+													}
+												],
+												"fixed": [
+													"0:83-273.el5_11"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kvm-qemu-img",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-server-eus-vt-debug-rpms",
+													"rhel-5-server-eus-vt-rpms",
+													"rhel-5-server-eus-vt-source-rpms",
+													"rhel-5-server-vt-debug-rpms",
+													"rhel-5-server-vt-rpms",
+													"rhel-5-server-vt-source-rpms",
+													"rhel-5-workstation-vt-debug-rpms",
+													"rhel-5-workstation-vt-rpms",
+													"rhel-5-workstation-vt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:83-273.el5_11"
+													}
+												],
+												"fixed": [
+													"0:83-273.el5_11"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kvm-tools",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-5-server-eus-vt-debug-rpms",
+													"rhel-5-server-eus-vt-rpms",
+													"rhel-5-server-eus-vt-source-rpms",
+													"rhel-5-server-vt-debug-rpms",
+													"rhel-5-server-vt-rpms",
+													"rhel-5-server-vt-source-rpms",
+													"rhel-5-workstation-vt-debug-rpms",
+													"rhel-5-workstation-vt-rpms",
+													"rhel-5-workstation-vt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:83-273.el5_11"
+													}
+												],
+												"fixed": [
+													"0:83-273.el5_11"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/definitions/oval:com.redhat.rhsa:def:20151189.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20091465001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20091465002.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20091465003.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20091465004.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20110028002.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20151189001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20091465002.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20091465004.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20091465006.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20091465008.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20110028004.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20151189001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20151189003.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20151189005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20151189007.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20151189009.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json",
+			"vuls-data-raw-redhat-ovalv1/5/definitions/oval:com.redhat.rhsa:def:20151189.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20091465001.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20091465002.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20091465003.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20091465004.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20110028002.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20151189001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20091465002.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20091465004.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20091465006.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20091465008.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20110028004.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20151189001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20151189003.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20151189005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20151189007.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20151189009.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json"
+		]
+	}
+}

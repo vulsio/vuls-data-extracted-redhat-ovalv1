@@ -1,0 +1,146 @@
+{
+	"id": "RHSA-2008:0715",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2008:0715",
+				"title": "RHSA-2008:0715: nss_ldap security and bug fix update (Low)",
+				"description": "The nss_ldap package contains the nss_ldap and pam_ldap modules. The\nnss_ldap module is a plug-in which allows applications to retrieve\ninformation about users and groups from a directory server. The pam_ldap\nmodule allows PAM-aware applications to use a directory server to verify\nuser passwords.\n\nA race condition was discovered in nss_ldap, which affected certain\napplications that make LDAP connections, such as Dovecot. This could cause\nnss_ldap to answer a request for information about one user with the\ninformation about a different user. (CVE-2007-5794)\n\nAs well, this updated package fixes the following bugs:\n\n* in certain situations, on Itanium(R) architectures, when an application\nperformed an LDAP lookup for a highly populated group, for example,\ncontaining more than 150 members, the application crashed, or may have\ncaused a segmentation fault. As well, this issue may have caused commands,\nsuch as \"ls\", to return a \"ber_free_buf: Assertion\" error.\n\n* when an application enumerated members of a netgroup, the nss_ldap\nmodule returned a successful status result and the netgroup name, even\nwhen the netgroup did not exist. This behavior was not consistent with\nother modules. In this updated package, nss_ldap no longer returns a\nsuccessful status when the netgroup does not exist.\n\n* in master and slave server environments, with systems that were\nconfigured to use a read-only directory server, if user log in attempts\nwere denied because their passwords had expired, and users attempted to\nimmediately change their passwords, the replication server returned an LDAP\nreferral, instructing the pam_ldap module to resissue its request to a\ndifferent server; however, the pam_ldap module failed to do so. In these\nsituations, an error such as the following occurred:\n\nLDAP password information update failed: Can't contact LDAP server\nInsufficient 'write' privilege to the 'userPassword' attribute of entry\n[entry]\n\nIn this updated package, password changes are allowed when binding against\na slave server, which resolves this issue.\n\n* when a system used a directory server for naming information, and\n\"nss_initgroups_ignoreusers root\" was configured in \"/etc/ldap.conf\",\ndbus-daemon-1 would hang. Running the \"service messagebus start\" command\ndid not start the service, and it did not fail, which would stop the boot\nprocess if it was not cancelled.\n\nAs well, this updated package upgrades nss_ldap to the version as shipped\nwith Red Hat Enterprise Linux 5.\n\nUsers of nss_ldap are advised to upgrade to this updated package, which\nresolves these issues.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2008:0715"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2007-5794"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/367461"
+					}
+				],
+				"published": "2008-07-24T00:00:00Z",
+				"modified": "2008-07-24T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2007-5794",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2007-5794"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/367461"
+					}
+				],
+				"published": "2005-04-09T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:4",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "nss_ldap",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"ppc64",
+											"s390",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-4-as-rpms",
+											"rhel-4-as-source-rpms",
+											"rhel-4-desktop-rpms",
+											"rhel-4-desktop-source-rpms",
+											"rhel-4-es-rpms",
+											"rhel-4-es-source-rpms",
+											"rhel-4-for-power-rpms",
+											"rhel-4-for-power-source-rpms",
+											"rhel-4-for-system-z-rpms",
+											"rhel-4-for-system-z-source-rpms",
+											"rhel-4-ws-rpms",
+											"rhel-4-ws-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "0:253-5.el4"
+											}
+										],
+										"fixed": [
+											"0:253-5.el4"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/4/definitions/oval:com.redhat.rhsa:def:20080715.json",
+			"vuls-data-raw-redhat-ovalv1/4/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20060719001.json",
+			"vuls-data-raw-redhat-ovalv1/4/states/rpminfo_state/oval:com.redhat.rhsa:ste:20080715001.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20060719002.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20080715001.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070304025.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070304026.json"
+		]
+	}
+}

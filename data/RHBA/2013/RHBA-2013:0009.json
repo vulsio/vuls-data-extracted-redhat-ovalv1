@@ -1,0 +1,296 @@
+{
+	"id": "RHBA-2013:0009",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHBA-2013:0009",
+				"title": "RHBA-2013:0009: mod_nss bug fix update (Moderate)",
+				"description": "The mod_nss module provides strong cryptography for the Apache HTTP Server via the Secure Sockets Layer (SSL) and Transport Layer Security (TLS) protocols, using the Network Security Services (NSS) security library.\n\nThis update fixes the following bugs:\n\n* The previous release had an incorrect post-install script. Consequently, when upgrading \"mod_nss\" from version 1.0.3 to 1.0.8, the group and file permissions were incorrectly set. The HTTP server (httpd) did not start and the following error message was displayed:\n\n    [error] NSS_Initialize failed. Certificate database: /etc/httpd/alias.\n    [error] SSL Library Error: -8038 SEC_ERROR_NOT_INITIALIZED\n\nThis update improves the post-install script to set file permissions and ownership correctly. As a result, all child processes of the Apache HTTP Server can enable SSL and now httpd starts as expected in the scenario described. (BZ#669963)\n\n* With the release of \"mod_nss\" version 1.0.8 there was no lock mechanism to control sequential httpd process access to the \"nss_pcache\" process. This sometimes resulted in multiple requests being interpreted as a single request by \"nss_pcache\" and a single result returned. The calling process sometimes experienced a timeout error or a failure with the error message:\n\n    [error] Unable to read from pin store\n\nWith this update the code has been improved and multiple requests to the \"nss_pcache\" process are processed sequentially without the errors described. (BZ#677698)\n\n* Due to a regression, the \"mod_proxy\" module no longer worked when configured to support reverse proxy operation. The following error was logged:\n\n    [error] SSL Proxy: I don't have the name of the host we're supposed to connect to so I can't verify that we are connecting to who we think we should be. Giving up.\n\nA new patch has been applied and the \"mod_proxy\" module now works correctly to support SSL reverse proxy. (BZ#692868)\n\n* Previously, a static array containing the arguments for launching the \"nss_pcache\" command overflowed the array size by one. This could lead to a variety of problems including unexpected termination. This bug has been fixed, and \"mod_nss\" now uses a properly sized static array when launching \"nss_pcache\". (BZ#714255)\n\n* Due to an incorrect use of the memcpy() function in the \"mod_nss\" module, running the Apache HTTP Server with this module enabled could cause some requests to fail with the following message written to the error_log file:\n\n    request failed: error reading the headers\n\nThis update applies a patch to ensure that the memcpy() function is now used in accordance with the current specification, and using the \"mod_nss\" module no longer causes HTTP requests to fail. (BZ#749401)\n\n* Prior to this update, client certificates were only retrieved during the initial SSL handshake if the NSSVerifyClient option was set to \"require\" or \"optional\". Also, the FakeBasicAuth option only retrieved Common Name rather than the entire certificate subject. Consequently, it was possible to spoof an identity using that option. This bug has been fixed, the FakeBasicAuth option is now prefixed with \"/\" and is thus compatible with OpenSSL. Certificates are now retrieved on all subsequent requests beyond the first one. (BZ#749402).\n\n* When the NSS library was not initialized and \"mod_nss\" tried to clear its SSL cache on start-up, \"mod_nss\" terminated unexpectedly when the NSS library was built with debugging enabled. With this update, \"mod_nss\" does not try to clear the SSL cache in the described scenario, thus preventing this bug. (BZ#749405, BZ#784548)\n\n* The \"Requires: %{_libdir}/libnssckbi.so\" directive has been added to the spec file to make \"libnssckbi.so\" a runtime dependency. This is to prevent symbolic links failing. (BZ#749406)\n\nAll users of mod_nss are advised to upgrade to these updated packages, which fix these bugs.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Moderate"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHBA-2013:0009"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2011-4973"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1017197"
+					}
+				],
+				"published": "2013-01-07T00:00:00Z",
+				"modified": "2013-01-07T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2011-4973",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:N/AC:H/Au:N/C:P/I:P/A:N",
+							"base_score": 4,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 4,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 4,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2011-4973"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1017197"
+					}
+				],
+				"published": "2011-05-04T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:5",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "mod_nss",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-5-desktop-debug-rpms",
+											"rhel-5-desktop-fastrack-debug-rpms",
+											"rhel-5-desktop-fastrack-rpms",
+											"rhel-5-desktop-fastrack-source-rpms",
+											"rhel-5-desktop-rpms",
+											"rhel-5-desktop-source-rpms",
+											"rhel-5-for-power-debug-rpms",
+											"rhel-5-for-power-eus-debug-rpms",
+											"rhel-5-for-power-eus-rpms",
+											"rhel-5-for-power-eus-source-rpms",
+											"rhel-5-for-power-fastrack-debug-rpms",
+											"rhel-5-for-power-fastrack-rpms",
+											"rhel-5-for-power-fastrack-source-rpms",
+											"rhel-5-for-power-rpms",
+											"rhel-5-for-power-source-rpms",
+											"rhel-5-for-system-z-debug-rpms",
+											"rhel-5-for-system-z-els-debug-rpms",
+											"rhel-5-for-system-z-els-rpms",
+											"rhel-5-for-system-z-els-source-rpms",
+											"rhel-5-for-system-z-eus-debug-rpms",
+											"rhel-5-for-system-z-eus-rpms",
+											"rhel-5-for-system-z-eus-source-rpms",
+											"rhel-5-for-system-z-fastrack-debug-rpms",
+											"rhel-5-for-system-z-fastrack-rpms",
+											"rhel-5-for-system-z-fastrack-source-rpms",
+											"rhel-5-for-system-z-rpms",
+											"rhel-5-for-system-z-source-rpms",
+											"rhel-5-server-aus-debug-rpms",
+											"rhel-5-server-aus-rpms",
+											"rhel-5-server-aus-source-rpms",
+											"rhel-5-server-debug-rpms",
+											"rhel-5-server-els-debug-rpms",
+											"rhel-5-server-els-rpms",
+											"rhel-5-server-els-source-rpms",
+											"rhel-5-server-eus-debug-rpms",
+											"rhel-5-server-eus-rpms",
+											"rhel-5-server-eus-source-rpms",
+											"rhel-5-server-fastrack-debug-rpms",
+											"rhel-5-server-fastrack-rpms",
+											"rhel-5-server-fastrack-source-rpms",
+											"rhel-5-server-rpms",
+											"rhel-5-server-source-rpms",
+											"rhel-5-workstation-desktop-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-rpms",
+											"rhel-5-workstation-desktop-fastrack-source-rpms",
+											"rhel-5-workstation-desktop-rpms",
+											"rhel-5-workstation-desktop-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "0:1.0.8-7.el5"
+											}
+										],
+										"fixed": [
+											"0:1.0.8-7.el5"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "5"
+				},
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "mod_nss",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-5-desktop-debug-rpms",
+											"rhel-5-desktop-fastrack-debug-rpms",
+											"rhel-5-desktop-fastrack-rpms",
+											"rhel-5-desktop-fastrack-source-rpms",
+											"rhel-5-desktop-rpms",
+											"rhel-5-desktop-source-rpms",
+											"rhel-5-for-power-debug-rpms",
+											"rhel-5-for-power-eus-debug-rpms",
+											"rhel-5-for-power-eus-rpms",
+											"rhel-5-for-power-eus-source-rpms",
+											"rhel-5-for-power-fastrack-debug-rpms",
+											"rhel-5-for-power-fastrack-rpms",
+											"rhel-5-for-power-fastrack-source-rpms",
+											"rhel-5-for-power-rpms",
+											"rhel-5-for-power-source-rpms",
+											"rhel-5-for-system-z-debug-rpms",
+											"rhel-5-for-system-z-els-debug-rpms",
+											"rhel-5-for-system-z-els-rpms",
+											"rhel-5-for-system-z-els-source-rpms",
+											"rhel-5-for-system-z-eus-debug-rpms",
+											"rhel-5-for-system-z-eus-rpms",
+											"rhel-5-for-system-z-eus-source-rpms",
+											"rhel-5-for-system-z-fastrack-debug-rpms",
+											"rhel-5-for-system-z-fastrack-rpms",
+											"rhel-5-for-system-z-fastrack-source-rpms",
+											"rhel-5-for-system-z-rpms",
+											"rhel-5-for-system-z-source-rpms",
+											"rhel-5-server-aus-debug-rpms",
+											"rhel-5-server-aus-rpms",
+											"rhel-5-server-aus-source-rpms",
+											"rhel-5-server-debug-rpms",
+											"rhel-5-server-els-debug-rpms",
+											"rhel-5-server-els-rpms",
+											"rhel-5-server-els-source-rpms",
+											"rhel-5-server-eus-debug-rpms",
+											"rhel-5-server-eus-rpms",
+											"rhel-5-server-eus-source-rpms",
+											"rhel-5-server-fastrack-debug-rpms",
+											"rhel-5-server-fastrack-rpms",
+											"rhel-5-server-fastrack-source-rpms",
+											"rhel-5-server-rpms",
+											"rhel-5-server-source-rpms",
+											"rhel-5-workstation-desktop-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-debug-rpms",
+											"rhel-5-workstation-desktop-fastrack-rpms",
+											"rhel-5-workstation-desktop-fastrack-source-rpms",
+											"rhel-5-workstation-desktop-rpms",
+											"rhel-5-workstation-desktop-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "0:1.0.8-7.el5"
+											}
+										],
+										"fixed": [
+											"0:1.0.8-7.el5"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/definitions/oval:com.redhat.rhba:def:20130009.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhba:obj:20130009001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhba:ste:20130009001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhba:tst:20130009001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhba:tst:20130009002.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json",
+			"vuls-data-raw-redhat-ovalv1/5/definitions/oval:com.redhat.rhba:def:20130009.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhba:obj:20130009001.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhba:ste:20130009001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhba:tst:20130009001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhba:tst:20130009002.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json"
+		]
+	}
+}

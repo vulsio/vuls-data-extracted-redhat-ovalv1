@@ -1,0 +1,182 @@
+{
+	"id": "RHSA-2007:0018",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2007:0018",
+				"title": "RHSA-2007:0018: fetchmail security update (Moderate)",
+				"description": "Fetchmail is a remote mail retrieval and forwarding utility.\n\nA denial of service flaw was found when Fetchmail was run in multidrop\nmode.  A malicious mail server could send a message without headers which\nwould cause Fetchmail to crash (CVE-2005-4348).  This issue did not affect\nthe version of Fetchmail shipped with Red Hat Enterprise Linux 2.1 or 3.\n\nA flaw was found in the way Fetchmail used TLS encryption to connect to\nremote hosts.  Fetchmail provided no way to enforce the use of TLS\nencryption and would not authenticate POP3 protocol connections properly\n(CVE-2006-5867).  This update corrects this issue by enforcing TLS\nencryption when the \"sslproto\" configuration directive is set to \"tls1\".  \n\nUsers of Fetchmail should update to these packages, which contain \nbackported patches to correct these issues.\n\nNote: This update may break configurations which assumed that Fetchmail\nwould use plain-text authentication if TLS encryption is not supported by\nthe POP3 server even if the \"sslproto\" directive is set to \"tls1\".  If you\nare using a custom configuration that depended on this behavior you will\nneed to modify your configuration appropriately after installing this update.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Moderate"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2007:0018"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2005-4348"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2006-5867"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1617856"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/221984"
+					}
+				],
+				"published": "2007-01-31T00:00:00Z",
+				"modified": "2008-03-20T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2005-4348",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2005-4348"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1617856"
+					}
+				],
+				"published": "2005-12-19T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2006-5867",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2006-5867"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/221984"
+					}
+				],
+				"published": "2007-01-04T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:4",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "fetchmail",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"s390",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-4-as-rpms",
+											"rhel-4-as-source-rpms",
+											"rhel-4-desktop-rpms",
+											"rhel-4-desktop-source-rpms",
+											"rhel-4-es-rpms",
+											"rhel-4-es-source-rpms",
+											"rhel-4-for-power-rpms",
+											"rhel-4-for-power-source-rpms",
+											"rhel-4-for-system-z-rpms",
+											"rhel-4-for-system-z-source-rpms",
+											"rhel-4-ws-rpms",
+											"rhel-4-ws-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "0:6.2.5-6.el4.5"
+											}
+										],
+										"fixed": [
+											"0:6.2.5-6.el4.5"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/4/definitions/oval:com.redhat.rhsa:def:20070018.json",
+			"vuls-data-raw-redhat-ovalv1/4/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070018001.json",
+			"vuls-data-raw-redhat-ovalv1/4/states/rpminfo_state/oval:com.redhat.rhsa:ste:20070018001.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070018001.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070018002.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070304025.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070304026.json"
+		]
+	}
+}

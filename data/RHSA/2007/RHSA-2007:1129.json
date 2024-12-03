@@ -1,0 +1,144 @@
+{
+	"id": "RHSA-2007:1129",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2007:1129",
+				"title": "RHSA-2007:1129: autofs5 security update (Important)",
+				"description": "The autofs utility controls the operation of the automount daemon, which\nautomatically mounts and unmounts file systems after a period of\ninactivity.  The autofs version 5 package was made available as a\ntechnology preview in Red Hat Enterprise Linux version 4.6.\n\nThere was a security issue with the default installed configuration of\nautofs version 5 whereby the entry for the \"hosts\" map did not specify the\n\"nosuid\" mount option. A local user with control of a remote nfs server\ncould create a setuid root executable within an exported filesystem on the\nremote nfs server that, if mounted using the default hosts map, would allow\nthe user to gain root privileges. (CVE-2007-5964)\n\nDue to the fact that autofs version 5 always mounted hosts map entries suid\nby default, autofs has now been altered to always use the \"nosuid\" option\nwhen mounting from the default hosts map. The \"suid\" option must be\nexplicitly given in the master map entry to revert to the old behavior.\nThis change affects only the hosts map which corresponds to the /net entry\nin the default configuration.\n\nUsers are advised to upgrade to these updated autofs5 packages, which\nresolve this issue.\n\nRed Hat would like to thank Josh Lange for reporting this issue.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Important"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2007:1129"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2007-5964"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/410031"
+					}
+				],
+				"published": "2007-12-12T00:00:00Z",
+				"modified": "2007-12-12T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2007-5964",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "important"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2007-5964"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/410031"
+					}
+				]
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:4",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "autofs5",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"s390",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-4-as-rpms",
+											"rhel-4-as-source-rpms",
+											"rhel-4-desktop-rpms",
+											"rhel-4-desktop-source-rpms",
+											"rhel-4-es-rpms",
+											"rhel-4-es-source-rpms",
+											"rhel-4-for-power-rpms",
+											"rhel-4-for-power-source-rpms",
+											"rhel-4-for-system-z-rpms",
+											"rhel-4-for-system-z-source-rpms",
+											"rhel-4-ws-rpms",
+											"rhel-4-ws-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "1:5.0.1-0.rc2.55.el4_6.1"
+											}
+										],
+										"fixed": [
+											"1:5.0.1-0.rc2.55.el4_6.1"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/4/definitions/oval:com.redhat.rhsa:def:20071129.json",
+			"vuls-data-raw-redhat-ovalv1/4/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20071129001.json",
+			"vuls-data-raw-redhat-ovalv1/4/states/rpminfo_state/oval:com.redhat.rhsa:ste:20071129001.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20071129001.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20071129002.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070304025.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070304026.json"
+		]
+	}
+}

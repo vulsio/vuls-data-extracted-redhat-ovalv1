@@ -1,0 +1,955 @@
+{
+	"id": "RHSA-2015:2411",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2015:2411",
+				"title": "RHSA-2015:2411: kernel-rt security, bug fix, and enhancement update (Important)",
+				"description": "The kernel-rt packages contain the Linux kernel, the core of any Linux\noperating system.\n\n* A flaw was found in the way the Linux kernel's file system implementation\nhandled rename operations in which the source was inside and the\ndestination was outside of a bind mount. A privileged user inside a\ncontainer could use this flaw to escape the bind mount and, potentially,\nescalate their privileges on the system. (CVE-2015-2925, Important)\n\n* A race condition flaw was found in the way the Linux kernel's IPC\nsubsystem initialized certain fields in an IPC object structure that were\nlater used for permission checking before inserting the object into a\nglobally visible list. A local, unprivileged user could potentially use\nthis flaw to elevate their privileges on the system. (CVE-2015-7613,\nImportant)\n\n* It was found that the Linux kernel memory resource controller's (memcg)\nhandling of OOM (out of memory) conditions could lead to deadlocks.\nAn attacker able to continuously spawn new processes within a single\nmemory-constrained cgroup during an OOM event could use this flaw to lock\nup the system. (CVE-2014-8171, Moderate)\n\n* A race condition flaw was found between the chown and execve system\ncalls. When changing the owner of a setuid user binary to root, the race\ncondition could momentarily make the binary setuid root. A local,\nunprivileged user could potentially use this flaw to escalate their\nprivileges on the system. (CVE-2015-3339, Moderate)\n\n* A flaw was discovered in the way the Linux kernel's TTY subsystem handled\nthe tty shutdown phase. A local, unprivileged user could use this flaw to\ncause a denial of service on the system by holding a reference to the ldisc\nlock during tty shutdown, causing a deadlock. (CVE-2015-4170, Moderate)\n\n* A NULL pointer dereference flaw was found in the SCTP implementation.\nA local user could use this flaw to cause a denial of service on the system\nby triggering a kernel panic when creating multiple sockets in parallel\nwhile the system did not have the SCTP module loaded. (CVE-2015-5283,\nModerate)\n\n* A flaw was found in the way the Linux kernel's Crypto subsystem handled\nautomatic loading of kernel modules. A local user could use this flaw to\nload any installed kernel module, and thus increase the attack surface of\nthe running kernel. (CVE-2013-7421, CVE-2014-9644, Low)\n\n* An information leak flaw was found in the way the Linux kernel changed\ncertain segment registers and thread-local storage (TLS) during a context\nswitch. A local, unprivileged user could use this flaw to leak the user\nspace TLS base address of an arbitrary process. (CVE-2014-9419, Low)\n\n* A flaw was found in the way the Linux kernel handled the securelevel\nfunctionality after performing a kexec operation. A local attacker could\nuse this flaw to bypass the security mechanism of the\nsecurelevel/secureboot combination. (CVE-2015-7837, Low)\n\nRed Hat would like to thank Linn Crosetto of HP for reporting the\nCVE-2015-7837 issue. The CVE-2015-5283 issue was discovered by Ji Jianwen\nfrom Red Hat engineering.\n\nThe kernel-rt packages have been upgraded to version 3.10.0-326.rt56.204,\nwhich provides a number of bug fixes and enhancements. (BZ#1201915,\nBZ#1211724)\n\nThis update also fixes several bugs and adds multiple enhancements.\nRefer to the following Red Hat Knowledgebase article for information on the\nmost significant of these changes:\n\nhttps://access.redhat.com/articles/2055783\n\nAll kernel-rt users are advised to upgrade to these updated packages, which\ncorrect these issues and add these enhancements. The system must be\nrebooted for this update to take effect.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Important"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2015:2411"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2013-7421"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2014-8171"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2014-9419"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2014-9644"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-2925"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-3339"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-4170"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-5283"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-7613"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-7837"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1177260"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1185469"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1190546"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1198109"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1209367"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1214030"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1218879"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1257528"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1268270"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1272472"
+					}
+				],
+				"published": "2015-11-19T00:00:00Z",
+				"modified": "2015-11-19T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:7",
+					"tag": "7"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2013-7421",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:L/Au:N/C:N/I:P/A:N",
+							"base_score": 2.1,
+							"nvd_base_severity": "LOW",
+							"temporal_score": 2.1,
+							"nvd_temporal_severity": "LOW",
+							"environmental_score": 2.1,
+							"nvd_environmental_severity": "LOW"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-749"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2013-7421"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1185469"
+					}
+				],
+				"published": "2013-03-04T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:7",
+					"tag": "7"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2014-8171",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:A/AC:M/Au:N/C:N/I:N/A:C",
+							"base_score": 5.7,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 5.7,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 5.7,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-833"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2014-8171"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1198109"
+					}
+				],
+				"published": "2015-04-21T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:7",
+					"tag": "7"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2014-9419",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:M/Au:N/C:P/I:N/A:N",
+							"base_score": 1.9,
+							"nvd_base_severity": "LOW",
+							"temporal_score": 1.9,
+							"nvd_temporal_severity": "LOW",
+							"environmental_score": 1.9,
+							"nvd_environmental_severity": "LOW"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-200"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2014-9419"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1177260"
+					}
+				],
+				"published": "2014-12-08T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:7",
+					"tag": "7"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2014-9644",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:L/Au:N/C:N/I:P/A:N",
+							"base_score": 2.1,
+							"nvd_base_severity": "LOW",
+							"temporal_score": 2.1,
+							"nvd_temporal_severity": "LOW",
+							"environmental_score": 2.1,
+							"nvd_environmental_severity": "LOW"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-749"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2014-9644"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1190546"
+					}
+				],
+				"published": "2013-03-04T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:7",
+					"tag": "7"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2015-2925",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "important"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:H/Au:S/C:C/I:C/A:C",
+							"base_score": 6,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 6,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 6,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-22"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-2925"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1209367"
+					}
+				],
+				"published": "2015-04-03T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:7",
+					"tag": "7"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2015-3339",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:H/Au:N/C:C/I:C/A:C",
+							"base_score": 6.2,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 6.2,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 6.2,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-362"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-3339"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1214030"
+					}
+				],
+				"published": "2015-04-20T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:7",
+					"tag": "7"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2015-4170",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:M/Au:N/C:N/I:N/A:C",
+							"base_score": 4.7,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 4.7,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 4.7,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-667"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-4170"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1218879"
+					}
+				],
+				"published": "2015-01-19T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:7",
+					"tag": "7"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2015-5283",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:M/Au:N/C:N/I:N/A:C",
+							"base_score": 4.7,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 4.7,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 4.7,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-476->CWE-665"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-5283"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1257528"
+					}
+				],
+				"published": "2015-09-22T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:7",
+					"tag": "7"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2015-7613",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "important"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:H/Au:N/C:C/I:C/A:C",
+							"base_score": 6.2,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 6.2,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 6.2,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-732"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-7613"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1268270"
+					}
+				],
+				"published": "2015-10-01T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:7",
+					"tag": "7"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2015-7837",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:M/Au:N/C:N/I:P/A:N",
+							"base_score": 1.9,
+							"nvd_base_severity": "LOW",
+							"temporal_score": 1.9,
+							"nvd_temporal_severity": "LOW",
+							"environmental_score": 1.9,
+							"nvd_environmental_severity": "LOW"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-456"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2015-7837"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1272472"
+					}
+				],
+				"published": "2015-10-14T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:7",
+					"tag": "7"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:7",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-7-server-nfv-debug-rpms",
+													"rhel-7-server-nfv-rpms",
+													"rhel-7-server-nfv-source-rpms",
+													"rhel-7-server-rt-debug-rpms",
+													"rhel-7-server-rt-els-debug-rpms",
+													"rhel-7-server-rt-els-rpms",
+													"rhel-7-server-rt-els-source-rpms",
+													"rhel-7-server-rt-rpms",
+													"rhel-7-server-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:3.10.0-327.rt56.204.el7"
+													}
+												],
+												"fixed": [
+													"0:3.10.0-327.rt56.204.el7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt-debug",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-7-server-nfv-debug-rpms",
+													"rhel-7-server-nfv-rpms",
+													"rhel-7-server-nfv-source-rpms",
+													"rhel-7-server-rt-debug-rpms",
+													"rhel-7-server-rt-els-debug-rpms",
+													"rhel-7-server-rt-els-rpms",
+													"rhel-7-server-rt-els-source-rpms",
+													"rhel-7-server-rt-rpms",
+													"rhel-7-server-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:3.10.0-327.rt56.204.el7"
+													}
+												],
+												"fixed": [
+													"0:3.10.0-327.rt56.204.el7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt-debug-devel",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-7-server-nfv-debug-rpms",
+													"rhel-7-server-nfv-rpms",
+													"rhel-7-server-nfv-source-rpms",
+													"rhel-7-server-rt-debug-rpms",
+													"rhel-7-server-rt-els-debug-rpms",
+													"rhel-7-server-rt-els-rpms",
+													"rhel-7-server-rt-els-source-rpms",
+													"rhel-7-server-rt-rpms",
+													"rhel-7-server-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:3.10.0-327.rt56.204.el7"
+													}
+												],
+												"fixed": [
+													"0:3.10.0-327.rt56.204.el7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt-devel",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-7-server-nfv-debug-rpms",
+													"rhel-7-server-nfv-rpms",
+													"rhel-7-server-nfv-source-rpms",
+													"rhel-7-server-rt-debug-rpms",
+													"rhel-7-server-rt-els-debug-rpms",
+													"rhel-7-server-rt-els-rpms",
+													"rhel-7-server-rt-els-source-rpms",
+													"rhel-7-server-rt-rpms",
+													"rhel-7-server-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:3.10.0-327.rt56.204.el7"
+													}
+												],
+												"fixed": [
+													"0:3.10.0-327.rt56.204.el7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt-doc",
+												"repositories": [
+													"rhel-7-server-nfv-debug-rpms",
+													"rhel-7-server-nfv-rpms",
+													"rhel-7-server-nfv-source-rpms",
+													"rhel-7-server-rt-debug-rpms",
+													"rhel-7-server-rt-els-debug-rpms",
+													"rhel-7-server-rt-els-rpms",
+													"rhel-7-server-rt-els-source-rpms",
+													"rhel-7-server-rt-rpms",
+													"rhel-7-server-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:3.10.0-327.rt56.204.el7"
+													}
+												],
+												"fixed": [
+													"0:3.10.0-327.rt56.204.el7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt-trace",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-7-server-nfv-debug-rpms",
+													"rhel-7-server-nfv-rpms",
+													"rhel-7-server-nfv-source-rpms",
+													"rhel-7-server-rt-debug-rpms",
+													"rhel-7-server-rt-els-debug-rpms",
+													"rhel-7-server-rt-els-rpms",
+													"rhel-7-server-rt-els-source-rpms",
+													"rhel-7-server-rt-rpms",
+													"rhel-7-server-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:3.10.0-327.rt56.204.el7"
+													}
+												],
+												"fixed": [
+													"0:3.10.0-327.rt56.204.el7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "kernel-rt-trace-devel",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-7-server-nfv-debug-rpms",
+													"rhel-7-server-nfv-rpms",
+													"rhel-7-server-nfv-source-rpms",
+													"rhel-7-server-rt-debug-rpms",
+													"rhel-7-server-rt-els-debug-rpms",
+													"rhel-7-server-rt-els-rpms",
+													"rhel-7-server-rt-els-source-rpms",
+													"rhel-7-server-rt-rpms",
+													"rhel-7-server-rt-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:3.10.0-327.rt56.204.el7"
+													}
+												],
+												"fixed": [
+													"0:3.10.0-327.rt56.204.el7"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "7"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/7/definitions/oval:com.redhat.rhsa:def:20152411.json",
+			"vuls-data-raw-redhat-ovalv1/7/objects/rpminfo_object/oval:com.redhat.rhba:obj:20203527001.json",
+			"vuls-data-raw-redhat-ovalv1/7/objects/rpminfo_object/oval:com.redhat.rhba:obj:20203527002.json",
+			"vuls-data-raw-redhat-ovalv1/7/objects/rpminfo_object/oval:com.redhat.rhba:obj:20203527003.json",
+			"vuls-data-raw-redhat-ovalv1/7/objects/rpminfo_object/oval:com.redhat.rhba:obj:20203527005.json",
+			"vuls-data-raw-redhat-ovalv1/7/objects/rpminfo_object/oval:com.redhat.rhba:obj:20203527006.json",
+			"vuls-data-raw-redhat-ovalv1/7/objects/rpminfo_object/oval:com.redhat.rhba:obj:20203527008.json",
+			"vuls-data-raw-redhat-ovalv1/7/objects/rpminfo_object/oval:com.redhat.rhba:obj:20203527009.json",
+			"vuls-data-raw-redhat-ovalv1/7/states/rpminfo_state/oval:com.redhat.rhsa:ste:20152411001.json",
+			"vuls-data-raw-redhat-ovalv1/7/states/rpminfo_state/oval:com.redhat.rhsa:ste:20152411003.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/rpminfo_test/oval:com.redhat.rhba:tst:20203527002.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/rpminfo_test/oval:com.redhat.rhba:tst:20203527004.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/rpminfo_test/oval:com.redhat.rhba:tst:20203527006.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/rpminfo_test/oval:com.redhat.rhba:tst:20203527010.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/rpminfo_test/oval:com.redhat.rhba:tst:20203527012.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/rpminfo_test/oval:com.redhat.rhba:tst:20203527016.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/rpminfo_test/oval:com.redhat.rhba:tst:20203527018.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20152411001.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20152411003.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20152411005.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20152411007.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20152411009.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20152411011.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20152411013.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20150364027.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20150364028.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/textfilecontent54_test/oval:com.redhat.rhsa:tst:20152411016.json",
+			"vuls-data-raw-redhat-ovalv1/7/tests/uname_test/oval:com.redhat.rhsa:tst:20152152031.json"
+		]
+	}
+}

@@ -1,0 +1,145 @@
+{
+	"id": "RHSA-2006:0543",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2006:0543",
+				"title": "RHSA-2006:0543: spamassassin security update (Moderate)",
+				"description": "SpamAssassin provides a way to reduce unsolicited commercial email (SPAM)\nfrom incoming email.\n\nA flaw was found with the way the Spamassassin spamd daemon processes the\nvirtual pop username passed to it. If a site is running spamd with both the\n--vpopmail and --paranoid flags, it is possible for a remote user with the\nability to connect to the spamd daemon to execute arbitrary commands as\nthe user running the spamd daemon. (CVE-2006-2447)\n\nNote: None of the IMAP or POP servers shipped with Red Hat Enterprise Linux\n4 support vpopmail delivery.  Running spamd with the --vpopmail and\n--paranoid flags is uncommon and not the default startup option as shipped\nwith Red Hat Enterprise Linux 4.\n\nSpamassassin, as shipped in Red Hat Enterprise Linux 4, performs RBL\nlookups against visi.com to help determine if an email is spam. However,\nthis DNS RBL has recently disappeared, resulting in mail filtering delays\nand timeouts.\n\nUsers of SpamAssassin should upgrade to these updated packages containing\nversion 3.0.6 and backported patches, which are not vulnerable to these issues.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Moderate"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2006:0543"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2006-2447"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1618105"
+					}
+				],
+				"published": "2006-06-06T00:00:00Z",
+				"modified": "2006-06-06T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2006-2447",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2006-2447"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/1618105"
+					}
+				],
+				"published": "2006-06-06T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:4",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "spamassassin",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"s390",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-4-as-rpms",
+											"rhel-4-as-source-rpms",
+											"rhel-4-desktop-rpms",
+											"rhel-4-desktop-source-rpms",
+											"rhel-4-es-rpms",
+											"rhel-4-es-source-rpms",
+											"rhel-4-for-power-rpms",
+											"rhel-4-for-power-source-rpms",
+											"rhel-4-for-system-z-rpms",
+											"rhel-4-for-system-z-source-rpms",
+											"rhel-4-ws-rpms",
+											"rhel-4-ws-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "0:3.0.6-1.el4"
+											}
+										],
+										"fixed": [
+											"0:3.0.6-1.el4"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/4/definitions/oval:com.redhat.rhsa:def:20060543.json",
+			"vuls-data-raw-redhat-ovalv1/4/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20060129001.json",
+			"vuls-data-raw-redhat-ovalv1/4/states/rpminfo_state/oval:com.redhat.rhsa:ste:20060543001.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20060129002.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20060543001.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070304025.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070304026.json"
+		]
+	}
+}

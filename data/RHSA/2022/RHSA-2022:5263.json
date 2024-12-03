@@ -1,0 +1,1268 @@
+{
+	"id": "RHSA-2022:5263",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2022:5263",
+				"title": "RHSA-2022:5263: qemu-kvm security and bug fix update (Moderate)",
+				"description": "Kernel-based Virtual Machine (KVM) is a full virtualization solution for Linux on a variety of architectures. The qemu-kvm packages provide the user-space component for running virtual machines that use KVM.\n\nSecurity Fix(es):\n\n* QEMU: virtio-net: map leaking on error during receive (CVE-2022-26353)\n\n* QEMU: vhost-vsock: missing virtqueue detach on error can lead to memory leak (CVE-2022-26354)\n\nFor more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.\n\nBug Fix(es):\n\n* RHEL 9.0 guest with vsock device migration failed from RHEL 9.0 > RHEL 8.6 (BZ#2071102)",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Moderate"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2022:5263"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2022-26353"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2022-26354"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2063197"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2063257"
+					}
+				],
+				"published": "2022-07-01T00:00:00Z",
+				"modified": "2022-07-01T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:9",
+					"tag": "9"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2022-26353",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v31",
+						"source": "secalert@redhat.com",
+						"cvss_v31": {
+							"vector": "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:C/C:H/I:H/A:H",
+							"base_score": 7.5,
+							"base_severity": "HIGH",
+							"temporal_score": 7.5,
+							"temporal_severity": "HIGH",
+							"environmental_score": 7.6,
+							"environmental_severity": "HIGH"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-772"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2022-26353"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2063197"
+					}
+				],
+				"published": "2022-03-08T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:9",
+					"tag": "9"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2022-26354",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v31",
+						"source": "secalert@redhat.com",
+						"cvss_v31": {
+							"vector": "CVSS:3.1/AV:L/AC:H/PR:H/UI:N/S:C/C:N/I:N/A:L",
+							"base_score": 2.5,
+							"base_severity": "LOW",
+							"temporal_score": 2.5,
+							"temporal_severity": "LOW",
+							"environmental_score": 2.5,
+							"environmental_severity": "LOW"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-772"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2022-26354"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2063257"
+					}
+				],
+				"published": "2022-02-28T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:9",
+					"tag": "9"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:9",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-guest-agent",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-img",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm",
+												"architectures": [
+													"aarch64",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-audio-pa",
+												"architectures": [
+													"aarch64",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-block-curl",
+												"architectures": [
+													"aarch64",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-block-rbd",
+												"architectures": [
+													"aarch64",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-common",
+												"architectures": [
+													"aarch64",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-core",
+												"architectures": [
+													"aarch64",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-device-display-virtio-gpu",
+												"architectures": [
+													"aarch64",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-device-display-virtio-gpu-ccw",
+												"architectures": [
+													"s390x"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-device-display-virtio-gpu-gl",
+												"architectures": [
+													"aarch64",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-device-display-virtio-gpu-pci",
+												"architectures": [
+													"aarch64",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-device-display-virtio-gpu-pci-gl",
+												"architectures": [
+													"aarch64",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-device-display-virtio-vga",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-device-display-virtio-vga-gl",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-device-usb-host",
+												"architectures": [
+													"aarch64",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-device-usb-redirect",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-docs",
+												"architectures": [
+													"aarch64",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-tools",
+												"architectures": [
+													"aarch64",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-ui-egl-headless",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-kvm-ui-opengl",
+												"architectures": [
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "qemu-pr-helper",
+												"architectures": [
+													"aarch64",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-9-for-aarch64-appstream-debug-rpms",
+													"rhel-9-for-aarch64-appstream-rpms",
+													"rhel-9-for-aarch64-appstream-source-rpms",
+													"rhel-9-for-ppc64le-appstream-debug-rpms",
+													"rhel-9-for-ppc64le-appstream-rpms",
+													"rhel-9-for-ppc64le-appstream-source-rpms",
+													"rhel-9-for-s390x-appstream-debug-rpms",
+													"rhel-9-for-s390x-appstream-rpms",
+													"rhel-9-for-s390x-appstream-source-rpms",
+													"rhel-9-for-x86_64-appstream-debug-rpms",
+													"rhel-9-for-x86_64-appstream-rpms",
+													"rhel-9-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "17:6.2.0-11.el9_0.3"
+													}
+												],
+												"fixed": [
+													"17:6.2.0-11.el9_0.3"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "9"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/9/definitions/oval:com.redhat.rhsa:def:20225263.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263001.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263002.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263003.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263004.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263005.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263006.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263007.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263008.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263009.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263010.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263011.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263012.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263013.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263014.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263015.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263016.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263017.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263018.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263019.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263020.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263021.json",
+			"vuls-data-raw-redhat-ovalv1/9/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20225263022.json",
+			"vuls-data-raw-redhat-ovalv1/9/states/rpminfo_state/oval:com.redhat.rhsa:ste:20225263001.json",
+			"vuls-data-raw-redhat-ovalv1/9/states/rpminfo_state/oval:com.redhat.rhsa:ste:20225263003.json",
+			"vuls-data-raw-redhat-ovalv1/9/states/rpminfo_state/oval:com.redhat.rhsa:ste:20225263004.json",
+			"vuls-data-raw-redhat-ovalv1/9/states/rpminfo_state/oval:com.redhat.rhsa:ste:20225263005.json",
+			"vuls-data-raw-redhat-ovalv1/9/states/rpminfo_state/oval:com.redhat.rhsa:ste:20225263006.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263001.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263002.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263003.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263004.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263005.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263006.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263007.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263008.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263009.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263010.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263011.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263012.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263013.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263014.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263015.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263016.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263017.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263018.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263019.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263020.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263021.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263022.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263023.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263024.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263025.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263026.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263027.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263028.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263029.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263030.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263031.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263032.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263033.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263034.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263035.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263036.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263037.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263038.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263039.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263040.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263041.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263042.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263043.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20225263044.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20225749023.json",
+			"vuls-data-raw-redhat-ovalv1/9/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20225749024.json"
+		]
+	}
+}

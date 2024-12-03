@@ -1,0 +1,230 @@
+{
+	"id": "RHSA-2009:1339",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2009:1339",
+				"title": "RHSA-2009:1339: rgmanager security, bug fix, and enhancement update (Low)",
+				"description": "The rgmanager package contains the Red Hat Resource Group Manager, which\nprovides high availability for critical server applications in the event of\nsystem downtime.\n\nMultiple insecure temporary file use flaws were discovered in rgmanager and\nvarious resource scripts run by rgmanager. A local attacker could use these\nflaws to overwrite an arbitrary file writable by the rgmanager process\n(i.e. user root) with the output of rgmanager or a resource agent via a\nsymbolic link attack. (CVE-2008-6552)\n\nThis update also fixes the following bugs:\n\n* clulog now accepts '-' as the first character in messages.\n\n* if expire_time is 0, max_restarts is no longer ignored.\n\n* the SAP resource agents included in the rgmanager package shipped with\nRed Hat Enterprise Linux 5.3 were outdated. This update includes the most\nrecent SAP resource agents and, consequently, improves SAP failover\nsupport.\n\n* empty PID files no longer cause resource start failures.\n\n* recovery policy of type 'restart' now works properly when using a\nresource based on ra-skelet.sh.\n\n* samba.sh has been updated to kill the PID listed in the proper PID file.\n\n* handling of the '-F' option has been improved to fix issues causing\nrgmanager to crash if no members of a restricted failover domain were\nonline.\n\n* the number of simultaneous status checks can now be limited to prevent\nload spikes.\n\n* forking and cloning during status checks has been optimized to reduce\nload spikes.\n\n* rg_test no longer hangs when run with large cluster configuration files.\n\n* when rgmanager is used with a restricted failover domain it will no\nlonger occasionally segfault when some nodes are offline during a failover\nevent.\n\n* virtual machine guests no longer restart after a cluster.conf update.\n\n* nfsclient.sh no longer leaves temporary files after running.\n\n* extra checks from the Oracle agents have been removed.\n\n* vm.sh now uses libvirt.\n\n* users can now define an explicit service processing order when\ncentral_processing is enabled.\n\n* virtual machine guests can no longer start on 2 nodes at the same time.\n\n* in some cases a successfully migrated virtual machine guest could restart\nwhen the cluster.conf file was updated.\n\n* incorrect reporting of a service being started when it was not started\nhas been addressed.\n\nAs well, this update adds the following enhancements:\n\n* a startup_wait option has been added to the MySQL resource agent.\n\n* services can now be prioritized.\n\n* rgmanager now checks to see if it has been killed by the OOM killer and\nif so, reboots the node.\n\nUsers of rgmanager are advised to upgrade to this updated package, which\nresolves these issues and adds these enhancements.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2009:1339"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2008-6552"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/519436"
+					}
+				],
+				"published": "2009-09-02T00:00:00Z",
+				"modified": "2009-09-02T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2008-6552",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:L/AC:M/Au:N/C:N/I:P/A:C",
+							"base_score": 5.4,
+							"nvd_base_severity": "MEDIUM",
+							"temporal_score": 5.4,
+							"nvd_temporal_severity": "MEDIUM",
+							"environmental_score": 5.4,
+							"nvd_environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-377"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2008-6552"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/519436"
+					}
+				],
+				"published": "2008-10-31T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5"
+				},
+				{
+					"ecosystem": "redhat:5",
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:5",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "rgmanager",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-ha-for-rhel-5-for-power-debug-rpms",
+											"rhel-ha-for-rhel-5-for-power-eus-debug-rpms",
+											"rhel-ha-for-rhel-5-for-power-eus-rpms",
+											"rhel-ha-for-rhel-5-for-power-eus-source-rpms",
+											"rhel-ha-for-rhel-5-for-power-rpms",
+											"rhel-ha-for-rhel-5-for-power-source-rpms",
+											"rhel-ha-for-rhel-5-server-debug-rpms",
+											"rhel-ha-for-rhel-5-server-eus-debug-rpms",
+											"rhel-ha-for-rhel-5-server-eus-rpms",
+											"rhel-ha-for-rhel-5-server-eus-source-rpms",
+											"rhel-ha-for-rhel-5-server-rpms",
+											"rhel-ha-for-rhel-5-server-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "0:2.0.52-1.el5"
+											}
+										],
+										"fixed": [
+											"0:2.0.52-1.el5"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "5"
+				},
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "rgmanager",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-ha-for-rhel-5-for-power-debug-rpms",
+											"rhel-ha-for-rhel-5-for-power-eus-debug-rpms",
+											"rhel-ha-for-rhel-5-for-power-eus-rpms",
+											"rhel-ha-for-rhel-5-for-power-eus-source-rpms",
+											"rhel-ha-for-rhel-5-for-power-rpms",
+											"rhel-ha-for-rhel-5-for-power-source-rpms",
+											"rhel-ha-for-rhel-5-server-debug-rpms",
+											"rhel-ha-for-rhel-5-server-eus-debug-rpms",
+											"rhel-ha-for-rhel-5-server-eus-rpms",
+											"rhel-ha-for-rhel-5-server-eus-source-rpms",
+											"rhel-ha-for-rhel-5-server-rpms",
+											"rhel-ha-for-rhel-5-server-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "0:2.0.52-1.el5"
+											}
+										],
+										"fixed": [
+											"0:2.0.52-1.el5"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "5-ELS"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/definitions/oval:com.redhat.rhsa:def:20091339.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20091339001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/states/rpminfo_state/oval:com.redhat.rhsa:ste:20091339001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20091339001.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20091339002.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5-ELS/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json",
+			"vuls-data-raw-redhat-ovalv1/5/definitions/oval:com.redhat.rhsa:def:20091339.json",
+			"vuls-data-raw-redhat-ovalv1/5/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20091339001.json",
+			"vuls-data-raw-redhat-ovalv1/5/states/rpminfo_state/oval:com.redhat.rhsa:ste:20091339001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20091339001.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20091339002.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331005.json",
+			"vuls-data-raw-redhat-ovalv1/5/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070331006.json"
+		]
+	}
+}

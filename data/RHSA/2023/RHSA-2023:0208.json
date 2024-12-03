@@ -1,0 +1,1533 @@
+{
+	"id": "RHSA-2023:0208",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2023:0208",
+				"title": "RHSA-2023:0208: java-1.8.0-openjdk security and bug fix update (Moderate)",
+				"description": "The java-1.8.0-openjdk packages provide the OpenJDK 8 Java Runtime Environment and the OpenJDK 8 Java Software Development Kit.\n\nSecurity Fix(es):\n\n* OpenJDK: improper restrictions in CORBA deserialization (Serialization, 8285021) (CVE-2023-21830)\n\n* OpenJDK: soundbank URL remote loading (Sound, 8293742) (CVE-2023-21843)\n\nFor more details about the security issue(s), including the impact, a CVSS score, acknowledgments, and other related information, refer to the CVE page(s) listed in the References section.\n\nBug Fix(es):\n\n* Leak File Descriptors Because of ResolverLocalFilesystem#engineResolveURI() (BZ#2139705)\n\n* Prepare for the next quarterly OpenJDK upstream release (2023-01, 8u362) [rhel-8] (BZ#2159910)\n\n* solr broken due to access denied (\"java.io.FilePermission\" \"/etc/pki/java/cacerts\" \"read\") [rhel-8, openjdk-8] (BZ#2163595)",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Moderate"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2023:0208"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2023-21830"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2023-21843"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2160475"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2160490"
+					}
+				],
+				"published": "2023-01-26T00:00:00Z",
+				"modified": "2023-01-26T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:8",
+					"tag": "8"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2023-21830",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v31",
+						"source": "secalert@redhat.com",
+						"cvss_v31": {
+							"vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+							"base_score": 5.3,
+							"base_severity": "MEDIUM",
+							"temporal_score": 5.3,
+							"temporal_severity": "MEDIUM",
+							"environmental_score": 5.3,
+							"environmental_severity": "MEDIUM"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-502"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2023-21830"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2160490"
+					}
+				]
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:8",
+					"tag": "8"
+				}
+			]
+		},
+		{
+			"content": {
+				"id": "CVE-2023-21843",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					},
+					{
+						"type": "cvss_v31",
+						"source": "secalert@redhat.com",
+						"cvss_v31": {
+							"vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:N",
+							"base_score": 3.7,
+							"base_severity": "LOW",
+							"temporal_score": 3.7,
+							"temporal_severity": "LOW",
+							"environmental_score": 3.7,
+							"environmental_severity": "LOW"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-646"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2023-21843"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/2160475"
+					}
+				]
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:8",
+					"tag": "8"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:8",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-accessibility",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-accessibility-fastdebug",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-accessibility-slowdebug",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-demo",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-demo-fastdebug",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-demo-slowdebug",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-devel",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-devel-fastdebug",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-devel-slowdebug",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-fastdebug",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-headless",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-headless-fastdebug",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-headless-slowdebug",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-javadoc",
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-javadoc-zip",
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-slowdebug",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-src",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-src-fastdebug",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "java-1.8.0-openjdk-src-slowdebug",
+												"architectures": [
+													"aarch64",
+													"ppc64le",
+													"x86_64"
+												],
+												"repositories": [
+													"codeready-builder-for-rhel-8-aarch64-debug-rpms",
+													"codeready-builder-for-rhel-8-aarch64-rpms",
+													"codeready-builder-for-rhel-8-aarch64-source-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-debug-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-rpms",
+													"codeready-builder-for-rhel-8-ppc64le-source-rpms",
+													"codeready-builder-for-rhel-8-s390x-debug-rpms",
+													"codeready-builder-for-rhel-8-s390x-rpms",
+													"codeready-builder-for-rhel-8-s390x-source-rpms",
+													"codeready-builder-for-rhel-8-x86_64-debug-rpms",
+													"codeready-builder-for-rhel-8-x86_64-rpms",
+													"codeready-builder-for-rhel-8-x86_64-source-rpms",
+													"rhel-8-for-aarch64-appstream-debug-rpms",
+													"rhel-8-for-aarch64-appstream-rpms",
+													"rhel-8-for-aarch64-appstream-source-rpms",
+													"rhel-8-for-ppc64le-appstream-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-debug-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-rpms",
+													"rhel-8-for-ppc64le-appstream-e4s-source-rpms",
+													"rhel-8-for-ppc64le-appstream-rpms",
+													"rhel-8-for-ppc64le-appstream-source-rpms",
+													"rhel-8-for-s390x-appstream-debug-rpms",
+													"rhel-8-for-s390x-appstream-rpms",
+													"rhel-8-for-s390x-appstream-source-rpms",
+													"rhel-8-for-x86_64-appstream-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-debug-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-rpms",
+													"rhel-8-for-x86_64-appstream-e4s-source-rpms",
+													"rhel-8-for-x86_64-appstream-rpms",
+													"rhel-8-for-x86_64-appstream-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "1:1.8.0.362.b09-2.el8_7"
+													}
+												],
+												"fixed": [
+													"1:1.8.0.362.b09-2.el8_7"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "8"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/8/definitions/oval:com.redhat.rhsa:def:20230208.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191146001.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191146002.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191146003.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191146004.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191146005.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191146006.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191146007.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20191146008.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20212776003.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20212776004.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20212776006.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20212776007.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20212776009.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20212776010.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20212776011.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20212776013.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20212776014.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20212776017.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20212776019.json",
+			"vuls-data-raw-redhat-ovalv1/8/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20212776020.json",
+			"vuls-data-raw-redhat-ovalv1/8/states/rpminfo_state/oval:com.redhat.rhsa:ste:20230208001.json",
+			"vuls-data-raw-redhat-ovalv1/8/states/rpminfo_state/oval:com.redhat.rhsa:ste:20230208003.json",
+			"vuls-data-raw-redhat-ovalv1/8/states/rpminfo_state/oval:com.redhat.rhsa:ste:20230208004.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191146002.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191146004.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191146006.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191146008.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191146010.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191146012.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191146014.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20191146016.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20212776006.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20212776008.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20212776012.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20212776014.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20212776018.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20212776020.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20212776022.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20212776026.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20212776028.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20212776034.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20212776038.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20212776040.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208001.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208003.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208005.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208007.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208009.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208011.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208013.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208015.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208017.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208019.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208021.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208023.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208025.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208027.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208029.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208031.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208033.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208035.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208037.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20230208039.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20191992003.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20191992004.json",
+			"vuls-data-raw-redhat-ovalv1/8/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20191992005.json"
+		]
+	}
+}

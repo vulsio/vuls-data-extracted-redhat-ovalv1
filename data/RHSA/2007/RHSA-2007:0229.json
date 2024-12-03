@@ -1,0 +1,145 @@
+{
+	"id": "RHSA-2007:0229",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2007:0229",
+				"title": "RHSA-2007:0229: gdb security and bug fix update (Low)",
+				"description": "GDB, the GNU debugger, allows debugging of programs written in C, C++, and\nother languages by executing them in a controlled fashion and then printing\ntheir data.\n\nVarious buffer overflows and underflows were found in the DWARF expression\ncomputation stack in GDB. If a user loaded an executable containing\nmalicious debugging information into GDB, an attacker might be able to\nexecute arbitrary code with the privileges of the user. (CVE-2006-4146)\n\nThis updated package also addresses the following issues:\n\n* Fixed bogus 0x0 unwind of the thread's topmost function clone(3).\n\n* Fixed deadlock accessing invalid address; for corrupted backtraces.\n\n* Fixed a race which occasionally left the detached processes stopped.\n\n* Fixed 'gcore' command for 32bit debugged processes on 64bit hosts.\n\n* Added support for TLS 'errno' for threaded programs missing its '-debuginfo' package..\n\n* Suggest TLS 'errno' resolving by hand if no threading was found..\n\n* Added a fix to prevent stepping into asynchronously invoked signal handlers.\n\n* Added a fix to avoid false warning on shared objects bfd close on Itanium.\n\n* Fixed segmentation fault on the source display by ^X 1.\n\n* Fixed object names keyboard completion.\n\n* Added a fix to avoid crash of 'info threads' if stale threads exist.\n\n* Fixed a bug where shared libraries occasionally failed to load .\n\n* Fixed handling of exec() called by a threaded debugged program.\n\n* Fixed rebuilding requirements of the gdb package itself on multilib systems.\n\n* Fixed source directory pathname detection for the edit command.\n\nAll users of gdb should upgrade to this updated package, which contains\nbackported patches to resolve these issues.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2007:0229"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2006-4146"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/203875"
+					}
+				],
+				"published": "2007-05-01T00:00:00Z",
+				"modified": "2008-03-20T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2006-4146",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "low"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2006-4146"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/203875"
+					}
+				],
+				"published": "2006-08-31T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:4",
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:4",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "AND",
+						"criterions": [
+							{
+								"type": "version",
+								"version": {
+									"vulnerable": true,
+									"fix_status": {
+										"class": "fixed"
+									},
+									"package": {
+										"name": "gdb",
+										"architectures": [
+											"i386",
+											"ia64",
+											"ppc64",
+											"s390",
+											"s390x",
+											"x86_64"
+										],
+										"repositories": [
+											"rhel-4-as-rpms",
+											"rhel-4-as-source-rpms",
+											"rhel-4-desktop-rpms",
+											"rhel-4-desktop-source-rpms",
+											"rhel-4-es-rpms",
+											"rhel-4-es-source-rpms",
+											"rhel-4-for-power-rpms",
+											"rhel-4-for-power-source-rpms",
+											"rhel-4-for-system-z-rpms",
+											"rhel-4-for-system-z-source-rpms",
+											"rhel-4-ws-rpms",
+											"rhel-4-ws-source-rpms"
+										]
+									},
+									"affected": {
+										"type": "rpm",
+										"range": [
+											{
+												"lt": "0:6.3.0.0-1.143.el4"
+											}
+										],
+										"fixed": [
+											"0:6.3.0.0-1.143.el4"
+										]
+									}
+								}
+							}
+						]
+					},
+					"tag": "4"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/4/definitions/oval:com.redhat.rhsa:def:20070229.json",
+			"vuls-data-raw-redhat-ovalv1/4/objects/rpminfo_object/oval:com.redhat.rhsa:obj:20070229001.json",
+			"vuls-data-raw-redhat-ovalv1/4/states/rpminfo_state/oval:com.redhat.rhsa:ste:20070229001.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070229001.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20070229002.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070304025.json",
+			"vuls-data-raw-redhat-ovalv1/4/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20070304026.json"
+		]
+	}
+}

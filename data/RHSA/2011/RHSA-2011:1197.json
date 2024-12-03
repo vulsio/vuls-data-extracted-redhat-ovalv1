@@ -1,0 +1,663 @@
+{
+	"id": "RHSA-2011:1197",
+	"advisories": [
+		{
+			"content": {
+				"id": "RHSA-2011:1197",
+				"title": "RHSA-2011:1197: libvirt security and bug fix update (Moderate)",
+				"description": "The libvirt library is a C API for managing and interacting with the\nvirtualization capabilities of Linux and other operating systems. In\naddition, libvirt provides tools for remotely managing virtualized systems.\n\nAn integer overflow flaw was found in libvirtd's RPC call handling. An\nattacker able to establish read-only connections to libvirtd could trigger\nthis flaw by calling virDomainGetVcpus() with specially-crafted parameters,\ncausing libvirtd to crash. (CVE-2011-2511)\n\nThis update also fixes the following bugs:\n\n* Previously, when the \"virsh vol-create-from\" command was run on an LVM\n(Logical Volume Manager) storage pool, performance of the command was very\nlow and the operation consumed an excessive amount of time. This bug has\nbeen fixed in the virStorageVolCreateXMLFrom() function, and the\nperformance problem of the command no longer occurs.\n\n* Due to a regression, libvirt used undocumented command line options,\ninstead of the recommended ones. Consequently, the qemu-img utility used an\ninvalid argument while creating an encrypted volume, and the process\neventually failed. With this update, the bug in the backing format of the\nstorage back end has been fixed, and encrypted volumes can now be created\nas expected. (BZ#726617)\n\n* Due to a bug in the qemuAuditDisk() function, hot unplug failures were\nnever audited, and a hot unplug success was audited as a failure. This bug\nhas been fixed, and auditing of disk hot unplug operations now works as\nexpected. (BZ#728516)\n\n* Previously, when a debug process was being activated, the act of\npreparing a debug message ended up with dereferencing a UUID (universally\nunique identifier) prior to the NULL argument check. Consequently, an API\nrunning the debug process sometimes terminated with a segmentation fault.\nWith this update, a patch has been provided to address this issue, and the\ncrashes no longer occur in the described scenario. (BZ#728546)\n\n* The libvirt library uses the \"boot=on\" option to mark which disk is\nbootable but it only uses that option if Qemu advertises its support. The\nqemu-kvm utility in Red Hat Enterprise Linux 6.1 removed support for that\noption and libvirt could not use it. As a consequence, when an IDE disk was\nadded as the second storage with a virtio disk being set up as the first\none by default, the operating system tried to boot from the IDE disk rather\nthan the virtio disk and either failed to boot with the \"No bootable disk\"\nerror message returned, or the system booted whatever operating system was\non the IDE disk. With this update, the boot configuration is translated\ninto bootindex, which provides control over which device is used for\nbooting a guest operating system, thus fixing this bug.\n\nAll users of libvirt are advised to upgrade to these updated packages,\nwhich contain backported patches to correct these issues. After installing\nthe updated packages, libvirtd must be restarted (\"service libvirtd\nrestart\") for this update to take effect.",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "Moderate"
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/errata/RHSA-2011:1197"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2011-2511"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/717199"
+					}
+				],
+				"published": "2011-08-23T00:00:00Z",
+				"modified": "2011-08-23T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:6",
+					"tag": "6"
+				}
+			]
+		}
+	],
+	"vulnerabilities": [
+		{
+			"content": {
+				"id": "CVE-2011-2511",
+				"severity": [
+					{
+						"type": "vendor",
+						"source": "secalert@redhat.com",
+						"vendor": "moderate"
+					},
+					{
+						"type": "cvss_v2",
+						"source": "secalert@redhat.com",
+						"cvss_v2": {
+							"vector": "AV:A/AC:L/Au:N/C:N/I:N/A:P",
+							"base_score": 3.3,
+							"nvd_base_severity": "LOW",
+							"temporal_score": 3.3,
+							"nvd_temporal_severity": "LOW",
+							"environmental_score": 3.3,
+							"nvd_environmental_severity": "LOW"
+						}
+					}
+				],
+				"cwe": [
+					{
+						"source": "secalert@redhat.com",
+						"cwe": [
+							"CWE-190"
+						]
+					}
+				],
+				"references": [
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://access.redhat.com/security/cve/CVE-2011-2511"
+					},
+					{
+						"source": "secalert@redhat.com",
+						"url": "https://bugzilla.redhat.com/717199"
+					}
+				],
+				"published": "2011-06-24T00:00:00Z"
+			},
+			"segments": [
+				{
+					"ecosystem": "redhat:6",
+					"tag": "6"
+				}
+			]
+		}
+	],
+	"detections": [
+		{
+			"ecosystem": "redhat:6",
+			"conditions": [
+				{
+					"criteria": {
+						"operator": "OR",
+						"criterias": [
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "libvirt",
+												"architectures": [
+													"i686",
+													"ppc64",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-6-for-power-debug-rpms",
+													"rhel-6-for-power-eus-debug-rpms",
+													"rhel-6-for-power-eus-optional-debug-rpms",
+													"rhel-6-for-power-eus-optional-rpms",
+													"rhel-6-for-power-eus-optional-source-rpms",
+													"rhel-6-for-power-eus-rpms",
+													"rhel-6-for-power-eus-source-rpms",
+													"rhel-6-for-power-fastrack-debug-rpms",
+													"rhel-6-for-power-fastrack-rpms",
+													"rhel-6-for-power-fastrack-source-rpms",
+													"rhel-6-for-power-optional-debug-rpms",
+													"rhel-6-for-power-optional-fastrack-debug-rpms",
+													"rhel-6-for-power-optional-fastrack-rpms",
+													"rhel-6-for-power-optional-fastrack-source-rpms",
+													"rhel-6-for-power-optional-rpms",
+													"rhel-6-for-power-optional-source-rpms",
+													"rhel-6-for-power-rpms",
+													"rhel-6-for-power-source-rpms",
+													"rhel-6-for-system-z-debug-rpms",
+													"rhel-6-for-system-z-eus-debug-rpms",
+													"rhel-6-for-system-z-eus-optional-debug-rpms",
+													"rhel-6-for-system-z-eus-optional-rpms",
+													"rhel-6-for-system-z-eus-optional-source-rpms",
+													"rhel-6-for-system-z-eus-rpms",
+													"rhel-6-for-system-z-eus-source-rpms",
+													"rhel-6-for-system-z-fastrack-debug-rpms",
+													"rhel-6-for-system-z-fastrack-rpms",
+													"rhel-6-for-system-z-fastrack-source-rpms",
+													"rhel-6-for-system-z-optional-debug-rpms",
+													"rhel-6-for-system-z-optional-fastrack-debug-rpms",
+													"rhel-6-for-system-z-optional-fastrack-rpms",
+													"rhel-6-for-system-z-optional-fastrack-source-rpms",
+													"rhel-6-for-system-z-optional-rpms",
+													"rhel-6-for-system-z-optional-source-rpms",
+													"rhel-6-for-system-z-rpms",
+													"rhel-6-for-system-z-source-rpms",
+													"rhel-6-server-aus-debug-rpms",
+													"rhel-6-server-aus-optional-debug-rpms",
+													"rhel-6-server-aus-optional-rpms",
+													"rhel-6-server-aus-optional-source-rpms",
+													"rhel-6-server-aus-rpms",
+													"rhel-6-server-aus-source-rpms",
+													"rhel-6-server-debug-rpms",
+													"rhel-6-server-eus-debug-rpms",
+													"rhel-6-server-eus-optional-debug-rpms",
+													"rhel-6-server-eus-optional-rpms",
+													"rhel-6-server-eus-optional-source-rpms",
+													"rhel-6-server-eus-rpms",
+													"rhel-6-server-eus-source-rpms",
+													"rhel-6-server-fastrack-debug-rpms",
+													"rhel-6-server-fastrack-rpms",
+													"rhel-6-server-fastrack-source-rpms",
+													"rhel-6-server-optional-debug-rpms",
+													"rhel-6-server-optional-fastrack-debug-rpms",
+													"rhel-6-server-optional-fastrack-rpms",
+													"rhel-6-server-optional-fastrack-source-rpms",
+													"rhel-6-server-optional-rpms",
+													"rhel-6-server-optional-source-rpms",
+													"rhel-6-server-rpms",
+													"rhel-6-server-source-rpms",
+													"rhel-ha-for-rhel-6-server-debug-rpms",
+													"rhel-ha-for-rhel-6-server-eus-debug-rpms",
+													"rhel-ha-for-rhel-6-server-eus-rpms",
+													"rhel-ha-for-rhel-6-server-eus-source-rpms",
+													"rhel-ha-for-rhel-6-server-fastrack-debug-rpms",
+													"rhel-ha-for-rhel-6-server-fastrack-rpms",
+													"rhel-ha-for-rhel-6-server-fastrack-source-rpms",
+													"rhel-ha-for-rhel-6-server-rpms",
+													"rhel-ha-for-rhel-6-server-source-rpms",
+													"rhel-lb-for-rhel-6-server-debug-rpms",
+													"rhel-lb-for-rhel-6-server-eus-debug-rpms",
+													"rhel-lb-for-rhel-6-server-eus-rpms",
+													"rhel-lb-for-rhel-6-server-eus-source-rpms",
+													"rhel-lb-for-rhel-6-server-fastrack-debug-rpms",
+													"rhel-lb-for-rhel-6-server-fastrack-rpms",
+													"rhel-lb-for-rhel-6-server-fastrack-source-rpms",
+													"rhel-lb-for-rhel-6-server-rpms",
+													"rhel-lb-for-rhel-6-server-source-rpms",
+													"rhel-rs-for-rhel-6-server-debug-rpms",
+													"rhel-rs-for-rhel-6-server-eus-debug-rpms",
+													"rhel-rs-for-rhel-6-server-eus-rpms",
+													"rhel-rs-for-rhel-6-server-eus-source-rpms",
+													"rhel-rs-for-rhel-6-server-fastrack-debug-rpms",
+													"rhel-rs-for-rhel-6-server-fastrack-rpms",
+													"rhel-rs-for-rhel-6-server-fastrack-source-rpms",
+													"rhel-rs-for-rhel-6-server-rpms",
+													"rhel-rs-for-rhel-6-server-source-rpms",
+													"rhel-scalefs-for-rhel-6-server-debug-rpms",
+													"rhel-scalefs-for-rhel-6-server-fastrack-debug-rpms",
+													"rhel-scalefs-for-rhel-6-server-fastrack-rpms",
+													"rhel-scalefs-for-rhel-6-server-fastrack-source-rpms",
+													"rhel-scalefs-for-rhel-6-server-rpms",
+													"rhel-scalefs-for-rhel-6-server-source-rpms",
+													"rhel-sfs-for-rhel-6-server-eus-debug-rpms",
+													"rhel-sfs-for-rhel-6-server-eus-rpms",
+													"rhel-sfs-for-rhel-6-server-eus-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:0.8.7-18.el6_1.1"
+													}
+												],
+												"fixed": [
+													"0:0.8.7-18.el6_1.1"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "libvirt-client",
+												"architectures": [
+													"i686",
+													"ppc",
+													"ppc64",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-6-for-power-debug-rpms",
+													"rhel-6-for-power-eus-debug-rpms",
+													"rhel-6-for-power-eus-optional-debug-rpms",
+													"rhel-6-for-power-eus-optional-rpms",
+													"rhel-6-for-power-eus-optional-source-rpms",
+													"rhel-6-for-power-eus-rpms",
+													"rhel-6-for-power-eus-source-rpms",
+													"rhel-6-for-power-fastrack-debug-rpms",
+													"rhel-6-for-power-fastrack-rpms",
+													"rhel-6-for-power-fastrack-source-rpms",
+													"rhel-6-for-power-optional-debug-rpms",
+													"rhel-6-for-power-optional-fastrack-debug-rpms",
+													"rhel-6-for-power-optional-fastrack-rpms",
+													"rhel-6-for-power-optional-fastrack-source-rpms",
+													"rhel-6-for-power-optional-rpms",
+													"rhel-6-for-power-optional-source-rpms",
+													"rhel-6-for-power-rpms",
+													"rhel-6-for-power-source-rpms",
+													"rhel-6-for-system-z-debug-rpms",
+													"rhel-6-for-system-z-eus-debug-rpms",
+													"rhel-6-for-system-z-eus-optional-debug-rpms",
+													"rhel-6-for-system-z-eus-optional-rpms",
+													"rhel-6-for-system-z-eus-optional-source-rpms",
+													"rhel-6-for-system-z-eus-rpms",
+													"rhel-6-for-system-z-eus-source-rpms",
+													"rhel-6-for-system-z-fastrack-debug-rpms",
+													"rhel-6-for-system-z-fastrack-rpms",
+													"rhel-6-for-system-z-fastrack-source-rpms",
+													"rhel-6-for-system-z-optional-debug-rpms",
+													"rhel-6-for-system-z-optional-fastrack-debug-rpms",
+													"rhel-6-for-system-z-optional-fastrack-rpms",
+													"rhel-6-for-system-z-optional-fastrack-source-rpms",
+													"rhel-6-for-system-z-optional-rpms",
+													"rhel-6-for-system-z-optional-source-rpms",
+													"rhel-6-for-system-z-rpms",
+													"rhel-6-for-system-z-source-rpms",
+													"rhel-6-server-aus-debug-rpms",
+													"rhel-6-server-aus-optional-debug-rpms",
+													"rhel-6-server-aus-optional-rpms",
+													"rhel-6-server-aus-optional-source-rpms",
+													"rhel-6-server-aus-rpms",
+													"rhel-6-server-aus-source-rpms",
+													"rhel-6-server-debug-rpms",
+													"rhel-6-server-eus-debug-rpms",
+													"rhel-6-server-eus-optional-debug-rpms",
+													"rhel-6-server-eus-optional-rpms",
+													"rhel-6-server-eus-optional-source-rpms",
+													"rhel-6-server-eus-rpms",
+													"rhel-6-server-eus-source-rpms",
+													"rhel-6-server-fastrack-debug-rpms",
+													"rhel-6-server-fastrack-rpms",
+													"rhel-6-server-fastrack-source-rpms",
+													"rhel-6-server-optional-debug-rpms",
+													"rhel-6-server-optional-fastrack-debug-rpms",
+													"rhel-6-server-optional-fastrack-rpms",
+													"rhel-6-server-optional-fastrack-source-rpms",
+													"rhel-6-server-optional-rpms",
+													"rhel-6-server-optional-source-rpms",
+													"rhel-6-server-rpms",
+													"rhel-6-server-source-rpms",
+													"rhel-ha-for-rhel-6-server-debug-rpms",
+													"rhel-ha-for-rhel-6-server-eus-debug-rpms",
+													"rhel-ha-for-rhel-6-server-eus-rpms",
+													"rhel-ha-for-rhel-6-server-eus-source-rpms",
+													"rhel-ha-for-rhel-6-server-fastrack-debug-rpms",
+													"rhel-ha-for-rhel-6-server-fastrack-rpms",
+													"rhel-ha-for-rhel-6-server-fastrack-source-rpms",
+													"rhel-ha-for-rhel-6-server-rpms",
+													"rhel-ha-for-rhel-6-server-source-rpms",
+													"rhel-lb-for-rhel-6-server-debug-rpms",
+													"rhel-lb-for-rhel-6-server-eus-debug-rpms",
+													"rhel-lb-for-rhel-6-server-eus-rpms",
+													"rhel-lb-for-rhel-6-server-eus-source-rpms",
+													"rhel-lb-for-rhel-6-server-fastrack-debug-rpms",
+													"rhel-lb-for-rhel-6-server-fastrack-rpms",
+													"rhel-lb-for-rhel-6-server-fastrack-source-rpms",
+													"rhel-lb-for-rhel-6-server-rpms",
+													"rhel-lb-for-rhel-6-server-source-rpms",
+													"rhel-rs-for-rhel-6-server-debug-rpms",
+													"rhel-rs-for-rhel-6-server-eus-debug-rpms",
+													"rhel-rs-for-rhel-6-server-eus-rpms",
+													"rhel-rs-for-rhel-6-server-eus-source-rpms",
+													"rhel-rs-for-rhel-6-server-fastrack-debug-rpms",
+													"rhel-rs-for-rhel-6-server-fastrack-rpms",
+													"rhel-rs-for-rhel-6-server-fastrack-source-rpms",
+													"rhel-rs-for-rhel-6-server-rpms",
+													"rhel-rs-for-rhel-6-server-source-rpms",
+													"rhel-scalefs-for-rhel-6-server-debug-rpms",
+													"rhel-scalefs-for-rhel-6-server-fastrack-debug-rpms",
+													"rhel-scalefs-for-rhel-6-server-fastrack-rpms",
+													"rhel-scalefs-for-rhel-6-server-fastrack-source-rpms",
+													"rhel-scalefs-for-rhel-6-server-rpms",
+													"rhel-scalefs-for-rhel-6-server-source-rpms",
+													"rhel-sfs-for-rhel-6-server-eus-debug-rpms",
+													"rhel-sfs-for-rhel-6-server-eus-rpms",
+													"rhel-sfs-for-rhel-6-server-eus-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:0.8.7-18.el6_1.1"
+													}
+												],
+												"fixed": [
+													"0:0.8.7-18.el6_1.1"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "libvirt-devel",
+												"architectures": [
+													"i686",
+													"ppc",
+													"ppc64",
+													"s390",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-6-for-power-debug-rpms",
+													"rhel-6-for-power-eus-debug-rpms",
+													"rhel-6-for-power-eus-optional-debug-rpms",
+													"rhel-6-for-power-eus-optional-rpms",
+													"rhel-6-for-power-eus-optional-source-rpms",
+													"rhel-6-for-power-eus-rpms",
+													"rhel-6-for-power-eus-source-rpms",
+													"rhel-6-for-power-fastrack-debug-rpms",
+													"rhel-6-for-power-fastrack-rpms",
+													"rhel-6-for-power-fastrack-source-rpms",
+													"rhel-6-for-power-optional-debug-rpms",
+													"rhel-6-for-power-optional-fastrack-debug-rpms",
+													"rhel-6-for-power-optional-fastrack-rpms",
+													"rhel-6-for-power-optional-fastrack-source-rpms",
+													"rhel-6-for-power-optional-rpms",
+													"rhel-6-for-power-optional-source-rpms",
+													"rhel-6-for-power-rpms",
+													"rhel-6-for-power-source-rpms",
+													"rhel-6-for-system-z-debug-rpms",
+													"rhel-6-for-system-z-eus-debug-rpms",
+													"rhel-6-for-system-z-eus-optional-debug-rpms",
+													"rhel-6-for-system-z-eus-optional-rpms",
+													"rhel-6-for-system-z-eus-optional-source-rpms",
+													"rhel-6-for-system-z-eus-rpms",
+													"rhel-6-for-system-z-eus-source-rpms",
+													"rhel-6-for-system-z-fastrack-debug-rpms",
+													"rhel-6-for-system-z-fastrack-rpms",
+													"rhel-6-for-system-z-fastrack-source-rpms",
+													"rhel-6-for-system-z-optional-debug-rpms",
+													"rhel-6-for-system-z-optional-fastrack-debug-rpms",
+													"rhel-6-for-system-z-optional-fastrack-rpms",
+													"rhel-6-for-system-z-optional-fastrack-source-rpms",
+													"rhel-6-for-system-z-optional-rpms",
+													"rhel-6-for-system-z-optional-source-rpms",
+													"rhel-6-for-system-z-rpms",
+													"rhel-6-for-system-z-source-rpms",
+													"rhel-6-server-aus-debug-rpms",
+													"rhel-6-server-aus-optional-debug-rpms",
+													"rhel-6-server-aus-optional-rpms",
+													"rhel-6-server-aus-optional-source-rpms",
+													"rhel-6-server-aus-rpms",
+													"rhel-6-server-aus-source-rpms",
+													"rhel-6-server-debug-rpms",
+													"rhel-6-server-eus-debug-rpms",
+													"rhel-6-server-eus-optional-debug-rpms",
+													"rhel-6-server-eus-optional-rpms",
+													"rhel-6-server-eus-optional-source-rpms",
+													"rhel-6-server-eus-rpms",
+													"rhel-6-server-eus-source-rpms",
+													"rhel-6-server-fastrack-debug-rpms",
+													"rhel-6-server-fastrack-rpms",
+													"rhel-6-server-fastrack-source-rpms",
+													"rhel-6-server-optional-debug-rpms",
+													"rhel-6-server-optional-fastrack-debug-rpms",
+													"rhel-6-server-optional-fastrack-rpms",
+													"rhel-6-server-optional-fastrack-source-rpms",
+													"rhel-6-server-optional-rpms",
+													"rhel-6-server-optional-source-rpms",
+													"rhel-6-server-rpms",
+													"rhel-6-server-source-rpms",
+													"rhel-ha-for-rhel-6-server-debug-rpms",
+													"rhel-ha-for-rhel-6-server-eus-debug-rpms",
+													"rhel-ha-for-rhel-6-server-eus-rpms",
+													"rhel-ha-for-rhel-6-server-eus-source-rpms",
+													"rhel-ha-for-rhel-6-server-fastrack-debug-rpms",
+													"rhel-ha-for-rhel-6-server-fastrack-rpms",
+													"rhel-ha-for-rhel-6-server-fastrack-source-rpms",
+													"rhel-ha-for-rhel-6-server-rpms",
+													"rhel-ha-for-rhel-6-server-source-rpms",
+													"rhel-lb-for-rhel-6-server-debug-rpms",
+													"rhel-lb-for-rhel-6-server-eus-debug-rpms",
+													"rhel-lb-for-rhel-6-server-eus-rpms",
+													"rhel-lb-for-rhel-6-server-eus-source-rpms",
+													"rhel-lb-for-rhel-6-server-fastrack-debug-rpms",
+													"rhel-lb-for-rhel-6-server-fastrack-rpms",
+													"rhel-lb-for-rhel-6-server-fastrack-source-rpms",
+													"rhel-lb-for-rhel-6-server-rpms",
+													"rhel-lb-for-rhel-6-server-source-rpms",
+													"rhel-rs-for-rhel-6-server-debug-rpms",
+													"rhel-rs-for-rhel-6-server-eus-debug-rpms",
+													"rhel-rs-for-rhel-6-server-eus-rpms",
+													"rhel-rs-for-rhel-6-server-eus-source-rpms",
+													"rhel-rs-for-rhel-6-server-fastrack-debug-rpms",
+													"rhel-rs-for-rhel-6-server-fastrack-rpms",
+													"rhel-rs-for-rhel-6-server-fastrack-source-rpms",
+													"rhel-rs-for-rhel-6-server-rpms",
+													"rhel-rs-for-rhel-6-server-source-rpms",
+													"rhel-scalefs-for-rhel-6-server-debug-rpms",
+													"rhel-scalefs-for-rhel-6-server-fastrack-debug-rpms",
+													"rhel-scalefs-for-rhel-6-server-fastrack-rpms",
+													"rhel-scalefs-for-rhel-6-server-fastrack-source-rpms",
+													"rhel-scalefs-for-rhel-6-server-rpms",
+													"rhel-scalefs-for-rhel-6-server-source-rpms",
+													"rhel-sfs-for-rhel-6-server-eus-debug-rpms",
+													"rhel-sfs-for-rhel-6-server-eus-rpms",
+													"rhel-sfs-for-rhel-6-server-eus-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:0.8.7-18.el6_1.1"
+													}
+												],
+												"fixed": [
+													"0:0.8.7-18.el6_1.1"
+												]
+											}
+										}
+									}
+								]
+							},
+							{
+								"operator": "AND",
+								"criterions": [
+									{
+										"type": "version",
+										"version": {
+											"vulnerable": true,
+											"fix_status": {
+												"class": "fixed"
+											},
+											"package": {
+												"name": "libvirt-python",
+												"architectures": [
+													"i686",
+													"ppc64",
+													"s390x",
+													"x86_64"
+												],
+												"repositories": [
+													"rhel-6-for-power-debug-rpms",
+													"rhel-6-for-power-eus-debug-rpms",
+													"rhel-6-for-power-eus-optional-debug-rpms",
+													"rhel-6-for-power-eus-optional-rpms",
+													"rhel-6-for-power-eus-optional-source-rpms",
+													"rhel-6-for-power-eus-rpms",
+													"rhel-6-for-power-eus-source-rpms",
+													"rhel-6-for-power-fastrack-debug-rpms",
+													"rhel-6-for-power-fastrack-rpms",
+													"rhel-6-for-power-fastrack-source-rpms",
+													"rhel-6-for-power-optional-debug-rpms",
+													"rhel-6-for-power-optional-fastrack-debug-rpms",
+													"rhel-6-for-power-optional-fastrack-rpms",
+													"rhel-6-for-power-optional-fastrack-source-rpms",
+													"rhel-6-for-power-optional-rpms",
+													"rhel-6-for-power-optional-source-rpms",
+													"rhel-6-for-power-rpms",
+													"rhel-6-for-power-source-rpms",
+													"rhel-6-for-system-z-debug-rpms",
+													"rhel-6-for-system-z-eus-debug-rpms",
+													"rhel-6-for-system-z-eus-optional-debug-rpms",
+													"rhel-6-for-system-z-eus-optional-rpms",
+													"rhel-6-for-system-z-eus-optional-source-rpms",
+													"rhel-6-for-system-z-eus-rpms",
+													"rhel-6-for-system-z-eus-source-rpms",
+													"rhel-6-for-system-z-fastrack-debug-rpms",
+													"rhel-6-for-system-z-fastrack-rpms",
+													"rhel-6-for-system-z-fastrack-source-rpms",
+													"rhel-6-for-system-z-optional-debug-rpms",
+													"rhel-6-for-system-z-optional-fastrack-debug-rpms",
+													"rhel-6-for-system-z-optional-fastrack-rpms",
+													"rhel-6-for-system-z-optional-fastrack-source-rpms",
+													"rhel-6-for-system-z-optional-rpms",
+													"rhel-6-for-system-z-optional-source-rpms",
+													"rhel-6-for-system-z-rpms",
+													"rhel-6-for-system-z-source-rpms",
+													"rhel-6-server-aus-debug-rpms",
+													"rhel-6-server-aus-optional-debug-rpms",
+													"rhel-6-server-aus-optional-rpms",
+													"rhel-6-server-aus-optional-source-rpms",
+													"rhel-6-server-aus-rpms",
+													"rhel-6-server-aus-source-rpms",
+													"rhel-6-server-debug-rpms",
+													"rhel-6-server-eus-debug-rpms",
+													"rhel-6-server-eus-optional-debug-rpms",
+													"rhel-6-server-eus-optional-rpms",
+													"rhel-6-server-eus-optional-source-rpms",
+													"rhel-6-server-eus-rpms",
+													"rhel-6-server-eus-source-rpms",
+													"rhel-6-server-fastrack-debug-rpms",
+													"rhel-6-server-fastrack-rpms",
+													"rhel-6-server-fastrack-source-rpms",
+													"rhel-6-server-optional-debug-rpms",
+													"rhel-6-server-optional-fastrack-debug-rpms",
+													"rhel-6-server-optional-fastrack-rpms",
+													"rhel-6-server-optional-fastrack-source-rpms",
+													"rhel-6-server-optional-rpms",
+													"rhel-6-server-optional-source-rpms",
+													"rhel-6-server-rpms",
+													"rhel-6-server-source-rpms",
+													"rhel-ha-for-rhel-6-server-debug-rpms",
+													"rhel-ha-for-rhel-6-server-eus-debug-rpms",
+													"rhel-ha-for-rhel-6-server-eus-rpms",
+													"rhel-ha-for-rhel-6-server-eus-source-rpms",
+													"rhel-ha-for-rhel-6-server-fastrack-debug-rpms",
+													"rhel-ha-for-rhel-6-server-fastrack-rpms",
+													"rhel-ha-for-rhel-6-server-fastrack-source-rpms",
+													"rhel-ha-for-rhel-6-server-rpms",
+													"rhel-ha-for-rhel-6-server-source-rpms",
+													"rhel-lb-for-rhel-6-server-debug-rpms",
+													"rhel-lb-for-rhel-6-server-eus-debug-rpms",
+													"rhel-lb-for-rhel-6-server-eus-rpms",
+													"rhel-lb-for-rhel-6-server-eus-source-rpms",
+													"rhel-lb-for-rhel-6-server-fastrack-debug-rpms",
+													"rhel-lb-for-rhel-6-server-fastrack-rpms",
+													"rhel-lb-for-rhel-6-server-fastrack-source-rpms",
+													"rhel-lb-for-rhel-6-server-rpms",
+													"rhel-lb-for-rhel-6-server-source-rpms",
+													"rhel-rs-for-rhel-6-server-debug-rpms",
+													"rhel-rs-for-rhel-6-server-eus-debug-rpms",
+													"rhel-rs-for-rhel-6-server-eus-rpms",
+													"rhel-rs-for-rhel-6-server-eus-source-rpms",
+													"rhel-rs-for-rhel-6-server-fastrack-debug-rpms",
+													"rhel-rs-for-rhel-6-server-fastrack-rpms",
+													"rhel-rs-for-rhel-6-server-fastrack-source-rpms",
+													"rhel-rs-for-rhel-6-server-rpms",
+													"rhel-rs-for-rhel-6-server-source-rpms",
+													"rhel-scalefs-for-rhel-6-server-debug-rpms",
+													"rhel-scalefs-for-rhel-6-server-fastrack-debug-rpms",
+													"rhel-scalefs-for-rhel-6-server-fastrack-rpms",
+													"rhel-scalefs-for-rhel-6-server-fastrack-source-rpms",
+													"rhel-scalefs-for-rhel-6-server-rpms",
+													"rhel-scalefs-for-rhel-6-server-source-rpms",
+													"rhel-sfs-for-rhel-6-server-eus-debug-rpms",
+													"rhel-sfs-for-rhel-6-server-eus-rpms",
+													"rhel-sfs-for-rhel-6-server-eus-source-rpms"
+												]
+											},
+											"affected": {
+												"type": "rpm",
+												"range": [
+													{
+														"lt": "0:0.8.7-18.el6_1.1"
+													}
+												],
+												"fixed": [
+													"0:0.8.7-18.el6_1.1"
+												]
+											}
+										}
+									}
+								]
+							}
+						]
+					},
+					"tag": "6"
+				}
+			]
+		}
+	],
+	"data_source": {
+		"id": "redhat-ovalv1",
+		"raws": [
+			"vuls-data-raw-redhat-oval-repository-to-cpe/repository-to-cpe.json",
+			"vuls-data-raw-redhat-ovalv1/6/definitions/oval:com.redhat.rhsa:def:20111197.json",
+			"vuls-data-raw-redhat-ovalv1/6/objects/rpminfo_object/oval:com.redhat.rhba:obj:20131581001.json",
+			"vuls-data-raw-redhat-ovalv1/6/objects/rpminfo_object/oval:com.redhat.rhba:obj:20131581002.json",
+			"vuls-data-raw-redhat-ovalv1/6/objects/rpminfo_object/oval:com.redhat.rhba:obj:20131581003.json",
+			"vuls-data-raw-redhat-ovalv1/6/objects/rpminfo_object/oval:com.redhat.rhba:obj:20131581005.json",
+			"vuls-data-raw-redhat-ovalv1/6/states/rpminfo_state/oval:com.redhat.rhsa:ste:20111197001.json",
+			"vuls-data-raw-redhat-ovalv1/6/states/rpminfo_state/oval:com.redhat.rhsa:ste:20111197003.json",
+			"vuls-data-raw-redhat-ovalv1/6/tests/rpminfo_test/oval:com.redhat.rhba:tst:20131581002.json",
+			"vuls-data-raw-redhat-ovalv1/6/tests/rpminfo_test/oval:com.redhat.rhba:tst:20131581004.json",
+			"vuls-data-raw-redhat-ovalv1/6/tests/rpminfo_test/oval:com.redhat.rhba:tst:20131581006.json",
+			"vuls-data-raw-redhat-ovalv1/6/tests/rpminfo_test/oval:com.redhat.rhba:tst:20131581010.json",
+			"vuls-data-raw-redhat-ovalv1/6/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20111197001.json",
+			"vuls-data-raw-redhat-ovalv1/6/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20111197003.json",
+			"vuls-data-raw-redhat-ovalv1/6/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20111197005.json",
+			"vuls-data-raw-redhat-ovalv1/6/tests/rpminfo_test/oval:com.redhat.rhsa:tst:20111197007.json",
+			"vuls-data-raw-redhat-ovalv1/6/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20111656003.json",
+			"vuls-data-raw-redhat-ovalv1/6/tests/rpmverifyfile_test/oval:com.redhat.rhba:tst:20111656004.json"
+		]
+	}
+}
